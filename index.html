@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CPA一問一答">
+<meta name="theme-color" content="#ffffff">
+<title>CPA 短答一問一答</title>
+<style>
+:root{
+  --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
+  --text:#111827; --sub:#4b5563; --muted:#9ca3af;
+  --primary:#2563eb; --primary-hover:#1d4ed8; --primary-weak:#eff6ff;
+  --red:#dc2626; --red-weak:#fef2f2; --red-border:#fecaca;
+  --amber:#d97706; --amber-weak:#fffbeb; --amber-border:#fde68a;
+  --green:#16a34a; --green-weak:#f0fdf4; --green-border:#bbf7d0;
+  --marker:#fef08a; /* 蛍光ペンの黄色 */
+  --gray:#e5e7eb;
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+body.lock{overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;text-align:inherit}
+button:disabled{cursor:default}
+svg{display:block}
+
+/* Header */
+.appbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:var(--safe-t)}
+.appbar-in{max-width:960px;margin:0 auto;height:52px;display:flex;align-items:center;padding:0 12px;gap:8px}
+.appbar h1{font-size:17px;font-weight:700;flex:1;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--sub);flex-shrink:0}
+.iconbtn:active{background:var(--bg)}
+.iconbtn svg{width:22px;height:22px;fill:currentColor}
+
+.content{max-width:960px;margin:0 auto;padding:16px 16px calc(90px + var(--safe-b))}
+.section-label{font-size:13px;font-weight:700;color:var(--sub);margin:20px 2px 10px;display:flex;align-items:center;justify-content:space-between}
+
+/* Summary Banner */
+.stats-banner{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:grid;grid-template-columns:repeat(3,1fr);text-align:center}
+.stat-box{border-right:1px solid var(--line)}
+.stat-box:last-child{border-right:none}
+.stat-label{font-size:11.5px;color:var(--muted);font-weight:600}
+.stat-val{font-size:22px;font-weight:800;color:var(--text);margin-top:2px;letter-spacing:-0.02em}
+.stat-val small{font-size:12px;font-weight:600;margin-left:2px;color:var(--sub)}
+
+/* Subject Grid */
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,1fr);gap:14px}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;min-height:148px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.tile:active{background:#f9fafb}
+@media(hover:hover){.tile:hover{border-color:var(--line-dark);box-shadow:0 2px 8px rgba(0,0,0,0.04)}}
+.tile-head{display:flex;justify-content:space-between;align-items:flex-start}
+.tile-title{font-size:18px;font-weight:800;letter-spacing:-0.01em;color:var(--text)}
+.badge-mistake{background:var(--red-weak);color:var(--red);border:1px solid var(--red-border);font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px}
+.tile-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.tile-foot{margin-top:auto;padding-top:14px}
+.tile-row{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--sub);margin-bottom:6px}
+.tile-row b{font-weight:700;color:var(--text)}
+.tile-empty{margin-top:auto;padding-top:14px;font-size:12px;color:var(--muted)}
+
+/* Progress Bars */
+.bar{width:100%;background:var(--gray);border-radius:999px;overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+
+/* Card */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;margin-top:10px;color:var(--sub)}
+.legend b{color:var(--text);margin-left:3px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle;flex-shrink:0}
+.d-comp{background:var(--green)} .d-vague{background:var(--amber)} .d-mis{background:var(--red)} .d-un{background:var(--muted)}
+
+/* Quick Actions */
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.qbtn{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700;transition:all .15s}
+.qbtn b{font-size:24px;font-weight:800;line-height:1}
+.qbtn.red{border-color:var(--red-border);background:var(--red-weak);color:var(--red)}
+.qbtn.amber{border-color:var(--amber-border);background:var(--amber-weak);color:var(--amber)}
+.qbtn:disabled{opacity:.4;cursor:default}
+.qbtn:active:not(:disabled){filter:brightness(.96)}
+
+/* List Groups & Accordions */
+.list{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{width:100%;display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.row:active:not(:disabled){background:var(--bg)}
+.row-main{flex:1;min-width:0}
+.row-title{font-size:14.5px;font-weight:700;margin-bottom:4px}
+.row-sub{font-size:12px;color:var(--sub)}
+.row svg{width:20px;height:20px;fill:var(--muted);flex-shrink:0}
+.row.all .row-title{color:var(--primary)}
+
+/* Collapsible Sub-sections */
+.sec-group{border-bottom:1px solid var(--line)}
+.sec-group:last-child{border-bottom:none}
+.sec-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fafbfc;cursor:pointer;font-size:13.5px;font-weight:700;color:var(--text);border-bottom:1px solid transparent}
+.sec-header.open{border-bottom-color:var(--line);background:#f3f4f6}
+.sec-header-left{display:flex;align-items:center;gap:8px}
+.sec-badge{font-size:11px;font-weight:600;color:var(--sub);background:var(--surface);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
+.sec-arrow{width:18px;height:18px;fill:var(--muted);transition:transform .15s}
+.sec-header.open .sec-arrow{transform:rotate(180deg)}
+.sec-items{display:none}
+.sec-items.open{display:block}
+
+.qitem{display:flex;gap:12px;padding:12px 12px 12px 16px;border-bottom:1px solid var(--line);cursor:pointer;align-items:flex-start;background:var(--surface)}
+.qitem:last-child{border-bottom:none}
+.qitem:active{background:var(--bg)}
+.qitem .dot{margin-top:6px}
+.qi-main{flex:1;min-width:0}
+.qi-meta{font-size:11.5px;color:var(--muted);margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.badge-mis-count{background:var(--red-weak);color:var(--red);border:1px solid var(--red-border);font-size:10.5px;font-weight:700;padding:1px 5px;border-radius:4px;}
+.qi-text{font-size:14px;line-height:1.6;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.star{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:6px;color:var(--muted)}
+.star svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+.star.on{color:#f59e0b}
+.star.on svg{fill:#f59e0b}
+
+/* Primary Button */
+.primary-btn{width:100%;background:var(--primary);color:#fff;border-radius:10px;padding:14px;font-size:15px;font-weight:700;text-align:center;transition:background .15s}
+.primary-btn:hover{background:var(--primary-hover)}
+.primary-btn:disabled{background:var(--line-dark);cursor:default}
+.ghost-btn{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px;font-weight:700;text-align:center;color:var(--sub);background:var(--surface)}
+
+/* Bottom Tabbar (3タブ) */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
+.tabbar-in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;height:56px}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:700;color:var(--muted)}
+.tab svg{width:22px;height:22px;fill:currentColor}
+.tab.active{color:var(--primary)}
+
+/* Filter Sheet */
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:60;animation:fade .15s}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;background:var(--surface);border-radius:16px 16px 0 0;max-height:90vh;overflow-y:auto;padding:12px 18px calc(18px + var(--safe-b));max-width:560px;margin:0 auto;box-shadow:0 -4px 20px rgba(0,0,0,0.1)}
+@media(min-width:720px){.sheet{bottom:auto;top:50%;transform:translateY(-50%);border-radius:16px;padding-bottom:20px}}
+.grabber{width:36px;height:4px;border-radius:999px;background:var(--line-dark);margin:0 auto 12px}
+@media(min-width:720px){.grabber{display:none}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sheet-head b{font-size:16px;font-weight:800}
+.sheet-head button{font-size:13px;color:var(--primary);font-weight:700}
+.opt{padding:12px 0;border-bottom:1px solid var(--line)}
+.opt:last-of-type{border-bottom:none}
+.opt-label{font-size:12px;font-weight:700;color:var(--sub);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.fchip{border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--sub);background:var(--surface);display:flex;align-items:center;gap:6px}
+.fchip small{font-size:11px;color:var(--muted)}
+.fchip.on{border-color:var(--primary);background:var(--primary-weak);color:var(--primary)}
+.seg{display:flex;background:var(--bg);border-radius:8px;padding:3px;gap:2px}
+.seg button{flex:1;text-align:center;padding:7px;border-radius:6px;font-size:13px;font-weight:600;color:var(--sub)}
+.seg button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,0.06)}
+
+/* Quiz Mode */
+#overlay{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+#overlay.show{display:block}
+.qz-bar{position:sticky;top:0;background:var(--surface);z-index:5;padding-top:var(--safe-t);border-bottom:1px solid var(--line)}
+.qz-bar-in{max-width:800px;margin:0 auto;height:52px;display:flex;align-items:center;padding:0 8px}
+.qz-title{flex:1;font-size:15px;font-weight:700;padding-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qz-progress{height:3px;background:var(--gray)}
+.qz-progress i{display:block;height:100%;background:var(--primary);transition:width .2s}
+.qz-body{max-width:800px;margin:0 auto;padding:16px 16px 120px}
+.qz-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px}
+.qz-meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.qz-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.rank-badge{font-size:11px;font-weight:800;padding:2px 7px;border-radius:4px;background:var(--bg);color:var(--sub);border:1px solid var(--line)}
+.qz-question{font-size:16.5px;line-height:1.8;font-weight:500;color:var(--text);margin-bottom:20px}
+.choices{display:grid;gap:10px}
+@media(min-width:640px){.choices{grid-template-columns:1fr 1fr 1fr}}
+.choice{border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface);font-size:15px;font-weight:700;display:flex;align-items:center;gap:10px;transition:all .12s}
+.choice:active:not(:disabled){background:var(--bg)}
+.choice.correct{border-color:var(--green);background:var(--green-weak);color:var(--green)}
+.choice.wrong{border-color:var(--red);background:var(--red-weak);color:var(--red)}
+
+.judge{margin-top:16px;padding:14px;border-radius:10px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:center}
+.judge.ok{background:var(--green-weak);color:var(--green);border:1px solid var(--green-border)}
+.judge.ng{background:var(--red-weak);color:var(--red);border:1px solid var(--red-border)}
+.exp{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.exp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.exp-title{font-size:13px;font-weight:800;color:var(--sub)}
+.btn-marker-action{background:var(--primary-weak);color:var(--primary);border:1px solid rgba(37,99,235,0.2);padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:700;display:flex;align-items:center;gap:4px;}
+.btn-marker-action:active{background:#dbeafe;}
+.exp-text{font-size:14.5px;line-height:1.85;color:#374151;user-select:text;-webkit-user-select:text;}
+.hl-mark{background-color:var(--marker);padding:1px 2px;border-radius:3px;font-weight:600;color:#000;}
+
+.rate-box{margin-top:20px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px}
+.rate-title{font-size:12px;font-weight:700;color:var(--sub);margin-bottom:10px;text-align:center}
+.rate-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rb{border-radius:8px;padding:12px 6px;text-align:center;font-size:14px;font-weight:700;border:1px solid transparent}
+.rb.red{background:var(--red-weak);border-color:var(--red-border);color:var(--red)}
+.rb.amber{background:var(--amber-weak);border-color:var(--amber-border);color:var(--amber)}
+.rb.green{background:var(--green-weak);border-color:var(--green-border);color:var(--green)}
+
+/* 要点ノート用スタイル */
+.note-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;}
+.note-card:active{background:#fafbfc;}
+.note-meta{font-size:11.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+.note-text{font-size:14px;line-height:1.7;color:var(--text);border-left:3px solid #eab308;padding-left:10px;background:#fefce8;padding:8px 10px;border-radius:0 8px 8px 0;font-weight:600;}
+.btn-del-note{color:var(--muted);padding:4px;}
+.btn-del-note:hover{color:var(--red);}
+
+/* AIボタン & 問題別メモ用スタイル */
+.exp-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.btn-ai-action{background:#f3f4f6;color:#374151;border:1px solid #d1d5db;padding:4px 9px;border-radius:6px;font-size:11.5px;font-weight:700;display:flex;align-items:center;gap:4px;transition:all .15s;}
+.btn-ai-action:active{background:#e5e7eb;}
+.memo-section{margin-top:14px;background:#f9fafb;border:1px solid var(--line);border-radius:10px;padding:12px;}
+.memo-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.memo-title{font-size:12px;font-weight:700;color:var(--sub);display:flex;align-items:center;gap:4px;}
+.memo-textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13.5px;line-height:1.6;color:var(--text);background:var(--surface);resize:vertical;min-height:64px;box-sizing:border-box;font-family:inherit;}
+.memo-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-weak);}
+.sync-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:#f3f4f6;color:var(--sub);border:1px solid var(--line);}
+.sync-badge.online{background:var(--green-weak);color:var(--green);border-color:var(--green-border);}
+.sync-badge.syncing{background:var(--primary-weak);color:var(--primary);border-color:rgba(37,99,235,0.3);}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+</style>
+<!-- Firebase SDK (無料版・端末間自動同期用) -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+<div id="screen"></div>
+<nav class="tabbar">
+  <div class="tabbar-in">
+    <button class="tab" data-tab="home" onclick="tabTo('home')"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>ホーム</span></button>
+    <button class="tab" data-tab="notes" onclick="tabTo('notes')"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span>要点ノート</span></button>
+    <button class="tab" data-tab="record" onclick="tabTo('record')"><svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z"/></svg><span>学習記録</span></button>
+  </div>
+</nav>
+<div id="sheet"></div>
+<div id="overlay"></div>
+
+<script>
+// 問題データ
+const QUESTIONS = [
+  // 企業法
+  {id:"K-02-07-01",subject:"企業法",chapter:"2. 機関",sub:"(7) 代表執行役",num:1,rank:"A",src:"平21 問題10エ",
+   q:"指名委員会等設置会社において執行役が2人以上いる場合、その互選によって代表執行役を選定しなければならない。",ans:"誤り",
+   exp:"420条1項。指名委員会等設置会社において、取締役会は、執行役の中から代表執行役を選定しなければならない。この場合において、執行役が1人のときは、その者が代表執行役に選定されたものとする。また、いつでも、取締役会の決議によって解職することができる（420条2項）。"},
+  {id:"K-02-07-02",subject:"企業法",chapter:"2. 機関",sub:"(7) 代表執行役",num:2,rank:"A",src:"平25Ⅱ 問題12エ・平23Ⅰ 問題9エ類",
+   q:"指名委員会等設置会社がその執行役に対して訴えを提起する場合には、当該訴えについて指名委員会等設置会社を代表する監査委員は、取締役会によって選定される。",ans:"誤り",
+   exp:"408条1項2号。株式会社と取締役または執行役との間の訴えについては、①監査委員が当該訴えに係る訴訟の当事者である場合は、取締役会が定める者（株主総会が定めた場合はその者）、②監査委員が当事者でない場合は、監査委員会が選定する監査委員が指名委員会等設置会社を代表する。"},
+  {id:"K-02-07-03",subject:"企業法",chapter:"2. 機関",sub:"(7) 代表執行役",num:3,rank:"A",src:"令2Ⅰ 問題12ア",
+   q:"指名委員会等設置会社において、取締役会は、代表取締役を選定することができない。",ans:"正しい",
+   exp:"指名委員会等設置会社においては、代表執行役が指名委員会等設置会社を代表するため（420条3項、349条4項）、代表取締役が選定されることはない。"},
+  {id:"K-02-08-01",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:1,rank:"A",src:"平29Ⅰ 問題12ア・平24Ⅰ 問題12エ類",
+   q:"指名委員会等設置会社の取締役は、各委員会の委員である者を除いて、当該会社の使用人を兼ねることができる。",ans:"誤り",
+   exp:"331条4項。指名委員会等設置会社の取締役は、当該会社の支配人その他の使用人を兼ねることができない。取締役会は執行役等の業務執行の監督が中心であり、取締役が監督対象である執行役に従属する使用人となれば、実効的な監督ができないと考えられるからである。"},
+  {id:"K-02-08-02",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:2,rank:"B",src:"",
+   q:"指名委員会等設置会社の取締役会は、会社法または会社法に基づく命令に別段の定めがある場合を除き、指名委員会等設置会社の業務を執行することができない。",ans:"正しい",
+   exp:"415条。執行役による業務の執行と取締役会による業務執行の監督を区別することにより、業務執行の監督機能を強化するという趣旨から規定されている。"},
+  {id:"K-02-08-03",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:3,rank:"A",src:"平25Ⅰ 問題11イ・平20 問題14イ類",
+   q:"指名委員会等設置会社において、取締役会は、取締役の職務の執行が効率的に行われることを確保するための体制の整備を決定しなければならない。",ans:"誤り",
+   exp:"416条1項1号ホ、会社法施行規則112条2項3号。法務省令では「執行役」の職務の執行が効率的に行われることを確保するための体制の整備を求めているが、「取締役」の職務の執行についての効率性確保体制は求められていない。"},
+  {id:"K-02-08-04",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:4,rank:"A",src:"平23Ⅱ 問題13ア",
+   q:"指名委員会等設置会社の取締役会は、経営の基本方針の決定を、執行役に委任することができる。",ans:"誤り",
+   exp:"416条1項1号イ。取締役会は、会社経営の基本方針、業務執行の決定、執行役等の職務執行の監督を行う。経営の基本方針の決定を執行役に委任することは認められない。"},
+  {id:"K-02-08-05",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:5,rank:"A",src:"令3 問題11ウ類・平29Ⅰ 問題12エ",
+   q:"指名委員会等設置会社において執行役が2人以上いる場合、執行役の職務の分掌に関する事項は、執行役の協議によって定める。",ans:"誤り",
+   exp:"416条1項1号ハ、2項。執行役が2人以上いる場合の職務の分掌および指揮命令の関係その他の執行役相互の関係に関する事項は取締役会が決定しなければならず、取締役や執行役に委任することができない（416条3項）。"},
+  {id:"K-02-08-06",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:6,rank:"A",src:"平23Ⅰ 問題11ア",
+   q:"監査委員ではない取締役は、執行役の職務執行を監督する義務を負わない。",ans:"誤り",
+   exp:"416条1項2号。取締役会は執行役の職務執行を監督する義務があるため、監査委員でなくても、その構成員である取締役は当該義務を負う。"},
+  {id:"K-02-08-07",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:7,rank:"A",src:"平26Ⅰ 問題10ア",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、譲渡制限株式の譲渡等承認の決定および指定買取人の指定を執行役に委任することができる。",ans:"誤り",
+   exp:"416条4項1号。譲渡制限株式の譲渡等承認の決定および指定買取人の指定は、執行役に委任することができない。"},
+  {id:"K-02-08-08",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:8,rank:"A",src:"平30Ⅱ 問題10エ・平26Ⅰ 問題7イ類・平23Ⅱ 問題8イ類",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、株主総会の日時および場所等の株主総会の招集に関する事項の決定を執行役に委任することができない。",ans:"正しい",
+   exp:"416条4項4号。株主総会の招集事項の決定を執行役に委任することはできない。"},
+  {id:"K-02-08-09",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:9,rank:"A",src:"令7Ⅰ 問題8ア類・平27Ⅰ 問題9エ・平26Ⅰ 問題10イ類・平21 問題12イ",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、重要な財産の処分および譲受けならびに多額の借財の決定を執行役に委任することができる。",ans:"正しい",
+   exp:"416条4項各号参照。特段の要件なく、取締役会の決議によって重要な財産の処分等を執行役に委任することができる。"},
+  {id:"K-02-08-10",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:10,rank:"A",src:"平26Ⅰ 問題10ウ類・平23Ⅱ 問題13イ",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、支配人その他の重要な使用人の選任および解任の決定を、執行役に委任することができる。",ans:"正しい",
+   exp:"416条4項各号参照。"},
+  {id:"K-02-08-11",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:11,rank:"A",src:"平21 問題12ウ類",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、会社と取締役との間の取引の承認を執行役に委任することができる。",ans:"誤り",
+   exp:"416条4項7号。競業取引および利益相反取引の承認については、執行役への委任が認められていない。"},
+  {id:"K-02-08-12",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:12,rank:"A",src:"令6Ⅱ 問題16ア・令2Ⅱ 問題12ウ・平21 問題12エ",
+   q:"指名委員会等設置会社における取締役会は、社債を引き受ける者の募集に関する重要な事項の決定を執行役に委任することができる。",ans:"正しい",
+   exp:"416条4項各号参照。社債の募集に関する重要な事項の決定は委任できない事項に含まれていないため、委任できる。"},
+  {id:"K-02-08-13",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:13,rank:"A",src:"",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、補償契約の内容の決定を執行役に委任することができる。",ans:"誤り",
+   exp:"416条4項14号。補償契約の内容の決定を執行役に委任することはできない。"},
+  {id:"K-02-08-14",subject:"企業法",chapter:"2. 機関",sub:"(8) 指名委員会等設置会社の取締役および取締役会の権限",num:14,rank:"A",src:"平23Ⅱ 問題13ウ",
+   q:"指名委員会等設置会社の取締役会は、その決議によって、当該指名委員会等設置会社の株主総会の決議による承認を要しない略式吸収合併契約の内容の決定を、執行役に委任することができる。",ans:"正しい",
+   exp:"416条4項19号かっこ書。略式吸収合併は株主総会の特別決議を要しないため、執行役に決定を委任できる。"},
+
+  // 財務諸表論
+  {id:"Z-01-01",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"1. 財務会計の機能",num:1,rank:"A",src:"H22 過去問類題",
+   q:"金融商品取引法は国民経済の健全な発展と投資者保護に資することを目的としており、財務会計の情報提供機能を主に遂行している。",ans:"正しい",
+   exp:"金融商品取引法は、資本市場における金融商品等の公正な価格形成等を図り、もって国民経済の健全な発展および投資者の保護に資することを目的としている。"},
+  {id:"Z-01-02",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"1. 財務会計の機能",num:2,rank:"C",src:"",
+   q:"剰余金の配当が過度になされると、債権者にとって担保財産の減少を引き起こし、債務不履行リスクが高まってしまうことから、現行制度上、分配可能額を法定することにより、経営者と債権者の間に存在する利害対立の調整を図っている。",ans:"誤り",
+   exp:"本肢は「株主と債権者」の間の利害調整機能に関する記述である。経営者と債権者ではない。"},
+  {id:"Z-01-03",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"1. 財務会計の機能",num:3,rank:"B",src:"",
+   q:"証券市場において、証券の発行企業と投資者の間に情報の非対称性が存在する。投資者への情報提供が不十分である場合には、証券市場が機能しなくなる可能性がある。この問題は、財務会計の情報提供機能を通じて緩和される。",ans:"正しい",
+   exp:"財務会計の情報提供機能により、投資者に対して証券投資の意思決定に役立つ情報を提供して彼らを保護する。"},
+  {id:"Z-01-04",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"1. 財務会計の機能",num:4,rank:"B",src:"R4 過去問",
+   q:"株式が多くの株主に分散して所有され、個々の株主の影響力が低下した結果、株主の関心は経営者の受託責任の遂行状況を評価するという会計報告の目的は失われ、財務会計には投資意思決定のための情報提供機能のみが求められている。",ans:"誤り",
+   exp:"経営者の受託責任の遂行状況を評価するという会計報告の目的についても、引き続き求められている。"},
+  {id:"Z-01-05",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"2. 企業会計の原則等",num:5,rank:"B",src:"H23 過去問",
+   q:"企業会計原則は1982年以来修正されておらず、現在では「一般に公正妥当と認められる企業会計の基準」には含まれない。",ans:"誤り",
+   exp:"企業会計原則についても、「一般に公正妥当と認められる企業会計の基準」に含まれる。"},
+  {id:"Z-01-06",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"2. 企業会計の原則等",num:6,rank:"B",src:"",
+   q:"「企業会計原則」はその設定当初、会計の基本原則として機能していたが、現在では当該原則が想定していない会計事象が存在したり、新たな会計の考え方が採用されている以上、今現在において会計を行う際には当該原則に規定されている内容を勘案する必要はない。",ans:"誤り",
+   exp:"現在においても企業会計原則は会計の理論的な土台を提供するものと位置付けられているため、勘案する必要がある。"},
+  {id:"Z-01-07",subject:"財務諸表論",chapter:"第1章 財務会計における基礎概念",sub:"2. 企業会計の原則等",num:7,rank:"C",src:"",
+   q:"会計原則を設定するアプローチには、演繹的アプローチと帰納的アプローチがあるが、企業会計原則は演繹的アプローチにより形成された原則といえる。",ans:"誤り",
+   exp:"企業会計原則は実務の中から一般に公正妥当と認められたところを要約したものであるため、「帰納的アプローチ」によって形成された会計原則である。"}
+];
+
+const SUBJECTS = [
+  {key:"企業法", desc:"短答 肢別チェック"},
+  {key:"監査論", desc:"短答 肢別チェック"},
+  {key:"財務諸表論", desc:"短答 肢別チェック"},
+  {key:"管理会計論", desc:"短答 肢別チェック"}
+];
+
+const CHAPTER_MASTER = {
+  "財務諸表論":[
+    "第1章 財務会計における基礎概念","第2章 一般原則","第3章 貸借対照表・損益計算書総論","第4章 損益会計",
+    "第5章 貸借対照表総論","第6章 資産会計総論","第7章 流動資産・固定資産","第8章 繰延資産","第9章 負債会計",
+    "第10章 資本会計（伝統論）","第11章 収益費用アプローチと資産負債アプローチ","第12章 財務会計の概念フレームワーク",
+    "第13章 会計基準と企業会計制度","第14章 セグメント情報等の開示に関する会計基準","第15章 関連当事者の開示に関する会計基準",
+    "第16章 賃貸等不動産の時価等の開示に関する会計基準","第17章 役員賞与に関する会計基準","第18章 時価の算定に関する会計基準",
+    "第19章 法人税、住民税及び事業税等に関する会計基準"
+  ]
+};
+
+// Storage Keys
+const LS_STATUS = "cpa_v6_status";
+const LS_MISTAKES = "cpa_v6_mistakes";
+const LS_LOG = "cpa_v6_log";
+const LS_STAR = "cpa_v6_star";
+const LS_NOTES = "cpa_v6_notes"; // [ { id: "QID", qid: "...", text: "マーカー文字列", sub: "...", ch: "...", qnum: 1 } ]
+const LS_MEMOS = "cpa_v6_memos"; // { [qid]: "問題ごとのメモ内容" }
+
+let statusMap = JSON.parse(localStorage.getItem(LS_STATUS) || "{}");
+let mistakeCountMap = JSON.parse(localStorage.getItem(LS_MISTAKES) || "{}");
+let logArr = JSON.parse(localStorage.getItem(LS_LOG) || "[]");
+let starMap = JSON.parse(localStorage.getItem(LS_STAR) || "{}");
+let notesList = JSON.parse(localStorage.getItem(LS_NOTES) || "[]");
+let memoMap = JSON.parse(localStorage.getItem(LS_MEMOS) || "{}");
+
+// --- Firebase クラウド自動同期（二重安全設計） ---
+let db = null;
+let syncStatus = "offline"; // "online" | "syncing" | "offline"
+let isRemoteUpdating = false;
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAcqnz1HwQCzukOYdG_j7xAtscE9QuZHsg",
+  authDomain: "cpa-app-fca0c.firebaseapp.com",
+  projectId: "cpa-app-fca0c",
+  storageBucket: "cpa-app-fca0c.firebasestorage.app",
+  messagingSenderId: "512754805085",
+  appId: "1:512754805085:web:cf52a25588f5c6cba120b4",
+  measurementId: "G-4LCKRYWK00"
+};
+
+function initFirebase(){
+  try {
+    if(window.firebase && !firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+      syncStatus = "online";
+      listenCloudData();
+    }
+  } catch(e) {
+    console.warn("Firebase Init Error (Local fallback active):", e);
+    syncStatus = "offline";
+  }
+}
+
+// クラウドからの変更をリアルタイム監視（他端末での操作を瞬時に反映）
+function listenCloudData(){
+  if(!db) return;
+  db.collection("userdata").doc("main_profile").onSnapshot((doc) => {
+    if(!doc.exists) return;
+    const data = doc.data();
+    if(!data) return;
+
+    isRemoteUpdating = true;
+    try {
+      if(data.statusMap) { statusMap = data.statusMap; localStorage.setItem(LS_STATUS, JSON.stringify(statusMap)); }
+      if(data.mistakeCountMap) { mistakeCountMap = data.mistakeCountMap; localStorage.setItem(LS_MISTAKES, JSON.stringify(mistakeCountMap)); }
+      if(data.logArr) { logArr = data.logArr; localStorage.setItem(LS_LOG, JSON.stringify(logArr)); }
+      if(data.starMap) { starMap = data.starMap; localStorage.setItem(LS_STAR, JSON.stringify(starMap)); }
+      if(data.notesList) { notesList = data.notesList; localStorage.setItem(LS_NOTES, JSON.stringify(notesList)); }
+      if(data.memoMap) { memoMap = data.memoMap; localStorage.setItem(LS_MEMOS, JSON.stringify(memoMap)); }
+      syncStatus = "online";
+      render();
+    } finally {
+      isRemoteUpdating = false;
+    }
+  }, (err) => {
+    console.warn("Firestore snapshot error:", err);
+    syncStatus = "offline";
+  });
+}
+
+// 端末側の変更をクラウドへアップロード（デバウンス付き）
+let saveCloudTimer = null;
+function triggerCloudSave(){
+  if(isRemoteUpdating || !db) return;
+  syncStatus = "syncing";
+  renderSyncBadge();
+
+  clearTimeout(saveCloudTimer);
+  saveCloudTimer = setTimeout(() => {
+    db.collection("userdata").doc("main_profile").set({
+      statusMap,
+      mistakeCountMap,
+      logArr,
+      starMap,
+      notesList,
+      memoMap,
+      lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true }).then(() => {
+      syncStatus = "online";
+      renderSyncBadge();
+    }).catch((err) => {
+      console.warn("Firestore save error:", err);
+      syncStatus = "offline";
+      renderSyncBadge();
+    });
+  }, 400);
+}
+
+function renderSyncBadge(){
+  const el = document.getElementById("syncBadgeEl");
+  if(!el) return;
+  if(syncStatus === "online"){
+    el.className = "sync-badge online";
+    el.innerHTML = '<span class="sync-dot"></span>クラウド同期中';
+  } else if(syncStatus === "syncing"){
+    el.className = "sync-badge syncing";
+    el.innerHTML = '<span class="sync-dot"></span>同期中...';
+  } else {
+    el.className = "sync-badge";
+    el.innerHTML = '<span class="sync-dot" style="background:var(--muted)"></span>ローカル保存中';
+  }
+}
+
+// 初期サンプルノート（初回のみ）
+if(notesList.length === 0){
+  notesList.push({
+    qid: "K-02-07-01",
+    subject: "企業法",
+    chapter: "2. 機関",
+    sub: "(7) 代表執行役",
+    qnum: 1,
+    text: "取締役会は、執行役の中から代表執行役を選定しなければならない。"
+  });
+  notesList.push({
+    qid: "K-02-08-01",
+    subject: "企業法",
+    chapter: "2. 機関",
+    sub: "(8) 指名委員会等設置会社の取締役および取締役会の権限",
+    qnum: 1,
+    text: "取締役は、当該会社の支配人その他の使用人を兼ねることができない。"
+  });
+  localStorage.setItem(LS_NOTES, JSON.stringify(notesList));
+}
+
+let openSections = { "(7) 代表執行役": true };
+
+const st = id => statusMap[id] || "未着手";
+const misCnt = id => mistakeCountMap[id] || 0;
+const qsOf = subj => QUESTIONS.filter(q => q.subject === subj);
+
+function stats(list){
+  const s = {total:list.length, comp:0, vague:0, mis:0, un:0};
+  list.forEach(q => {
+    const x = st(q.id);
+    if(x === "コンプリート") s.comp++;
+    else if(x === "曖昧") s.vague++;
+    else if(x === "間違えた") s.mis++;
+    else s.un++;
+  });
+  s.pct = s.total ? Math.round(s.comp / s.total * 100) : 0;
+  return s;
+}
+
+function bar(s, h=5){
+  if(!s.total) return `<div class="bar" style="height:${h}px"></div>`;
+  const w = n => (n / s.total * 100).toFixed(1) + "%";
+  return `<div class="bar" style="height:${h}px">
+    <i style="width:${w(s.comp)};background:var(--green)"></i>
+    <i style="width:${w(s.vague)};background:var(--amber)"></i>
+    <i style="width:${w(s.mis)};background:var(--red)"></i>
+  </div>`;
+}
+
+// Navigation
+const state = { tab:"home", stack:[{v:"subjects"}], sheet:null, session:null };
+
+function tabTo(t){
+  state.tab = t;
+  if(t === "home") state.stack = [{v:"subjects"}];
+  render(); window.scrollTo(0,0);
+}
+function nav(v){ state.stack.push(v); render(); window.scrollTo(0,0); }
+function back(){ if(state.stack.length > 1) state.stack.pop(); render(); window.scrollTo(0,0); }
+
+function render(){
+  const root = document.getElementById("screen");
+  if(state.tab === "home"){
+    const top = state.stack[state.stack.length - 1];
+    if(top.v === "subjects") root.innerHTML = vSubjects();
+    else if(top.v === "subject") root.innerHTML = vSubject(top.si);
+    else if(top.v === "chapter") root.innerHTML = vChapter(top.si, top.ci);
+  } else if(state.tab === "notes"){
+    root.innerHTML = vNotes();
+  } else {
+    root.innerHTML = vRecord();
+  }
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b.dataset.tab === state.tab));
+}
+
+// 1. ホーム
+function vSubjects(){
+  const all = stats(QUESTIONS);
+  const today = new Date().toISOString().slice(0,10);
+  const todayCount = logArr.filter(l => l.t.startsWith(today)).length;
+
+  return `
+  <header class="appbar">
+    <div class="appbar-in">
+      <h1>短答一問一答</h1>
+      <div id="syncBadgeEl" class="sync-badge">
+        <span class="sync-dot"></span>読込中...
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <div class="stats-banner">
+      <div class="stat-box"><div class="stat-label">今日の解答</div><div class="stat-val">${todayCount}<small>問</small></div></div>
+      <div class="stat-box"><div class="stat-label">要点マーカー</div><div class="stat-val">${notesList.length}<small>箇所</small></div></div>
+      <div class="stat-box"><div class="stat-label">全体の達成率</div><div class="stat-val">${all.pct}<small>%</small></div></div>
+    </div>
+
+    <div class="section-label">科目を選択</div>
+    <div class="tiles">
+      ${SUBJECTS.map((s, i) => {
+        const list = qsOf(s.key);
+        const x = stats(list);
+        return `
+        <div class="tile" onclick="nav({v:'subject', si:${i}})">
+          <div class="tile-head">
+            <div class="tile-title">${s.key}</div>
+            ${x.mis ? `<span class="badge-mistake">✕ ${x.mis}</span>` : ""}
+          </div>
+          <div class="tile-desc">${s.desc}</div>
+          ${list.length ? `
+          <div class="tile-foot">
+            <div class="tile-row"><span>達成率 ${x.pct}%</span><b>${x.comp}/${x.total}</b></div>
+            ${bar(x)}
+          </div>` : `<div class="tile-empty">問題未登録</div>`}
+        </div>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+
+// 2. 章選択
+function vSubject(si){
+  const s = SUBJECTS[si];
+  const list = qsOf(s.key);
+  const x = stats(list);
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(list.map(q => q.chapter))];
+
+  return `
+  <header class="appbar">
+    <div class="appbar-in">
+      <button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <h1>${s.key}</h1>
+    </div>
+  </header>
+  <div class="content">
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:13px; font-weight:700;">
+        <span>科目全体の進捗</span><span>${x.comp} / ${x.total}問 (${x.pct}%)</span>
+      </div>
+      ${bar(x, 8)}
+      <div class="legend">
+        <span><i class="dot d-comp"></i>コンプリート<b>${x.comp}</b></span>
+        <span><i class="dot d-mis"></i>間違えた<b>${x.mis}</b></span>
+        <span><i class="dot d-vague"></i>曖昧<b>${x.vague}</b></span>
+        <span><i class="dot d-un"></i>未着手<b>${x.un}</b></span>
+      </div>
+    </div>
+
+    <div class="quick">
+      <button class="qbtn red" ${x.mis ? "" : "disabled"} onclick="quickStart(${si}, -1, '間違えた')">
+        <b>${x.mis}</b><span>間違えた問題<br>だけ解く</span>
+      </button>
+      <button class="qbtn amber" ${x.vague ? "" : "disabled"} onclick="quickStart(${si}, -1, '曖昧')">
+        <b>${x.vague}</b><span>曖昧な問題<br>だけ解く</span>
+      </button>
+    </div>
+
+    <div class="section-label">章を選択</div>
+    <div class="list">
+      <div class="row all" onclick="openSheet(${si}, -1)">
+        <div class="row-main">
+          <div class="row-title">すべての章から出題</div>
+          <div class="row-sub">${list.length}問 · 絞り込み設定へ</div>
+        </div>
+        <svg viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </div>
+      ${chapters.map((ch, ci) => {
+        const clist = list.filter(q => q.chapter === ch);
+        const cx = stats(clist);
+        return `
+        <div class="row" ${clist.length ? `onclick="nav({v:'chapter', si:${si}, ci:${ci}})"` : "style='opacity:0.5;'"} >
+          <div class="row-main">
+            <div class="row-title">${ch}</div>
+            ${clist.length ? `
+            <div class="row-sub">${cx.comp}/${cx.total}問 · 達成率${cx.pct}% ${cx.mis ? `<span style="color:var(--red);font-weight:700;margin-left:6px;">✕${cx.mis}</span>` : ""}</div>
+            ${bar(cx, 4)}` : `<div class="row-sub">未登録</div>`}
+          </div>
+          ${clist.length ? `<svg viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+
+// 3. 各章の問題一覧
+function vChapter(si, ci){
+  const s = SUBJECTS[si];
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
+  const chName = chapters[ci];
+  const list = qsOf(s.key).filter(q => q.chapter === chName);
+  const x = stats(list);
+
+  const groups = {};
+  list.forEach(q => {
+    if(!groups[q.sub]) groups[q.sub] = [];
+    groups[q.sub].push(q);
+  });
+
+  return `
+  <header class="appbar">
+    <div class="appbar-in">
+      <button class="iconbtn" onclick="back()"><svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+      <h1>${chName}</h1>
+    </div>
+  </header>
+  <div class="content">
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:13px; font-weight:700;">
+        <span>進捗</span><span>${x.comp} / ${x.total}問 (${x.pct}%)</span>
+      </div>
+      ${bar(x, 8)}
+      <div class="legend">
+        <span><i class="dot d-comp"></i>コンプリート<b>${x.comp}</b></span>
+        <span><i class="dot d-mis"></i>間違えた<b>${x.mis}</b></span>
+        <span><i class="dot d-vague"></i>曖昧<b>${x.vague}</b></span>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="primary-btn" onclick="openSheet(${si}, ${ci})">この章の問題を解く（${list.length}問）</button>
+    </div>
+
+    <div class="quick">
+      <button class="qbtn red" ${x.mis ? "" : "disabled"} onclick="quickStart(${si}, ${ci}, '間違えた')">
+        <b>${x.mis}</b><span>間違えた問題<br>だけ解く</span>
+      </button>
+      <button class="qbtn amber" ${x.vague ? "" : "disabled"} onclick="quickStart(${si}, ${ci}, '曖昧')">
+        <b>${x.vague}</b><span>曖昧な問題<br>だけ解く</span>
+      </button>
+    </div>
+
+    <div class="section-label">
+      <span>問題一覧（${list.length}問）</span>
+      <span style="font-size:11.5px;color:var(--muted);font-weight:normal;">タップで折りたたみ</span>
+    </div>
+
+    <div class="list">
+      ${Object.keys(groups).map(subTitle => {
+        const items = groups[subTitle];
+        const isOpen = openSections[subTitle] !== false;
+        return `
+        <div class="sec-group">
+          <div class="sec-header ${isOpen ? 'open' : ''}" onclick="toggleAccordion('${subTitle}')">
+            <div class="sec-header-left">
+              <span>${subTitle}</span>
+              <span class="sec-badge">${items.length}問</span>
+            </div>
+            <svg class="sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+          </div>
+          <div class="sec-items ${isOpen ? 'open' : ''}">
+            ${items.map(q => {
+              const qStatus = st(q.id);
+              const mCount = misCnt(q.id);
+              let dotClass = "d-un";
+              if(qStatus === "コンプリート") dotClass = "d-comp";
+              else if(qStatus === "間違えた") dotClass = "d-mis";
+              else if(qStatus === "曖昧") dotClass = "d-vague";
+
+              return `
+              <div class="qitem" onclick="startSingleQuiz('${q.id}')">
+                <i class="dot ${dotClass}"></i>
+                <div class="qi-main">
+                  <div class="qi-meta">
+                    <span>問題${q.num} · ランク${q.rank} · ${qStatus}</span>
+                    ${mCount > 0 ? `<span class="badge-mis-count">誤答 ${mCount}回</span>` : ""}
+                  </div>
+                  <div class="qi-text">${q.q}</div>
+                </div>
+                <button class="star ${starMap[q.id] ? 'on' : ''}" onclick="event.stopPropagation(); toggleStar('${q.id}')">
+                  <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </button>
+              </div>`;
+            }).join("")}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+
+function toggleAccordion(subTitle){
+  openSections[subTitle] = !(openSections[subTitle] !== false);
+  render();
+}
+
+function toggleStar(id){
+  if(starMap[id]) delete starMap[id];
+  else starMap[id] = true;
+  localStorage.setItem(LS_STAR, JSON.stringify(starMap));
+  triggerCloudSave();
+  render();
+}
+
+// 4. 要点ノート画面（マーカー一覧タブ：科目→章→節の絞り込み対応）
+let noteFilterSubj = "すべて";
+let noteFilterChap = "すべて";
+let noteFilterSec = "すべて";
+let openNoteSections = {}; // アコーディオン開閉状態
+
+function vNotes(){
+  // 登録済みノートから利用可能な科目一覧
+  const availableSubjs = Array.from(new Set(notesList.map(n => n.subject)));
+  
+  // 科目フィルター
+  let filtered = notesList;
+  if(noteFilterSubj !== "すべて"){
+    filtered = filtered.filter(n => n.subject === noteFilterSubj);
+  }
+
+  // 選択科目に紐づく章一覧
+  const availableChaps = Array.from(new Set(filtered.map(n => n.chapter)));
+  if(noteFilterChap !== "すべて" && !availableChaps.includes(noteFilterChap)){
+    noteFilterChap = "すべて";
+  }
+
+  // 章フィルター
+  if(noteFilterChap !== "すべて"){
+    filtered = filtered.filter(n => n.chapter === noteFilterChap);
+  }
+
+  // 選択章に紐づく節（論点）一覧
+  const availableSecs = Array.from(new Set(filtered.map(n => n.sub)));
+  if(noteFilterSec !== "すべて" && !availableSecs.includes(noteFilterSec)){
+    noteFilterSec = "すべて";
+  }
+
+  // 節フィルター
+  if(noteFilterSec !== "すべて"){
+    filtered = filtered.filter(n => n.sub === noteFilterSec);
+  }
+
+  // 節（論点）ごとにグループ化
+  const secGroups = {};
+  filtered.forEach(item => {
+    const key = `${item.subject} › ${item.chapter} › ${item.sub}`;
+    if(!secGroups[key]) secGroups[key] = [];
+    secGroups[key].push(item);
+  });
+
+  return `
+  <header class="appbar">
+    <div class="appbar-in">
+      <h1>要点マーカーノート</h1>
+      <span style="font-size:12px;font-weight:700;color:var(--primary);">${filtered.length}件</span>
+    </div>
+  </header>
+  <div class="content">
+    <div style="font-size:12px;color:var(--sub);margin-bottom:12px;line-height:1.5;">
+      解説文でマーカーを引いた重要ポイントです。科目や章で絞り込んで、苦手論点を集中的に総復習できます。
+    </div>
+
+    <!-- 絞り込みフィルターエリア -->
+    <div class="card" style="padding:12px 14px;margin-bottom:14px;display:flex;flex-direction:column;gap:10px;">
+      <!-- 1. 科目セレクター -->
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:11.5px;font-weight:700;color:var(--muted);width:36px;flex-shrink:0;">科目</span>
+        <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;">
+          <button class="fchip ${noteFilterSubj === 'すべて' ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteSubj('すべて')">すべて</button>
+          ${SUBJECTS.map(s => {
+            const cnt = notesList.filter(n => n.subject === s.name).length;
+            if(cnt === 0) return "";
+            return `<button class="fchip ${noteFilterSubj === s.name ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteSubj('${s.name}')">${s.name} <small>(${cnt})</small></button>`;
+          }).join("")}
+        </div>
+      </div>
+
+      <!-- 2. 章セレクター（科目が選択されている場合） -->
+      ${noteFilterSubj !== "すべて" && availableChaps.length > 1 ? `
+      <div style="display:flex;align-items:center;gap:8px;padding-top:8px;border-top:1px dashed var(--line);">
+        <span style="font-size:11.5px;font-weight:700;color:var(--muted);width:36px;flex-shrink:0;">章</span>
+        <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;">
+          <button class="fchip ${noteFilterChap === 'すべて' ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteChap('すべて')">すべての章</button>
+          ${availableChaps.map(ch => {
+            const cnt = notesList.filter(n => n.subject === noteFilterSubj && n.chapter === ch).length;
+            return `<button class="fchip ${noteFilterChap === ch ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteChap('${ch}')">${ch} <small>(${cnt})</small></button>`;
+          }).join("")}
+        </div>
+      </div>
+      ` : ""}
+
+      <!-- 3. 節セレクター（章まで絞り込まれている場合） -->
+      ${noteFilterChap !== "すべて" && availableSecs.length > 1 ? `
+      <div style="display:flex;align-items:center;gap:8px;padding-top:8px;border-top:1px dashed var(--line);">
+        <span style="font-size:11.5px;font-weight:700;color:var(--muted);width:36px;flex-shrink:0;">節</span>
+        <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;">
+          <button class="fchip ${noteFilterSec === 'すべて' ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteSec('すべて')">すべての節</button>
+          ${availableSecs.map(sc => {
+            const cnt = notesList.filter(n => n.subject === noteFilterSubj && n.chapter === noteFilterChap && n.sub === sc).length;
+            return `<button class="fchip ${noteFilterSec === sc ? 'on' : ''}" style="padding:4px 10px;font-size:12px;" onclick="setNoteSec('${sc}')">${sc} <small>(${cnt})</small></button>`;
+          }).join("")}
+        </div>
+      </div>
+      ` : ""}
+    </div>
+
+    <!-- ノート一覧表示（節ごとに折りたたみアコーディオン） -->
+    ${filtered.length ? `
+      <div class="list">
+        ${Object.keys(secGroups).map(groupKey => {
+          const items = secGroups[groupKey];
+          const isOpen = openNoteSections[groupKey] !== false; // デフォルト展開
+          return `
+          <div class="sec-group" style="margin-bottom:12px;">
+            <div class="sec-header ${isOpen ? 'open' : ''}" onclick="toggleNoteSection('${groupKey}')" style="background:var(--surface);">
+              <div class="sec-header-left">
+                <span style="font-weight:700;font-size:13px;">${groupKey}</span>
+                <span class="sec-badge">${items.length}件</span>
+              </div>
+              <svg class="sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
+            <div class="sec-items ${isOpen ? 'open' : ''}" style="padding:8px 0 0;">
+              ${items.map(item => {
+                const origIdx = notesList.findIndex(x => x.qid === item.qid && x.text === item.text);
+                return `
+                <div class="note-card" onclick="startSingleQuiz('${item.qid}')">
+                  <div class="note-meta">
+                    <span style="font-weight:600;color:var(--primary);">問題 ${item.qnum} の解説</span>
+                    <button class="btn-del-note" title="マーカー削除" onclick="event.stopPropagation(); deleteNote(${origIdx})">
+                      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                  </div>
+                  <div class="note-text">${item.text}</div>
+                </div>`;
+              }).join("")}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    ` : `
+      <div class="card" style="text-align:center;padding:40px 16px;color:var(--muted);font-size:13px;">
+        該当する要点マーカーがありません。<br>
+        演習中に解説の重要箇所をなぞって「マーカー保存」するとここに蓄積されます。
+      </div>
+    `}
+  </div>`;
+}
+
+function setNoteSubj(s){
+  noteFilterSubj = s;
+  noteFilterChap = "すべて";
+  noteFilterSec = "すべて";
+  render();
+}
+function setNoteChap(c){
+  noteFilterChap = c;
+  noteFilterSec = "すべて";
+  render();
+}
+function setNoteSec(sc){
+  noteFilterSec = sc;
+  render();
+}
+function toggleNoteSection(key){
+  openNoteSections[key] = !(openNoteSections[key] !== false);
+  render();
+}
+
+function deleteNote(idx){
+  if(confirm("このマーカー要点を削除しますか？")){
+    notesList.splice(idx, 1);
+    localStorage.setItem(LS_NOTES, JSON.stringify(notesList));
+    triggerCloudSave();
+    render();
+  }
+}
+
+// 5. 出題設定モーダル
+let quizSettings = { status:["未着手","間違えた","曖昧","コンプリート"], rank:["A","B","C"], mistakeOnly:false, order:"seq" };
+
+function openSheet(si, ci){
+  state.sheet = { si, ci };
+  renderSheet();
+}
+function closeSheet(){
+  state.sheet = null;
+  document.getElementById("sheet").innerHTML = "";
+  document.body.classList.remove("lock");
+}
+
+function renderSheet(){
+  const { si, ci } = state.sheet;
+  const s = SUBJECTS[si];
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
+  const targetChapter = ci >= 0 ? chapters[ci] : null;
+  const pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
+
+  document.body.classList.add("lock");
+  document.getElementById("sheet").innerHTML = `
+  <div class="backdrop" onclick="closeSheet()"></div>
+  <div class="sheet">
+    <div class="grabber"></div>
+    <div class="sheet-head">
+      <b>出題設定</b>
+      <button onclick="closeSheet()">キャンセル</button>
+    </div>
+    <div class="opt">
+      <div class="opt-label">出題範囲</div>
+      <div style="font-size:14px;font-weight:700;">${s.key} ${targetChapter ? '› ' + targetChapter : '（全範囲）'} (${pool.length}問)</div>
+    </div>
+    <div class="opt">
+      <div class="opt-label">記憶度（絞り込み）</div>
+      <div class="chips">
+        ${["未着手","間違えた","曖昧","コンプリート"].map(stName => `
+          <button class="fchip ${quizSettings.status.includes(stName) ? 'on' : ''}" onclick="toggleSetting('status','${stName}')">${stName}</button>
+        `).join("")}
+      </div>
+    </div>
+    <div class="opt">
+      <div class="opt-label">ランク（重要度）</div>
+      <div class="chips">
+        ${["A","B","C"].map(r => `
+          <button class="fchip ${quizSettings.rank.includes(r) ? 'on' : ''}" onclick="toggleSetting('rank','${r}')">ランク${r}</button>
+        `).join("")}
+      </div>
+    </div>
+    <div class="opt">
+      <div class="opt-label">苦手特訓</div>
+      <div class="chips">
+        <button class="fchip ${quizSettings.mistakeOnly ? 'on' : ''}" onclick="toggleMistakeOnly()">過去に間違えたことがある問題のみ</button>
+      </div>
+    </div>
+    <div class="opt">
+      <div class="opt-label">出題順序</div>
+      <div class="seg">
+        <button class="${quizSettings.order === 'seq' ? 'on' : ''}" onclick="setOrder('seq')">順番通り</button>
+        <button class="${quizSettings.order === 'rand' ? 'on' : ''}" onclick="setOrder('rand')">ランダム</button>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <button class="primary-btn" onclick="startFilteredQuiz(${si}, ${ci})">解答を開始する</button>
+    </div>
+  </div>`;
+}
+
+function toggleSetting(type, val){
+  const arr = quizSettings[type];
+  const idx = arr.indexOf(val);
+  if(idx >= 0) arr.splice(idx, 1);
+  else arr.push(val);
+  renderSheet();
+}
+function toggleMistakeOnly(){
+  quizSettings.mistakeOnly = !quizSettings.mistakeOnly;
+  renderSheet();
+}
+function setOrder(ord){
+  quizSettings.order = ord;
+  renderSheet();
+}
+
+function startFilteredQuiz(si, ci){
+  const s = SUBJECTS[si];
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
+  const targetChapter = ci >= 0 ? chapters[ci] : null;
+  let pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
+
+  pool = pool.filter(q => {
+    if(!quizSettings.status.includes(st(q.id))) return false;
+    if(!quizSettings.rank.includes(q.rank)) return false;
+    if(quizSettings.mistakeOnly && misCnt(q.id) === 0) return false;
+    return true;
+  });
+
+  if(quizSettings.order === 'rand'){
+    pool.sort(() => Math.random() - 0.5);
+  }
+  closeSheet();
+  if(!pool.length){
+    alert("条件に一致する問題がありませんでした");
+    return;
+  }
+  launchQuiz(pool, `${s.key} ${targetChapter || ''}`);
+}
+
+function quickStart(si, ci, statusName){
+  const s = SUBJECTS[si];
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
+  const targetChapter = ci >= 0 ? chapters[ci] : null;
+  const pool = qsOf(s.key).filter(q => (!targetChapter || q.chapter === targetChapter) && st(q.id) === statusName);
+  launchQuiz(pool, `${statusName}問題演習`);
+}
+
+function startSingleQuiz(id){
+  const q = QUESTIONS.find(x => x.id === id);
+  launchQuiz([q], "個別演習");
+}
+
+// 6. 演習画面
+function launchQuiz(list, title){
+  state.session = { list, title, idx:0, answered:false };
+  document.getElementById("overlay").classList.add("show");
+  document.body.classList.add("lock");
+  renderQuizCard();
+}
+
+function renderQuizCard(){
+  const S = state.session;
+  const q = S.list[S.idx];
+  const ov = document.getElementById("overlay");
+  const mCount = misCnt(q.id);
+
+  ov.innerHTML = `
+  <div class="qz-bar">
+    <div class="qz-bar-in">
+      <button class="iconbtn" onclick="exitQuiz()"><svg viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+      <div class="qz-title">${S.title} (${S.idx+1}/${S.list.length})</div>
+    </div>
+    <div class="qz-progress"><i style="width:${((S.idx+1)/S.list.length)*100}%"></i></div>
+  </div>
+  <div class="qz-body">
+    <div class="qz-card">
+      <div class="qz-meta">${q.chapter} › ${q.sub}</div>
+      <div class="qz-header">
+        <span style="font-size:14px;font-weight:800;">問題 ${q.num}</span>
+        <span class="rank-badge">ランク ${q.rank}</span>
+        ${mCount > 0 ? `<span class="badge-mis-count">通算誤答 ${mCount}回</span>` : ""}
+      </div>
+      <div class="qz-question">${q.q}</div>
+
+      <div class="choices">
+        <button class="choice" id="btnTrue" onclick="answer('正しい')">○ 正しい</button>
+        <button class="choice" id="btnFalse" onclick="answer('誤り')">× 誤り</button>
+        <button class="choice" id="btnUnk" onclick="answer('不明')">? わからない</button>
+      </div>
+
+      <div id="quizFeedback" style="display:none;"></div>
+    </div>
+  </div>`;
+}
+
+function getHighlightedExpHtml(q){
+  let expText = q.exp;
+  // この問題に付けられたマーカーをハイライト反映
+  const qNotes = notesList.filter(n => n.qid === q.id);
+  qNotes.forEach(n => {
+    if(expText.includes(n.text)){
+      expText = expText.split(n.text).join(`<mark class="hl-mark">${n.text}</mark>`);
+    }
+  });
+  return expText;
+}
+
+function answer(userAns){
+  const S = state.session;
+  if(S.answered) return;
+  S.answered = true;
+  const q = S.list[S.idx];
+  const isCorrect = userAns === q.ans;
+
+  if(!isCorrect){
+    mistakeCountMap[q.id] = (mistakeCountMap[q.id] || 0) + 1;
+    localStorage.setItem(LS_MISTAKES, JSON.stringify(mistakeCountMap));
+  }
+
+  logArr.push({ t: new Date().toISOString(), id: q.id, correct: isCorrect });
+  localStorage.setItem(LS_LOG, JSON.stringify(logArr));
+
+  document.getElementById("btnTrue").disabled = true;
+  document.getElementById("btnFalse").disabled = true;
+  document.getElementById("btnUnk").disabled = true;
+
+  if(q.ans === "正しい") document.getElementById("btnTrue").classList.add("correct");
+  else document.getElementById("btnFalse").classList.add("correct");
+
+  if(!isCorrect && userAns === "正しい") document.getElementById("btnTrue").classList.add("wrong");
+  if(!isCorrect && userAns === "誤り") document.getElementById("btnFalse").classList.add("wrong");
+
+  const fb = document.getElementById("quizFeedback");
+  fb.style.display = "block";
+  const curMemo = memoMap[q.id] || "";
+
+  fb.innerHTML = `
+    <div class="judge ${isCorrect ? 'ok' : 'ng'}">
+      <span>${isCorrect ? '正解！' : '不正解'}</span>
+      <span style="font-size:13px;">正答：${q.ans === '正しい' ? '○ 正しい' : '× 誤り'}</span>
+    </div>
+    <div class="exp">
+      <div class="exp-head">
+        <div class="exp-title">解説</div>
+        <div class="exp-actions">
+          <button class="btn-marker-action" onclick="addHighlightFromSelection('${q.id}')">
+            <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            選択マーカー保存
+          </button>
+          <button class="btn-ai-action" onclick="askAiQuestion('${q.id}', 'chatgpt')" title="ChatGPTで質問">
+            🤖 AIに質問
+          </button>
+        </div>
+      </div>
+      <div class="exp-text" id="expTextContainer">${getHighlightedExpHtml(q)}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px;">※ 解説を指でなぞって「選択マーカー保存」を押すと要点ノートに追加されます</div>
+
+      <!-- 問題別メモ入力欄 -->
+      <div class="memo-section">
+        <div class="memo-head">
+          <span class="memo-title">
+            <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor;"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Myメモ（AI回答のコピペや自分なりの覚え方）
+          </span>
+          <span class="memo-saved-tag" id="memoSavedTag_${q.id}">✓ 保存済</span>
+        </div>
+        <textarea class="memo-textarea" id="memoInput_${q.id}" placeholder="AIの回答や、自分が間違えた理由・覚え方をここにメモしておけます..." oninput="autoSaveMemo('${q.id}')">${curMemo}</textarea>
+      </div>
+    </div>
+    <div class="rate-box">
+      <div class="rate-title">習熟度を記録して次へ</div>
+      <div class="rate-btns">
+        <button class="rb red" onclick="submitRating('間違えた')">✕ 間違えた</button>
+        <button class="rb amber" onclick="submitRating('曖昧')">△ 曖昧</button>
+        <button class="rb green" onclick="submitRating('コンプリート')">○ 覚えた！</button>
+      </div>
+    </div>
+  `;
+}
+
+function autoSaveMemo(qid){
+  const el = document.getElementById("memoInput_" + qid);
+  if(!el) return;
+  memoMap[qid] = el.value;
+  localStorage.setItem(LS_MEMOS, JSON.stringify(memoMap));
+  triggerCloudSave();
+  const tag = document.getElementById("memoSavedTag_" + qid);
+  if(tag){
+    tag.style.display = "inline";
+    setTimeout(() => { if(tag) tag.style.display = "none"; }, 1500);
+  }
+}
+
+function askAiQuestion(qid){
+  const q = QUESTIONS.find(x => x.id === qid);
+  if(!q) return;
+
+  const promptText = `公認会計士試験（短答式）の「${q.subject}」を学習しています。
+以下の問題と解説について、なぜこのような規定・考え方になっているのか（制度趣旨や背景、実務上の具体例）を、初心者にわかりやすく3行〜5行で噛み砕いて教えてください。
+
+【論点】${q.chapter} › ${q.sub}
+【問題${q.num}】
+${q.q}
+【解答】${q.ans}
+【解説】
+${q.exp}
+
+※ ポイントを整理して解説してください。`;
+
+  // クリップボードにコピー
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(promptText).then(() => {
+      openAiService(promptText);
+    }).catch(() => {
+      fallbackCopyAndOpen(promptText);
+    });
+  } else {
+    fallbackCopyAndOpen(promptText);
+  }
+}
+
+function fallbackCopyAndOpen(text){
+  const t = document.createElement("textarea");
+  t.value = text;
+  document.body.appendChild(t);
+  t.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(t);
+  openAiService(text);
+}
+
+function openAiService(promptText){
+  const userChoice = confirm(
+    "質問文をクリップボードにコピーしました！\n\n「OK」を押すと ChatGPT（無料版）を開きます。\nそのまま入力欄に貼り付け（ペースト）して送信してください。\n\nAIの回答は問題下の「Myメモ」にコピペして残せます！"
+  );
+  if(userChoice){
+    // ChatGPTまたはGemini
+    window.open("https://chatgpt.com/?q=" + encodeURIComponent(promptText), "_blank");
+  }
+}
+
+function addHighlightFromSelection(qid){
+  const sel = window.getSelection();
+  const selectedText = sel ? sel.toString().trim() : "";
+
+  if(!selectedText || selectedText.length < 2){
+    alert("解説文の中からマーカーを引きたい文字をなぞって選択してください。");
+    return;
+  }
+
+  const q = QUESTIONS.find(x => x.id === qid);
+  // 重複チェック
+  if(notesList.some(n => n.qid === qid && n.text === selectedText)){
+    alert("この箇所はすでにマーカー登録されています。");
+    return;
+  }
+
+  notesList.unshift({
+    qid: q.id,
+    subject: q.subject,
+    chapter: q.chapter,
+    sub: q.sub,
+    qnum: q.num,
+    text: selectedText
+  });
+  localStorage.setItem(LS_NOTES, JSON.stringify(notesList));
+  triggerCloudSave();
+
+  // 画面の解説をハイライト再描画
+  document.getElementById("expTextContainer").innerHTML = getHighlightedExpHtml(q);
+  alert(`「${selectedText.slice(0, 15)}...」を要点マーカーノートに登録しました！`);
+}
+
+function submitRating(rating){
+  const S = state.session;
+  const q = S.list[S.idx];
+  statusMap[q.id] = rating;
+  localStorage.setItem(LS_STATUS, JSON.stringify(statusMap));
+  triggerCloudSave();
+
+  if(S.idx < S.list.length - 1){
+    S.idx++;
+    S.answered = false;
+    renderQuizCard();
+    window.scrollTo(0,0);
+  } else {
+    alert("すべての問題を解き終えました！");
+    exitQuiz();
+  }
+}
+
+function exitQuiz(){
+  state.session = null;
+  document.getElementById("overlay").classList.remove("show");
+  document.body.classList.remove("lock");
+  render();
+}
+
+// 7. 学習記録
+function vRecord(){
+  const all = stats(QUESTIONS);
+  const correctCount = logArr.filter(l => l.correct).length;
+  const rate = logArr.length ? Math.round(correctCount / logArr.length * 100) : 0;
+
+  const mistakeRanking = QUESTIONS.filter(q => misCnt(q.id) > 0)
+    .sort((a,b) => misCnt(b.id) - misCnt(a.id))
+    .slice(0, 5);
+
+  return `
+  <header class="appbar"><div class="appbar-in"><h1>学習記録</h1></div></header>
+  <div class="content">
+    <div class="stats-banner" style="grid-template-columns:1fr 1fr;">
+      <div class="stat-box"><div class="stat-label">総解答回数</div><div class="stat-val">${logArr.length}<small>回</small></div></div>
+      <div class="stat-box"><div class="stat-label">累計正答率</div><div class="stat-val">${rate}<small>%</small></div></div>
+    </div>
+
+    <div class="section-label">習熟度サマリー</div>
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:13px; font-weight:700;">
+        <span>全科目のコンプリート率</span><span>${all.comp}/${all.total}問 (${all.pct}%)</span>
+      </div>
+      ${bar(all, 10)}
+      <div class="legend" style="margin-top:14px;">
+        <span><i class="dot d-comp"></i>コンプリート <b>${all.comp}</b>問</span>
+        <span><i class="dot d-mis"></i>間違えた <b>${all.mis}</b>問</span>
+        <span><i class="dot d-vague"></i>曖昧 <b>${all.vague}</b>問</span>
+        <span><i class="dot d-un"></i>未着手 <b>${all.un}</b>問</span>
+      </div>
+    </div>
+
+    <div class="section-label">間違えた回数が多い問題（ワースト）</div>
+    <div class="list">
+      ${mistakeRanking.length ? mistakeRanking.map(q => `
+        <div class="qitem" onclick="startSingleQuiz('${q.id}')">
+          <span class="badge-mis-count" style="font-size:12px;padding:3px 8px;">✕ ${misCnt(q.id)}回誤答</span>
+          <div class="qi-main">
+            <div class="qi-meta">${q.subject} · ${q.chapter} · 問題${q.num}</div>
+            <div class="qi-text">${q.q}</div>
+          </div>
+        </div>
+      `).join("") : `<div style="padding:20px;text-align:center;color:var(--muted);font-size:13px;">まだ間違えた記録はありません</div>`}
+    </div>
+
+    <div class="section-label">データ管理（保存・復元）</div>
+    <div class="card" style="display:flex; flex-direction:column; gap:8px;">
+      <button class="ghost-btn" onclick="exportData()">学習データをファイルにバックアップ</button>
+      <button class="ghost-btn" style="color:var(--red);" onclick="resetData()">学習記録を初期化</button>
+    </div>
+  </div>`;
+}
+
+function exportData(){
+  const blob = new Blob([JSON.stringify({ statusMap, mistakeCountMap, logArr, starMap, notesList, memoMap })], { type:"application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `cpa_study_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+}
+function resetData(){
+  if(confirm("解答履歴・マーカー・メモ・間違えた回数の記録をすべてリセットしますか？")){
+    statusMap = {}; mistakeCountMap = {}; logArr = []; starMap = {}; notesList = []; memoMap = {};
+    localStorage.removeItem(LS_STATUS);
+    localStorage.removeItem(LS_MISTAKES);
+    localStorage.removeItem(LS_LOG);
+    localStorage.removeItem(LS_STAR);
+    localStorage.removeItem(LS_NOTES);
+    localStorage.removeItem(LS_MEMOS);
+    triggerCloudSave();
+    render();
+  }
+}
+
+// 起動
+render();
+initFirebase();
+</script>
+</body>
+</html>
