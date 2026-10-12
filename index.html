@@ -98,7 +98,10 @@ svg{display:block}
 .sec-group:last-child{border-bottom:none}
 .sec-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fafbfc;cursor:pointer;font-size:13.5px;font-weight:700;color:var(--text);border-bottom:1px solid transparent}
 .sec-header.open{border-bottom-color:var(--line);background:#f3f4f6}
-.sec-header-left{display:flex;align-items:center;gap:8px}
+.sec-header-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
+.sec-header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.sec-play-btn{display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;color:var(--primary);background:var(--primary-weak);border:1px solid rgba(37,99,235,0.25);border-radius:6px;padding:4px 8px;}
+.sec-play-btn:active{background:#dbeafe;}
 .sec-badge{font-size:11px;font-weight:600;color:var(--sub);background:var(--surface);border:1px solid var(--line);padding:2px 8px;border-radius:999px}
 .sec-arrow{width:18px;height:18px;fill:var(--muted);transition:transform .15s}
 .sec-header.open .sec-arrow{transform:rotate(180deg)}
@@ -212,6 +215,22 @@ svg{display:block}
 .sync-badge.online{background:var(--green-weak);color:var(--green);border-color:var(--green-border);}
 .sync-badge.syncing{background:var(--primary-weak);color:var(--primary);border-color:rgba(37,99,235,0.3);}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+/* iPad / iOS Safari 最適化テキスト選択 & フローティングマーカー */
+.exp-text{
+  font-size:15px;line-height:1.9;color:#374151;
+  user-select:text;-webkit-user-select:text;
+  -webkit-touch-callout:default;
+}
+.floating-marker-bubble{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:#111827;color:#fff;padding:10px 18px;border-radius:999px;
+  font-size:13.5px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,0.25);
+  display:none;align-items:center;gap:8px;z-index:99;cursor:pointer;
+  animation:pop .2s ease-out;
+}
+.floating-marker-bubble:active{transform:translateX(-50%) scale(0.96);}
+@keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 </style>
 <!-- Firebase SDK (無料版・端末間自動同期用) -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -228,6 +247,12 @@ svg{display:block}
 </nav>
 <div id="sheet"></div>
 <div id="overlay"></div>
+
+<!-- iPad / スマホ用 フローティングマーカー保存ポップアップ -->
+<div id="floatingMarkerBtn" class="floating-marker-bubble" onclick="addHighlightFromCurrentSelection()">
+  <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+  <span>選択範囲をマーカー保存</span>
+</div>
 
 <script>
 // 問題データ
@@ -689,7 +714,13 @@ function vChapter(si, ci){
               <span>${subTitle}</span>
               <span class="sec-badge">${items.length}問</span>
             </div>
-            <svg class="sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            <div class="sec-header-right">
+              <button class="sec-play-btn" onclick="event.stopPropagation(); startSectionQuiz(${si}, ${ci}, '${subTitle}')" title="この節だけ演習">
+                <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M8 5v14l11-7z"/></svg>
+                この節を解く
+              </button>
+              <svg class="sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+            </div>
           </div>
           <div class="sec-items ${isOpen ? 'open' : ''}">
             ${items.map(q => {
@@ -909,9 +940,10 @@ function deleteNote(idx){
 }
 
 // 5. 出題設定モーダル
-let quizSettings = { status:["未着手","間違えた","曖昧","コンプリート"], rank:["A","B","C"], mistakeOnly:false, order:"seq" };
+let quizSettings = { status:["未着手","間違えた","曖昧","コンプリート"], rank:["A","B","C"], mistakeOnly:false, order:"seq", section:"すべて" };
 
-function openSheet(si, ci){
+function openSheet(si, ci, sectionName = "すべて"){
+  quizSettings.section = sectionName;
   state.sheet = { si, ci };
   renderSheet();
 }
@@ -926,7 +958,10 @@ function renderSheet(){
   const s = SUBJECTS[si];
   const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
   const targetChapter = ci >= 0 ? chapters[ci] : null;
-  const pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
+  let pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
+
+  // 利用可能な節一覧
+  const availableSections = Array.from(new Set(pool.map(q => q.sub)));
 
   document.body.classList.add("lock");
   document.getElementById("sheet").innerHTML = `
@@ -941,6 +976,17 @@ function renderSheet(){
       <div class="opt-label">出題範囲</div>
       <div style="font-size:14px;font-weight:700;">${s.key} ${targetChapter ? '› ' + targetChapter : '（全範囲）'} (${pool.length}問)</div>
     </div>
+    ${availableSections.length > 1 ? `
+    <div class="opt">
+      <div class="opt-label">節・論点（絞り込み）</div>
+      <div class="chips">
+        <button class="fchip ${quizSettings.section === 'すべて' ? 'on' : ''}" onclick="setQuizSection('すべて')">すべての節</button>
+        ${availableSections.map(secName => `
+          <button class="fchip ${quizSettings.section === secName ? 'on' : ''}" onclick="setQuizSection('${secName}')">${secName}</button>
+        `).join("")}
+      </div>
+    </div>
+    ` : ""}
     <div class="opt">
       <div class="opt-label">記憶度（絞り込み）</div>
       <div class="chips">
@@ -987,6 +1033,10 @@ function toggleMistakeOnly(){
   quizSettings.mistakeOnly = !quizSettings.mistakeOnly;
   renderSheet();
 }
+function setQuizSection(sec){
+  quizSettings.section = sec;
+  renderSheet();
+}
 function setOrder(ord){
   quizSettings.order = ord;
   renderSheet();
@@ -997,6 +1047,11 @@ function startFilteredQuiz(si, ci){
   const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
   const targetChapter = ci >= 0 ? chapters[ci] : null;
   let pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
+
+  // 節・論点フィルター
+  if(quizSettings.section && quizSettings.section !== "すべて"){
+    pool = pool.filter(q => q.sub === quizSettings.section);
+  }
 
   pool = pool.filter(q => {
     if(!quizSettings.status.includes(st(q.id))) return false;
@@ -1013,7 +1068,15 @@ function startFilteredQuiz(si, ci){
     alert("条件に一致する問題がありませんでした");
     return;
   }
-  launchQuiz(pool, `${s.key} ${targetChapter || ''}`);
+  launchQuiz(pool, `${s.key} ${targetChapter || ''} ${quizSettings.section !== 'すべて' ? '› ' + quizSettings.section : ''}`);
+}
+
+function startSectionQuiz(si, ci, subTitle){
+  const s = SUBJECTS[si];
+  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
+  const targetChapter = ci >= 0 ? chapters[ci] : null;
+  const pool = qsOf(s.key).filter(q => (!targetChapter || q.chapter === targetChapter) && q.sub === subTitle);
+  launchQuiz(pool, `${subTitle}（全${pool.length}問）`);
 }
 
 function quickStart(si, ci, statusName){
@@ -1218,16 +1281,61 @@ function openAiService(promptText){
   }
 }
 
-function addHighlightFromSelection(qid){
-  const sel = window.getSelection();
-  const selectedText = sel ? sel.toString().trim() : "";
+// iPad / iOS Safari 最適化セレクション管理
+let lastCapturedSelectionText = "";
+let lastCapturedQid = null;
 
-  if(!selectedText || selectedText.length < 2){
+document.addEventListener("selectionchange", () => {
+  const sel = window.getSelection();
+  const text = sel ? sel.toString().trim() : "";
+  const bubble = document.getElementById("floatingMarkerBtn");
+
+  if(text.length >= 2 && state.session && state.session.answered){
+    const q = state.session.list[state.session.idx];
+    // 解説文の中の選択かチェック
+    const container = document.getElementById("expTextContainer");
+    if(container && container.contains(sel.anchorNode)){
+      lastCapturedSelectionText = text;
+      lastCapturedQid = q.id;
+      if(bubble) bubble.style.display = "flex";
+      return;
+    }
+  }
+
+  // 選択解除時（タップ等でバブルが消えるのは少し遅延）
+  setTimeout(() => {
+    const curSel = window.getSelection();
+    if(!curSel || curSel.toString().trim().length < 2){
+      if(bubble) bubble.style.display = "none";
+    }
+  }, 300);
+});
+
+function addHighlightFromCurrentSelection(){
+  if(!lastCapturedQid || !lastCapturedSelectionText){
     alert("解説文の中からマーカーを引きたい文字をなぞって選択してください。");
     return;
   }
+  executeAddHighlight(lastCapturedQid, lastCapturedSelectionText);
+}
 
+function addHighlightFromSelection(qid){
+  const sel = window.getSelection();
+  let text = sel ? sel.toString().trim() : "";
+  if(!text && lastCapturedQid === qid && lastCapturedSelectionText){
+    text = lastCapturedSelectionText;
+  }
+  if(!text || text.length < 2){
+    alert("解説文の中からマーカーを引きたい文字をなぞって選択してください。");
+    return;
+  }
+  executeAddHighlight(qid, text);
+}
+
+function executeAddHighlight(qid, selectedText){
   const q = QUESTIONS.find(x => x.id === qid);
+  if(!q) return;
+
   // 重複チェック
   if(notesList.some(n => n.qid === qid && n.text === selectedText)){
     alert("この箇所はすでにマーカー登録されています。");
@@ -1246,7 +1354,14 @@ function addHighlightFromSelection(qid){
   triggerCloudSave();
 
   // 画面の解説をハイライト再描画
-  document.getElementById("expTextContainer").innerHTML = getHighlightedExpHtml(q);
+  const expBox = document.getElementById("expTextContainer");
+  if(expBox) expBox.innerHTML = getHighlightedExpHtml(q);
+
+  const bubble = document.getElementById("floatingMarkerBtn");
+  if(bubble) bubble.style.display = "none";
+  window.getSelection().removeAllRanges();
+  lastCapturedSelectionText = "";
+
   alert(`「${selectedText.slice(0, 15)}...」を要点マーカーノートに登録しました！`);
 }
 
