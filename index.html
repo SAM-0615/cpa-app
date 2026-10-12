@@ -217,11 +217,18 @@ svg{display:block}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
 
 /* iPad / iOS Safari 最適化テキスト選択 & フローティングマーカー */
-.exp-text{
-  font-size:15px;line-height:1.9;color:#374151;
+.exp-text, .qz-question{
   user-select:text;-webkit-user-select:text;
   -webkit-touch-callout:default;
 }
+.exp-text{
+  font-size:15px;line-height:1.9;color:#374151;
+}
+.note-target-badge{
+  font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;
+}
+.note-target-badge.q{background:#e0e7ff;color:#3730a3;}
+.note-target-badge.exp{background:#fef3c7;color:#92400e;}
 .floating-marker-bubble{
   position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
   background:#111827;color:#fff;padding:10px 18px;border-radius:999px;
@@ -231,6 +238,16 @@ svg{display:block}
 }
 .floating-marker-bubble:active{transform:translateX(-50%) scale(0.96);}
 @keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* 非同期トースト通知（OKを押さなくていい控えめな通知） */
+.toast-notify{
+  position:fixed;top:60px;left:50%;transform:translateX(-50%);
+  background:rgba(17,24,39,0.92);color:#fff;padding:8px 16px;border-radius:999px;
+  font-size:12.5px;font-weight:700;display:none;align-items:center;gap:6px;
+  z-index:100;backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,0.2);
+  pointer-events:none;animation:toastIn .2s ease-out;
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 </style>
 <!-- Firebase SDK (無料版・端末間自動同期用) -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -252,6 +269,11 @@ svg{display:block}
 <div id="floatingMarkerBtn" class="floating-marker-bubble" onclick="addHighlightFromCurrentSelection()">
   <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
   <span>選択範囲をマーカー保存</span>
+</div>
+
+<!-- 自動消滅する控えめトースト通知 -->
+<div id="toastNotification" class="toast-notify">
+  <span id="toastText">マーカーを登録しました</span>
 </div>
 
 <script>
@@ -889,7 +911,10 @@ function vNotes(){
                 return `
                 <div class="note-card" onclick="startSingleQuiz('${item.qid}')">
                   <div class="note-meta">
-                    <span style="font-weight:600;color:var(--primary);">問題 ${item.qnum} の解説</span>
+                    <span style="font-weight:600;display:flex;align-items:center;gap:6px;">
+                      <span class="note-target-badge ${item.target === 'question' ? 'q' : 'exp'}">${item.target === 'question' ? '問題文' : '解説'}</span>
+                      <span style="color:var(--primary);">問題 ${item.qnum}</span>
+                    </span>
                     <button class="btn-del-note" title="マーカー削除" onclick="event.stopPropagation(); deleteNote(${origIdx})">
                       <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                     </button>
@@ -1122,7 +1147,7 @@ function renderQuizCard(){
         <span class="rank-badge">ランク ${q.rank}</span>
         ${mCount > 0 ? `<span class="badge-mis-count">通算誤答 ${mCount}回</span>` : ""}
       </div>
-      <div class="qz-question">${q.q}</div>
+      <div class="qz-question" id="qzQuestionContainer">${getHighlightedQuestionHtml(q)}</div>
 
       <div class="choices">
         <button class="choice" id="btnTrue" onclick="answer('正しい')">○ 正しい</button>
@@ -1135,10 +1160,21 @@ function renderQuizCard(){
   </div>`;
 }
 
+function getHighlightedQuestionHtml(q){
+  let qText = q.q;
+  const qNotes = notesList.filter(n => n.qid === q.id && n.target === "question");
+  qNotes.forEach(n => {
+    if(qText.includes(n.text)){
+      qText = qText.split(n.text).join(`<mark class="hl-mark">${n.text}</mark>`);
+    }
+  });
+  return qText;
+}
+
 function getHighlightedExpHtml(q){
   let expText = q.exp;
-  // この問題に付けられたマーカーをハイライト反映
-  const qNotes = notesList.filter(n => n.qid === q.id);
+  // この問題に付けられた解説マーカーをハイライト反映
+  const qNotes = notesList.filter(n => n.qid === q.id && n.target !== "question");
   qNotes.forEach(n => {
     if(expText.includes(n.text)){
       expText = expText.split(n.text).join(`<mark class="hl-mark">${n.text}</mark>`);
@@ -1189,8 +1225,8 @@ function answer(userAns){
             <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             選択マーカー保存
           </button>
-          <button class="btn-ai-action" onclick="askAiQuestion('${q.id}', 'chatgpt')" title="ChatGPTで質問">
-            🤖 AIに質問
+          <button class="btn-ai-action" onclick="askAiQuestion('${q.id}')" title="Geminiで質問">
+            ✨ Geminiに質問
           </button>
         </div>
       </div>
@@ -1249,41 +1285,37 @@ ${q.exp}
 
 ※ ポイントを整理して解説してください。`;
 
-  // クリップボードにコピー
+  // クリップボードにコピーしてGeminiを開く
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(promptText).then(() => {
-      openAiService(promptText);
+      openGeminiService(promptText);
     }).catch(() => {
-      fallbackCopyAndOpen(promptText);
+      fallbackCopyAndOpenGemini(promptText);
     });
   } else {
-    fallbackCopyAndOpen(promptText);
+    fallbackCopyAndOpenGemini(promptText);
   }
 }
 
-function fallbackCopyAndOpen(text){
+function fallbackCopyAndOpenGemini(text){
   const t = document.createElement("textarea");
   t.value = text;
   document.body.appendChild(t);
   t.select();
   try{ document.execCommand("copy"); }catch(e){}
   document.body.removeChild(t);
-  openAiService(text);
+  openGeminiService(text);
 }
 
-function openAiService(promptText){
-  const userChoice = confirm(
-    "質問文をクリップボードにコピーしました！\n\n「OK」を押すと ChatGPT（無料版）を開きます。\nそのまま入力欄に貼り付け（ペースト）して送信してください。\n\nAIの回答は問題下の「Myメモ」にコピペして残せます！"
-  );
-  if(userChoice){
-    // ChatGPTまたはGemini
-    window.open("https://chatgpt.com/?q=" + encodeURIComponent(promptText), "_blank");
-  }
+function openGeminiService(promptText){
+  // 自動で外部サイトに飛ばず、クリップボードへのコピー完了のみ通知する
+  showToast("📋 Gemini用プロンプトをコピーしました！");
 }
 
 // iPad / iOS Safari 最適化セレクション管理
 let lastCapturedSelectionText = "";
 let lastCapturedQid = null;
+let lastCapturedTarget = "exp"; // "exp" | "question"
 
 document.addEventListener("selectionchange", () => {
   const sel = window.getSelection();
@@ -1292,11 +1324,22 @@ document.addEventListener("selectionchange", () => {
 
   if(text.length >= 2 && state.session && state.session.answered){
     const q = state.session.list[state.session.idx];
+    const expBox = document.getElementById("expTextContainer");
+    const qBox = document.getElementById("qzQuestionContainer");
+
     // 解説文の中の選択かチェック
-    const container = document.getElementById("expTextContainer");
-    if(container && container.contains(sel.anchorNode)){
+    if(expBox && expBox.contains(sel.anchorNode)){
       lastCapturedSelectionText = text;
       lastCapturedQid = q.id;
+      lastCapturedTarget = "exp";
+      if(bubble) bubble.style.display = "flex";
+      return;
+    }
+    // 問題文の中の選択かチェック（回答後のみ）
+    if(qBox && qBox.contains(sel.anchorNode)){
+      lastCapturedSelectionText = text;
+      lastCapturedQid = q.id;
+      lastCapturedTarget = "question";
       if(bubble) bubble.style.display = "flex";
       return;
     }
@@ -1313,10 +1356,10 @@ document.addEventListener("selectionchange", () => {
 
 function addHighlightFromCurrentSelection(){
   if(!lastCapturedQid || !lastCapturedSelectionText){
-    alert("解説文の中からマーカーを引きたい文字をなぞって選択してください。");
+    showToast("マーカーを引きたい文字を選択してください");
     return;
   }
-  executeAddHighlight(lastCapturedQid, lastCapturedSelectionText);
+  executeAddHighlight(lastCapturedQid, lastCapturedSelectionText, lastCapturedTarget);
 }
 
 function addHighlightFromSelection(qid){
@@ -1326,19 +1369,19 @@ function addHighlightFromSelection(qid){
     text = lastCapturedSelectionText;
   }
   if(!text || text.length < 2){
-    alert("解説文の中からマーカーを引きたい文字をなぞって選択してください。");
+    showToast("文字を選択してください");
     return;
   }
-  executeAddHighlight(qid, text);
+  executeAddHighlight(qid, text, lastCapturedTarget || "exp");
 }
 
-function executeAddHighlight(qid, selectedText){
+function executeAddHighlight(qid, selectedText, target = "exp"){
   const q = QUESTIONS.find(x => x.id === qid);
   if(!q) return;
 
   // 重複チェック
-  if(notesList.some(n => n.qid === qid && n.text === selectedText)){
-    alert("この箇所はすでにマーカー登録されています。");
+  if(notesList.some(n => n.qid === qid && n.text === selectedText && n.target === target)){
+    showToast("既にマーカー登録されています");
     return;
   }
 
@@ -1348,21 +1391,37 @@ function executeAddHighlight(qid, selectedText){
     chapter: q.chapter,
     sub: q.sub,
     qnum: q.num,
+    target: target, // "exp" または "question"
     text: selectedText
   });
   localStorage.setItem(LS_NOTES, JSON.stringify(notesList));
   triggerCloudSave();
 
-  // 画面の解説をハイライト再描画
+  // 画面の解説および問題文をハイライト再描画
   const expBox = document.getElementById("expTextContainer");
   if(expBox) expBox.innerHTML = getHighlightedExpHtml(q);
+  const qBox = document.getElementById("qzQuestionContainer");
+  if(qBox) qBox.innerHTML = getHighlightedQuestionHtml(q);
 
   const bubble = document.getElementById("floatingMarkerBtn");
   if(bubble) bubble.style.display = "none";
   window.getSelection().removeAllRanges();
   lastCapturedSelectionText = "";
 
-  alert(`「${selectedText.slice(0, 15)}...」を要点マーカーノートに登録しました！`);
+  showToast(target === "question" ? "🖊 問題文のマーカーを登録しました" : "🖊 解説のマーカーを登録しました");
+}
+
+let toastTimer = null;
+function showToast(msg){
+  const el = document.getElementById("toastNotification");
+  const txt = document.getElementById("toastText");
+  if(!el || !txt) return;
+  txt.innerText = msg;
+  el.style.display = "flex";
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    el.style.display = "none";
+  }, 1200); // 1.2秒後に自動でふわっと消える
 }
 
 function submitRating(rating){
