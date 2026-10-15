@@ -249,6 +249,39 @@ svg{display:block}
   pointer-events:none;animation:toastIn .2s ease-out;
 }
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* プルダウンセレクト用スタイル */
+.select-box-wrap{position:relative;width:100%;margin-bottom:8px;}
+.select-box{width:100%;appearance:none;-webkit-appearance:none;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:11px 36px 11px 14px;font-size:13.5px;font-weight:600;color:var(--text);line-height:1.5;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+.select-box:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-weak);}
+.select-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:var(--sub);pointer-events:none;}
+
+/* 2階層アコーディオン用スタイル */
+.main-sec-group{border-bottom:1px solid var(--line);background:var(--surface);}
+.main-sec-group:last-child{border-bottom:none;}
+.main-sec-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:#fafbfc;cursor:pointer;font-size:14px;font-weight:700;color:var(--text);border-bottom:1px solid transparent;transition:background .15s;}
+.main-sec-header.open{border-bottom-color:var(--line);background:#f1f5f9;}
+.main-sec-header-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
+.main-sec-header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.main-sec-arrow{width:18px;height:18px;fill:var(--sub);transition:transform .15s;}
+.main-sec-header.open .main-sec-arrow{transform:rotate(180deg);}
+.main-sec-items{display:none;background:#f8fafc;}
+.main-sec-items.open{display:block;}
+
+.sub-topic-group{border-bottom:1px solid rgba(0,0,0,0.06);background:var(--surface);}
+.sub-topic-group:last-child{border-bottom:none;}
+.sub-topic-header{width:100%;display:flex;align-items:center;justify-content:space-between;padding:11px 14px 11px 24px;background:#ffffff;cursor:pointer;font-size:13px;font-weight:600;color:#334155;border-bottom:1px solid transparent;}
+.sub-topic-header.open{background:#eef2f6;border-bottom-color:rgba(0,0,0,0.05);}
+.sub-topic-header-left{display:flex;align-items:center;gap:8px;flex:1;min-width:0;}
+.sub-topic-header-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.sub-topic-arrow{width:16px;height:16px;fill:var(--muted);transition:transform .15s;}
+.sub-topic-header.open .sub-topic-arrow{transform:rotate(180deg);}
+.sub-topic-items{display:none;background:var(--surface);}
+.sub-topic-items.open{display:block;}
+.sub-play-btn{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#0369a1;background:#e0f2fe;border:1px solid rgba(3,105,161,0.25);border-radius:5px;padding:3px 7px;}
+.sub-play-btn:active{background:#bae6fd;}
+.qitem.indent{padding-left:26px;}
+
 </style>
 <!-- Firebase SDK (無料版・端末間自動同期用) -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -3954,7 +3987,18 @@ if(notesList.length === 0){
   localStorage.setItem(LS_NOTES, JSON.stringify(notesList));
 }
 
-let openSections = { "(7) 代表執行役": true };
+let openSections = {};
+let openMainSections = {};
+let openSubSections = {};
+
+function parseSub(subStr) {
+  if(!subStr) return { main: 'その他', topic: '' };
+  const m = subStr.match(/^(.*?)(\s*[\(（][0-9０-９]+[\)）].*)$/);
+  if(m) {
+    return { main: m[1].trim(), topic: m[2].trim() };
+  }
+  return { main: subStr.trim(), topic: '' };
+}
 
 const st = id => statusMap[id] || "未着手";
 const misCnt = id => mistakeCountMap[id] || 0;
@@ -4126,11 +4170,30 @@ function vChapter(si, ci){
   const list = qsOf(s.key).filter(q => q.chapter === chName);
   const x = stats(list);
 
-  const groups = {};
+  // 2階層構造の構築
+  const hierarchy = {};
   list.forEach(q => {
-    if(!groups[q.sub]) groups[q.sub] = [];
-    groups[q.sub].push(q);
+    const p = parseSub(q.sub);
+    if(!hierarchy[p.main]) {
+      hierarchy[p.main] = {
+        mainTitle: p.main,
+        topics: {},
+        directItems: [],
+        allItems: []
+      };
+    }
+    hierarchy[p.main].allItems.push(q);
+    if(p.topic) {
+      if(!hierarchy[p.main].topics[p.topic]) {
+        hierarchy[p.main].topics[p.topic] = [];
+      }
+      hierarchy[p.main].topics[p.topic].push(q);
+    } else {
+      hierarchy[p.main].directItems.push(q);
+    }
   });
+
+  const mainTitles = Object.keys(hierarchy).sort((a,b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
   return `
   <header class="appbar">
@@ -4168,56 +4231,63 @@ function vChapter(si, ci){
       </button>
     </div>
 
-    <div class="section-label">
+    <div class="section-label" style="display:flex;justify-content:space-between;align-items:center;">
       <span>問題一覧（${list.length}問）</span>
-      <span style="font-size:11.5px;color:var(--muted);font-weight:normal;">タップで折りたたみ</span>
+      <span style="font-size:11.5px;color:var(--muted);font-weight:normal;">タップで展開</span>
     </div>
 
     <div class="list">
-      ${Object.keys(groups).map(subTitle => {
-        const items = groups[subTitle];
-        const isOpen = openSections[subTitle] !== false;
+      ${mainTitles.map(mTitle => {
+        const secData = hierarchy[mTitle];
+        const isMainOpen = Boolean(openMainSections[mTitle]);
+        const topicKeys = Object.keys(secData.topics).sort((a,b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+        const hasSubTopics = topicKeys.length > 0;
+
         return `
-        <div class="sec-group">
-          <div class="sec-header ${isOpen ? 'open' : ''}" onclick="toggleAccordion('${subTitle}')">
-            <div class="sec-header-left">
-              <span>${subTitle}</span>
-              <span class="sec-badge">${items.length}問</span>
+        <div class="main-sec-group">
+          <div class="main-sec-header ${isMainOpen ? 'open' : ''}" onclick="toggleMainAccordion('${mTitle}')">
+            <div class="main-sec-header-left">
+              <span>${mTitle}</span>
+              <span class="sec-badge">${secData.allItems.length}問</span>
             </div>
-            <div class="sec-header-right">
-              <button class="sec-play-btn" onclick="event.stopPropagation(); startSectionQuiz(${si}, ${ci}, '${subTitle}')" title="この節だけ演習">
+            <div class="main-sec-header-right">
+              <button class="sec-play-btn" onclick="event.stopPropagation(); startMainSectionQuiz(${si}, ${ci}, '${mTitle}')" title="この節全体を演習">
                 <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M8 5v14l11-7z"/></svg>
                 この節を解く
               </button>
-              <svg class="sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+              <svg class="main-sec-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
             </div>
           </div>
-          <div class="sec-items ${isOpen ? 'open' : ''}">
-            ${items.map(q => {
-              const qStatus = st(q.id);
-              const mCount = misCnt(q.id);
-              const hasMemo = Boolean(memoMap[q.id] && memoMap[q.id].trim());
-              let dotClass = "d-un";
-              if(qStatus === "コンプリート") dotClass = "d-comp";
-              else if(qStatus === "間違えた") dotClass = "d-mis";
-              else if(qStatus === "曖昧") dotClass = "d-vague";
-
-              return `
-              <div class="qitem" onclick="startSingleQuiz('${q.id}')">
-                <i class="dot ${dotClass}"></i>
-                <div class="qi-main">
-                  <div class="qi-meta">
-                    <span>問題${q.num} · ランク${q.rank} · ${qStatus}</span>
-                    ${mCount > 0 ? `<span class="badge-mis-count">誤答 ${mCount}回</span>` : ""}
-                    ${hasMemo ? `<span class="badge-has-memo">📝 メモあり</span>` : ""}
+          <div class="main-sec-items ${isMainOpen ? 'open' : ''}">
+            ${hasSubTopics ? `
+              ${topicKeys.map(tTitle => {
+                const subKey = `${mTitle}:::${tTitle}`;
+                const isSubOpen = Boolean(openSubSections[subKey]);
+                const tItems = secData.topics[tTitle];
+                return `
+                <div class="sub-topic-group">
+                  <div class="sub-topic-header ${isSubOpen ? 'open' : ''}" onclick="toggleSubAccordion('${mTitle}', '${tTitle}')">
+                    <div class="sub-topic-header-left">
+                      <span>${tTitle}</span>
+                      <span class="sec-badge" style="font-size:10.5px;padding:1px 6px;">${tItems.length}問</span>
+                    </div>
+                    <div class="sub-topic-header-right">
+                      <button class="sub-play-btn" onclick="event.stopPropagation(); startSubTopicQuiz(${si}, ${ci}, '${mTitle}', '${tTitle}')" title="このトピックだけ演習">
+                        <svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:currentColor;"><path d="M8 5v14l11-7z"/></svg>
+                        この項目を解く
+                      </button>
+                      <svg class="sub-topic-arrow" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                    </div>
                   </div>
-                  <div class="qi-text">${q.q}</div>
-                </div>
-                <button class="star ${starMap[q.id] ? 'on' : ''}" onclick="event.stopPropagation(); toggleStar('${q.id}')">
-                  <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                </button>
-              </div>`;
-            }).join("")}
+                  <div class="sub-topic-items ${isSubOpen ? 'open' : ''}">
+                    ${renderQuestionItems(tItems, true)}
+                  </div>
+                </div>`;
+              }).join("")}
+              ${secData.directItems.length ? renderQuestionItems(secData.directItems, true) : ''}
+            ` : `
+              ${renderQuestionItems(secData.directItems.length ? secData.directItems : secData.allItems, false)}
+            `}
           </div>
         </div>`;
       }).join("")}
@@ -4225,9 +4295,51 @@ function vChapter(si, ci){
   </div>`;
 }
 
-function toggleAccordion(subTitle){
-  openSections[subTitle] = !(openSections[subTitle] !== false);
+function renderQuestionItems(items, isIndent){
+  return items.map(q => {
+    const qStatus = st(q.id);
+    const mCount = misCnt(q.id);
+    const hasMemo = Boolean(memoMap[q.id] && memoMap[q.id].trim());
+    let dotClass = "d-un";
+    if(qStatus === "コンプリート") dotClass = "d-comp";
+    else if(qStatus === "間違えた") dotClass = "d-mis";
+    else if(qStatus === "曖昧") dotClass = "d-vague";
+
+    return `
+    <div class="qitem ${isIndent ? 'indent' : ''}" onclick="startSingleQuiz('${q.id}')">
+      <i class="dot ${dotClass}"></i>
+      <div class="qi-main">
+        <div class="qi-meta">
+          <span>問題${q.num} · ランク${q.rank} · ${qStatus}</span>
+          ${mCount > 0 ? `<span class="badge-mis-count">誤答 ${mCount}回</span>` : ""}
+          ${hasMemo ? `<span class="badge-has-memo">📝 メモあり</span>` : ""}
+        </div>
+        <div class="qi-text">${q.q}</div>
+      </div>
+      <button class="star ${starMap[q.id] ? 'on' : ''}" onclick="event.stopPropagation(); toggleStar('${q.id}')">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </button>
+    </div>`;
+  }).join("");
+}
+
+function toggleMainAccordion(mTitle){
+  openMainSections[mTitle] = !openMainSections[mTitle];
   render();
+}
+
+function toggleSubAccordion(mTitle, tTitle){
+  const key = `${mTitle}:::${tTitle}`;
+  openSubSections[key] = !openSubSections[key];
+  render();
+}
+
+function startMainSectionQuiz(si, ci, mainTitle){
+  openSheet(si, ci, mainTitle, "すべて");
+}
+
+function startSubTopicQuiz(si, ci, mainTitle, topicTitle){
+  openSheet(si, ci, mainTitle, topicTitle);
 }
 
 function toggleStar(id){
@@ -4415,10 +4527,19 @@ function deleteNote(idx){
 }
 
 // 5. 出題設定モーダル
-let quizSettings = { status:["未着手","間違えた","曖昧","コンプリート"], rank:["A","B","C"], mistakeOnly:false, memoOnly:false, order:"seq", section:"すべて" };
+let quizSettings = {
+  status: ["未着手","間違えた","曖昧","コンプリート"],
+  rank: ["A","B","C"],
+  mistakeOnly: false,
+  memoOnly: false,
+  order: "seq",
+  mainSection: "すべて",
+  subTopic: "すべて"
+};
 
-function openSheet(si, ci, sectionName = "すべて"){
-  quizSettings.section = sectionName;
+function openSheet(si, ci, mainSec = "すべて", subTop = "すべて"){
+  quizSettings.mainSection = mainSec;
+  quizSettings.subTopic = subTop;
   state.sheet = { si, ci };
   renderSheet();
 }
@@ -4435,8 +4556,27 @@ function renderSheet(){
   const targetChapter = ci >= 0 ? chapters[ci] : null;
   let pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
 
-  // 利用可能な節一覧
-  const availableSections = Array.from(new Set(pool.map(q => q.sub)));
+  // 階層データ（大項目とサブトピック）
+  const hierarchy = {};
+  pool.forEach(q => {
+    const p = parseSub(q.sub);
+    if(!hierarchy[p.main]) hierarchy[p.main] = { count: 0, topics: {} };
+    hierarchy[p.main].count++;
+    if(p.topic) {
+      hierarchy[p.main].topics[p.topic] = (hierarchy[p.main].topics[p.topic] || 0) + 1;
+    }
+  });
+
+  const mainSections = Object.keys(hierarchy).sort((a,b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+  
+  if(quizSettings.mainSection !== "すべて" && !hierarchy[quizSettings.mainSection]){
+    quizSettings.mainSection = "すべて";
+    quizSettings.subTopic = "すべて";
+  }
+
+  const curMain = quizSettings.mainSection;
+  const hasSubTopics = curMain !== "すべて" && hierarchy[curMain] && Object.keys(hierarchy[curMain].topics).length > 0;
+  const subTopicList = hasSubTopics ? Object.keys(hierarchy[curMain].topics).sort((a,b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })) : [];
 
   document.body.classList.add("lock");
   document.getElementById("sheet").innerHTML = `
@@ -4451,17 +4591,35 @@ function renderSheet(){
       <div class="opt-label">出題範囲</div>
       <div style="font-size:14px;font-weight:700;">${s.key} ${targetChapter ? '› ' + targetChapter : '（全範囲）'} (${pool.length}問)</div>
     </div>
-    ${availableSections.length > 1 ? `
+    
+    ${mainSections.length > 1 ? `
     <div class="opt">
-      <div class="opt-label">節・論点（絞り込み）</div>
-      <div class="chips">
-        <button class="fchip ${quizSettings.section === 'すべて' ? 'on' : ''}" onclick="setQuizSection('すべて')">すべての節</button>
-        ${availableSections.map(secName => `
-          <button class="fchip ${quizSettings.section === secName ? 'on' : ''}" onclick="setQuizSection('${secName}')">${secName}</button>
-        `).join("")}
+      <div class="opt-label">大項目・節（プルダウン選択）</div>
+      <div class="select-box-wrap">
+        <select class="select-box" onchange="onSelectMainSection(this.value)">
+          <option value="すべて" ${curMain === 'すべて' ? 'selected' : ''}>すべての節・大項目 (全${pool.length}問)</option>
+          ${mainSections.map(mSec => `
+            <option value="${mSec}" ${curMain === mSec ? 'selected' : ''}>${mSec} (${hierarchy[mSec].count}問)</option>
+          `).join("")}
+        </select>
+        <svg class="select-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
       </div>
+
+      ${hasSubTopics ? `
+      <div class="opt-label" style="margin-top:10px;">サブ項目・論点（プルダウン選択）</div>
+      <div class="select-box-wrap">
+        <select class="select-box" onchange="onSelectSubTopic(this.value)">
+          <option value="すべて" ${quizSettings.subTopic === 'すべて' ? 'selected' : ''}>この節の全項目 (${hierarchy[curMain].count}問)</option>
+          ${subTopicList.map(tSec => `
+            <option value="${tSec}" ${quizSettings.subTopic === tSec ? 'selected' : ''}>${tSec} (${hierarchy[curMain].topics[tSec]}問)</option>
+          `).join("")}
+        </select>
+        <svg class="select-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+      </div>
+      ` : ""}
     </div>
     ` : ""}
+
     <div class="opt">
       <div class="opt-label">記憶度（絞り込み）</div>
       <div class="chips">
@@ -4498,6 +4656,17 @@ function renderSheet(){
   </div>`;
 }
 
+function onSelectMainSection(val){
+  quizSettings.mainSection = val;
+  quizSettings.subTopic = "すべて";
+  renderSheet();
+}
+
+function onSelectSubTopic(val){
+  quizSettings.subTopic = val;
+  renderSheet();
+}
+
 function toggleSetting(type, val){
   const arr = quizSettings[type];
   const idx = arr.indexOf(val);
@@ -4513,10 +4682,6 @@ function toggleMemoOnly(){
   quizSettings.memoOnly = !quizSettings.memoOnly;
   renderSheet();
 }
-function setQuizSection(sec){
-  quizSettings.section = sec;
-  renderSheet();
-}
 function setOrder(ord){
   quizSettings.order = ord;
   renderSheet();
@@ -4528,9 +4693,16 @@ function startFilteredQuiz(si, ci){
   const targetChapter = ci >= 0 ? chapters[ci] : null;
   let pool = qsOf(s.key).filter(q => !targetChapter || q.chapter === targetChapter);
 
-  // 節・論点フィルター
-  if(quizSettings.section && quizSettings.section !== "すべて"){
-    pool = pool.filter(q => q.sub === quizSettings.section);
+  // 大項目 & サブ項目フィルター
+  if(quizSettings.mainSection && quizSettings.mainSection !== "すべて"){
+    pool = pool.filter(q => {
+      const p = parseSub(q.sub);
+      if(p.main !== quizSettings.mainSection) return false;
+      if(quizSettings.subTopic && quizSettings.subTopic !== "すべて"){
+        return p.topic === quizSettings.subTopic;
+      }
+      return true;
+    });
   }
 
   pool = pool.filter(q => {
@@ -4549,31 +4721,15 @@ function startFilteredQuiz(si, ci){
     alert("条件に一致する問題がありませんでした");
     return;
   }
-  launchQuiz(pool, `${s.key} ${targetChapter || ''} ${quizSettings.section !== 'すべて' ? '› ' + quizSettings.section : ''}`);
+  let label = `${s.key} ${targetChapter || ''}`;
+  if(quizSettings.mainSection !== 'すべて') label += ` › ${quizSettings.mainSection}`;
+  if(quizSettings.subTopic !== 'すべて') label += ` ${quizSettings.subTopic}`;
+  launchQuiz(pool, label.trim());
 }
 
 function startSectionQuiz(si, ci, subTitle){
-  const s = SUBJECTS[si];
-  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
-  const targetChapter = ci >= 0 ? chapters[ci] : null;
-  const pool = qsOf(s.key).filter(q => (!targetChapter || q.chapter === targetChapter) && q.sub === subTitle);
-  launchQuiz(pool, `${subTitle}（全${pool.length}問）`);
-}
-
-function quickStartMemo(si, ci){
-  const s = SUBJECTS[si];
-  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
-  const targetChapter = ci >= 0 ? chapters[ci] : null;
-  const pool = qsOf(s.key).filter(q => (!targetChapter || q.chapter === targetChapter) && memoMap[q.id] && memoMap[q.id].trim());
-  launchQuiz(pool, `📝 メモ付き問題演習（${pool.length}問）`);
-}
-
-function quickStart(si, ci, statusName){
-  const s = SUBJECTS[si];
-  const chapters = CHAPTER_MASTER[s.key] || [...new Set(qsOf(s.key).map(q => q.chapter))];
-  const targetChapter = ci >= 0 ? chapters[ci] : null;
-  const pool = qsOf(s.key).filter(q => (!targetChapter || q.chapter === targetChapter) && st(q.id) === statusName);
-  launchQuiz(pool, `${statusName}問題演習`);
+  const p = parseSub(subTitle);
+  openSheet(si, ci, p.main, p.topic || "すべて");
 }
 
 function startSingleQuiz(id){
