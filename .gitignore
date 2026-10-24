@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.py
+.agents/
+skills/
+zaimu_calc_tracker_preview.html
