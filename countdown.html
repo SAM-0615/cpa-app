@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPA Exam Countdown</title>
+  <style>
+    :root {
+      --bg: #191919;
+      --card-bg: #202020;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #ffffff;
+      --text-secondary: #9a9a9a;
+      --text-muted: #666666;
+      --accent: #ff5252;
+      --accent-glow: rgba(255, 82, 82, 0.15);
+      --bar-bg: rgba(255, 255, 255, 0.08);
+      --bar-fill: #e0e0e0;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --card-bg: #f8f9fa;
+        --card-border: rgba(0, 0, 0, 0.08);
+        --text-primary: #111111;
+        --text-secondary: #666666;
+        --text-muted: #999999;
+        --accent: #e53935;
+        --accent-glow: rgba(229, 57, 53, 0.15);
+        --bar-bg: rgba(0, 0, 0, 0.06);
+        --bar-fill: #111111;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .widget-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .widget-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text-secondary);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      display: inline-block;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .target-date {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .countdown-main {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .prefix {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .days-number {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .unit {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .mode-hint {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    /* Progress bar */
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: var(--bar-bg);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--bar-fill);
+      border-radius: 999px;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .today-str {
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="widget-card" id="card" onclick="toggleMode()" title="クリックで表示切り替え（日 / 週 / 時間）">
+    <div class="header">
+      <div class="title-badge">
+        <span class="pulse-dot"></span>
+        <span id="title-text">2027年5月 短答式試験</span>
+      </div>
+      <div class="target-date" id="target-date-str">2027.05.23 SUN</div>
+    </div>
+
+    <div class="countdown-main">
+      <span class="prefix">あと</span>
+      <span class="days-number" id="countdown-val">---</span>
+      <span class="unit" id="unit-val">日</span>
+      <span class="mode-hint" id="mode-hint">（タップで切替）</span>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-fill" id="progress-bar" style="width: 0%;"></div>
+    </div>
+
+    <div class="footer">
+      <span class="today-str" id="today-text">今日: ----.--.--</span>
+      <span id="progress-percent">0% 経過</span>
+    </div>
+  </div>
+
+  <script>
+    // URLパラメータの取得
+    const params = new URLSearchParams(window.location.search);
+    const targetDateStr = params.get('date') || '2027-05-23';
+    const customTitle = params.get('title') || '2027年5月 短答式試験';
+    const startDateStr = params.get('start') || '2026-05-01'; // 1年スパンの進捗用
+
+    document.getElementById('title-text').textContent = customTitle;
+
+    const targetDate = new Date(targetDateStr + 'T00:00:00+09:00');
+    const startDate = new Date(startDateStr + 'T00:00:00+09:00');
+
+    // モード切り替え (0: 日数, 1: 週間, 2: 時間)
+    let displayMode = 0;
+
+    function formatDate(d) {
+      const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}.${m}.${day} ${days[d.getDay()]}`;
+    }
+
+    document.getElementById('target-date-str').textContent = formatDate(targetDate);
+
+    function update() {
+      const now = new Date();
+      
+      // 今日の日付表示
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      document.getElementById('today-text').textContent = `現在: ${y}.${m}.${day}`;
+
+      const diffMs = targetDate.getTime() - now.getTime();
+      const totalMs = targetDate.getTime() - startDate.getTime();
+
+      if (diffMs <= 0) {
+        document.getElementById('countdown-val').textContent = '0';
+        document.getElementById('unit-val').textContent = '日 (試験当日)';
+        document.getElementById('progress-bar').style.width = '100%';
+        document.getElementById('progress-percent').textContent = '100%';
+        return;
+      }
+
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffWeeks = (diffDays / 7).toFixed(1);
+
+      const numEl = document.getElementById('countdown-val');
+      const unitEl = document.getElementById('unit-val');
+
+      if (displayMode === 0) {
+        numEl.textContent = diffDays.toLocaleString();
+        unitEl.textContent = '日';
+      } else if (displayMode === 1) {
+        numEl.textContent = diffWeeks;
+        unitEl.textContent = '週';
+      } else {
+        numEl.textContent = diffHours.toLocaleString();
+        unitEl.textContent = '時間';
+      }
+
+      // 進捗バー (学習期間に対する経過割合)
+      const elapsedMs = Math.max(0, now.getTime() - startDate.getTime());
+      const percent = Math.min(100, Math.max(0, Math.round((elapsedMs / totalMs) * 100)));
+      document.getElementById('progress-bar').style.width = percent + '%';
+      document.getElementById('progress-percent').textContent = `準備期間: ${percent}% 経過`;
+    }
+
+    function toggleMode() {
+      displayMode = (displayMode + 1) % 3;
+      update();
+    }
+
+    update();
+    setInterval(update, 60000); // 1分ごとに自動更新
+  </script>
+</body>
+</html>
