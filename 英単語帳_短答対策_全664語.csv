@@ -1,0 +1,2377 @@
+﻿id,subject,chapter,sub,num,rank,src,q,ans,exp
+E-01-01-001,英語対策,第1章 基本用語,1.会計期間,1,A,英単語帳ver.2,fiscal year (FY),会計年度,"【英単語】 fiscal year (FY)
+
+【和訳】 会計年度
+
+【関連用語・補足】
+accounting period:
+会計期間"
+E-01-01-002,英語対策,第1章 基本用語,1.会計期間,2,A,英単語帳ver.2,prior period,前期,"【英単語】 prior period
+
+【和訳】 前期"
+E-01-01-003,英語対策,第1章 基本用語,1.会計期間,3,A,英単語帳ver.2,current period,当期,"【英単語】 current period
+
+【和訳】 当期"
+E-01-01-004,英語対策,第1章 基本用語,1.会計期間,4,A,英単語帳ver.2,next period,翌期,"【英単語】 next period
+
+【和訳】 翌期"
+E-01-01-005,英語対策,第1章 基本用語,1.会計期間,5,A,英単語帳ver.2,beginning of the period,期首,"【英単語】 beginning of the period
+
+【和訳】 期首"
+E-01-01-006,英語対策,第1章 基本用語,1.会計期間,6,A,英単語帳ver.2,during the period,期中,"【英単語】 during the period
+
+【和訳】 期中"
+E-01-01-007,英語対策,第1章 基本用語,1.会計期間,7,A,英単語帳ver.2,end of the period,期末,"【英単語】 end of the period
+
+【和訳】 期末"
+E-01-02-008,英語対策,第1章 基本用語,2.会計処理,8,A,英単語帳ver.2,accounting treatment,会計処理,"【英単語】 accounting treatment
+
+【和訳】 会計処理"
+E-01-02-009,英語対策,第1章 基本用語,2.会計処理,9,A,英単語帳ver.2,recognition,認識,"【英単語】 recognition
+
+【和訳】 認識"
+E-01-02-010,英語対策,第1章 基本用語,2.会計処理,10,A,英単語帳ver.2,measurement,測定,"【英単語】 measurement
+
+【和訳】 測定"
+E-01-02-011,英語対策,第1章 基本用語,2.会計処理,11,A,英単語帳ver.2,valuation,評価,"【英単語】 valuation
+
+【和訳】 評価"
+E-01-03-012,英語対策,第1章 基本用語,3.仕訳,12,A,英単語帳ver.2,journal entry,仕訳,"【英単語】 journal entry
+
+【和訳】 仕訳"
+E-01-03-013,英語対策,第1章 基本用語,3.仕訳,13,A,英単語帳ver.2,debit (Dr.),借方,"【英単語】 debit (Dr.)
+
+【和訳】 借方"
+E-01-03-014,英語対策,第1章 基本用語,3.仕訳,14,A,英単語帳ver.2,credit (Cr.),貸方,"【英単語】 credit (Cr.)
+
+【和訳】 貸方"
+E-01-04-015,英語対策,第1章 基本用語,4.試算表,15,A,英単語帳ver.2,trial balance (T/B),残高試算表,"【英単語】 trial balance (T/B)
+
+【和訳】 残高試算表"
+E-01-04-016,英語対策,第1章 基本用語,4.試算表,16,A,英単語帳ver.2,pre-closing trial balance,決算整理前残高試算表,"【英単語】 pre-closing trial balance
+
+【和訳】 決算整理前残高試算表"
+E-01-05-017,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,17,A,英単語帳ver.2,financial statements (F/S),財務諸表,"【英単語】 financial statements (F/S)
+
+【和訳】 財務諸表
+
+【関連用語・補足】
+financial documents:
+財務書類"
+E-01-05-018,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,18,A,英単語帳ver.2,income statement (I/S) / profit and loss statement (P/L),損益計算書,"【英単語】 income statement (I/S) / profit and loss statement (P/L)
+
+【和訳】 損益計算書
+
+【関連用語・補足】
+IFRS statement of
+profit or loss:"
+E-01-05-019,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,19,A,英単語帳ver.2,statement of comprehensive income (C/I),包括利益計算書,"【英単語】 statement of comprehensive income (C/I)
+
+【和訳】 包括利益計算書"
+E-01-05-020,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,20,A,英単語帳ver.2,statement of changes in equity / statement of shareholders' equity (S/S),株主資本等変動計算書,"【英単語】 statement of changes in equity / statement of shareholders' equity (S/S)
+
+【和訳】 株主資本等変動計算書
+
+【関連用語・補足】
+IFRS statement of
+changes in equity:
+持分変動計算書"
+E-01-05-021,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,21,A,英単語帳ver.2,balance sheet (B/S),貸借対照表,"【英単語】 balance sheet (B/S)
+
+【和訳】 貸借対照表
+
+【関連用語・補足】
+IFRS statement of
+financial position:
+財政状態計算書"
+E-01-05-022,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,22,A,英単語帳ver.2,notes,注記,"【英単語】 notes
+
+【和訳】 注記"
+E-01-05-023,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,23,A,英単語帳ver.2,investment decision-making,投資意思決定,"【英単語】 investment decision-making
+
+【和訳】 投資意思決定"
+E-01-05-024,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,24,A,英単語帳ver.2,financial position,財政状態,"【英単語】 financial position
+
+【和訳】 財政状態"
+E-01-05-025,英語対策,第1章 基本用語,5.財務諸表に関する基本用語,25,A,英単語帳ver.2,business performance,経営成績,"【英単語】 business performance
+
+【和訳】 経営成績"
+E-01-06-026,英語対策,第1章 基本用語,6.簿記の5要素,26,A,英単語帳ver.2,assets,資産,"【英単語】 assets
+
+【和訳】 資産"
+E-01-06-027,英語対策,第1章 基本用語,6.簿記の5要素,27,A,英単語帳ver.2,liabilities,負債,"【英単語】 liabilities
+
+【和訳】 負債"
+E-01-06-028,英語対策,第1章 基本用語,6.簿記の5要素,28,A,英単語帳ver.2,net assets,純資産,"【英単語】 net assets
+
+【和訳】 純資産
+
+【関連用語・補足】
+IFRS equity:資本
+IFRS
+では資産,負
+債,資本に区分する"
+E-01-06-029,英語対策,第1章 基本用語,6.簿記の5要素,29,A,英単語帳ver.2,revenue,収益,"【英単語】 revenue
+
+【和訳】 収益"
+E-01-06-030,英語対策,第1章 基本用語,6.簿記の5要素,30,A,英単語帳ver.2,expense,費用,"【英単語】 expense
+
+【和訳】 費用"
+E-01-07-031,英語対策,第1章 基本用語,7.利害関係者,31,A,英単語帳ver.2,shareholder,株主,"【英単語】 shareholder
+
+【和訳】 株主"
+E-01-07-032,英語対策,第1章 基本用語,7.利害関係者,32,A,英単語帳ver.2,creditor,債権者,"【英単語】 creditor
+
+【和訳】 債権者"
+E-01-08-033,英語対策,第1章 基本用語,8.基本表現,33,A,英単語帳ver.2,general rule,原則,"【英単語】 general rule
+
+【和訳】 原則"
+E-01-08-034,英語対策,第1章 基本用語,8.基本表現,34,A,英単語帳ver.2,transaction,取引,"【英単語】 transaction
+
+【和訳】 取引"
+E-01-08-035,英語対策,第1章 基本用語,8.基本表現,35,A,英単語帳ver.2,consideration,対価,"【英単語】 consideration
+
+【和訳】 対価"
+E-01-08-036,英語対策,第1章 基本用語,8.基本表現,36,A,英単語帳ver.2,gains,利得,"【英単語】 gains
+
+【和訳】 利得"
+E-01-08-037,英語対策,第1章 基本用語,8.基本表現,37,A,英単語帳ver.2,losses,損失,"【英単語】 losses
+
+【和訳】 損失"
+E-01-08-038,英語対策,第1章 基本用語,8.基本表現,38,A,英単語帳ver.2,increase,増加,"【英単語】 increase
+
+【和訳】 増加"
+E-01-08-039,英語対策,第1章 基本用語,8.基本表現,39,A,英単語帳ver.2,decrease,減少,"【英単語】 decrease
+
+【和訳】 減少"
+E-01-08-040,英語対策,第1章 基本用語,8.基本表現,40,A,英単語帳ver.2,entity,企業,"【英単語】 entity
+
+【和訳】 企業"
+E-01-08-041,英語対策,第1章 基本用語,8.基本表現,41,A,英単語帳ver.2,competitor,競合他社,"【英単語】 competitor
+
+【和訳】 競合他社"
+E-01-08-042,英語対策,第1章 基本用語,8.基本表現,42,A,英単語帳ver.2,external,外部の,"【英単語】 external
+
+【和訳】 外部の
+
+【関連用語・補足】
+internal:内部の"
+E-01-08-043,英語対策,第1章 基本用語,8.基本表現,43,A,英単語帳ver.2,classify,〜を分類する,"【英単語】 classify
+
+【和訳】 〜を分類する"
+E-01-08-044,英語対策,第1章 基本用語,8.基本表現,44,A,英単語帳ver.2,adopt,〜を採用する,"【英単語】 adopt
+
+【和訳】 〜を採用する"
+E-01-08-045,英語対策,第1章 基本用語,8.基本表現,45,A,英単語帳ver.2,calculate,〜を計算する,"【英単語】 calculate
+
+【和訳】 〜を計算する"
+E-01-08-046,英語対策,第1章 基本用語,8.基本表現,46,A,英単語帳ver.2,exceed,〜を超える,"【英単語】 exceed
+
+【和訳】 〜を超える"
+E-01-08-047,英語対策,第1章 基本用語,8.基本表現,47,A,英単語帳ver.2,improve,〜を改善する,"【英単語】 improve
+
+【和訳】 〜を改善する"
+E-01-08-048,英語対策,第1章 基本用語,8.基本表現,48,A,英単語帳ver.2,include,〜を含む,"【英単語】 include
+
+【和訳】 〜を含む"
+E-01-08-049,英語対策,第1章 基本用語,8.基本表現,49,A,英単語帳ver.2,based on 〜,〜に基づいて,"【英単語】 based on 〜
+
+【和訳】 〜に基づいて"
+E-01-08-050,英語対策,第1章 基本用語,8.基本表現,50,A,英単語帳ver.2,compared to 〜,〜と比較して,"【英単語】 compared to 〜
+
+【和訳】 〜と比較して"
+E-01-08-051,英語対策,第1章 基本用語,8.基本表現,51,A,英単語帳ver.2,except for 〜,〜を除いて,"【英単語】 except for 〜
+
+【和訳】 〜を除いて"
+E-01-08-052,英語対策,第1章 基本用語,8.基本表現,52,A,英単語帳ver.2,be expected to 〜,〜と見込まれる,"【英単語】 be expected to 〜
+
+【和訳】 〜と見込まれる"
+E-01-08-053,英語対策,第1章 基本用語,8.基本表現,53,A,英単語帳ver.2,focus on 〜,〜に主眼を置く,"【英単語】 focus on 〜
+
+【和訳】 〜に主眼を置く"
+E-01-08-054,英語対策,第1章 基本用語,8.基本表現,54,A,英単語帳ver.2,achieve,〜を達成する,"【英単語】 achieve
+
+【和訳】 〜を達成する"
+E-01-08-055,英語対策,第1章 基本用語,8.基本表現,55,A,英単語帳ver.2,consider,〜を検討する,"【英単語】 consider
+
+【和訳】 〜を検討する"
+E-01-08-056,英語対策,第1章 基本用語,8.基本表現,56,A,英単語帳ver.2,following,次の,"【英単語】 following
+
+【和訳】 次の"
+E-02-01-001,英語対策,第2章 損益計算書,損益計算書,1,A,英単語帳ver.2,sales,売上高,"【英単語】 sales
+
+【和訳】 売上高"
+E-02-01-002,英語対策,第2章 損益計算書,損益計算書,2,A,英単語帳ver.2,cost of goods sold (COGS) / cost of sales (COS),売上原価,"【英単語】 cost of goods sold (COGS) / cost of sales (COS)
+
+【和訳】 売上原価"
+E-02-01-003,英語対策,第2章 損益計算書,損益計算書,3,A,英単語帳ver.2,gross profit,売上総利益,"【英単語】 gross profit
+
+【和訳】 売上総利益"
+E-02-01-004,英語対策,第2章 損益計算書,損益計算書,4,A,英単語帳ver.2,"selling, general and administrative expenses (SG&A)",販売費及び一般管理費,"【英単語】 selling, general and administrative expenses (SG&A)
+
+【和訳】 販売費及び一般管理費"
+E-02-01-005,英語対策,第2章 損益計算書,損益計算書,5,A,英単語帳ver.2,advertising expenses,広告宣伝費,"【英単語】 advertising expenses
+
+【和訳】 広告宣伝費"
+E-02-01-006,英語対策,第2章 損益計算書,損益計算書,6,A,英単語帳ver.2,operating profit,営業利益,"【英単語】 operating profit
+
+【和訳】 営業利益"
+E-02-01-007,英語対策,第2章 損益計算書,損益計算書,7,A,英単語帳ver.2,non-operating income,営業外収益,"【英単語】 non-operating income
+
+【和訳】 営業外収益"
+E-02-01-008,英語対策,第2章 損益計算書,損益計算書,8,A,英単語帳ver.2,interest income,受取利息,"【英単語】 interest income
+
+【和訳】 受取利息"
+E-02-01-009,英語対策,第2章 損益計算書,損益計算書,9,A,英単語帳ver.2,dividend income,受取配当金,"【英単語】 dividend income
+
+【和訳】 受取配当金"
+E-02-01-010,英語対策,第2章 損益計算書,損益計算書,10,A,英単語帳ver.2,non-operating expenses,営業外費用,"【英単語】 non-operating expenses
+
+【和訳】 営業外費用"
+E-02-01-011,英語対策,第2章 損益計算書,損益計算書,11,A,英単語帳ver.2,interest expenses,支払利息,"【英単語】 interest expenses
+
+【和訳】 支払利息"
+E-02-01-012,英語対策,第2章 損益計算書,損益計算書,12,A,英単語帳ver.2,ordinary profit,経常利益,"【英単語】 ordinary profit
+
+【和訳】 経常利益"
+E-02-01-013,英語対策,第2章 損益計算書,損益計算書,13,A,英単語帳ver.2,extraordinary gains,特別利益,"【英単語】 extraordinary gains
+
+【和訳】 特別利益"
+E-02-01-014,英語対策,第2章 損益計算書,損益計算書,14,A,英単語帳ver.2,extraordinary losses,特別損失,"【英単語】 extraordinary losses
+
+【和訳】 特別損失"
+E-02-01-015,英語対策,第2章 損益計算書,損益計算書,15,A,英単語帳ver.2,income before income taxes (IBIT),税引前当期純利益,"【英単語】 income before income taxes (IBIT)
+
+【和訳】 税引前当期純利益
+
+【関連用語・補足】
+earnings before
+interest and taxes
+(EBIT):
+利払前・税引前利益"
+E-02-01-016,英語対策,第2章 損益計算書,損益計算書,16,A,英単語帳ver.2,income taxes,法人税等,"【英単語】 income taxes
+
+【和訳】 法人税等"
+E-02-01-017,英語対策,第2章 損益計算書,損益計算書,17,A,英単語帳ver.2,net income,当期純利益,"【英単語】 net income
+
+【和訳】 当期純利益"
+E-03-01-001,英語対策,第3章 貸借対照表,1.資産の部,1,A,英単語帳ver.2,current assets,流動資産,"【英単語】 current assets
+
+【和訳】 流動資産"
+E-03-01-002,英語対策,第3章 貸借対照表,1.資産の部,2,A,英単語帳ver.2,cash and deposits,現金及び預金,"【英単語】 cash and deposits
+
+【和訳】 現金及び預金
+
+【関連用語・補足】
+time deposit:定期預金"
+E-03-01-003,英語対策,第3章 貸借対照表,1.資産の部,3,A,英単語帳ver.2,notes receivable,受取手形,"【英単語】 notes receivable
+
+【和訳】 受取手形"
+E-03-01-004,英語対策,第3章 貸借対照表,1.資産の部,4,A,英単語帳ver.2,accounts receivable (A/R),売掛金,"【英単語】 accounts receivable (A/R)
+
+【和訳】 売掛金"
+E-03-01-005,英語対策,第3章 貸借対照表,1.資産の部,5,A,英単語帳ver.2,prepaid expenses,前払費用,"【英単語】 prepaid expenses
+
+【和訳】 前払費用"
+E-03-01-006,英語対策,第3章 貸借対照表,1.資産の部,6,A,英単語帳ver.2,accrued revenue,未収収益,"【英単語】 accrued revenue
+
+【和訳】 未収収益"
+E-03-01-007,英語対策,第3章 貸借対照表,1.資産の部,7,A,英単語帳ver.2,non-current assets / fixed assets,固定資産,"【英単語】 non-current assets / fixed assets
+
+【和訳】 固定資産"
+E-03-01-008,英語対策,第3章 貸借対照表,1.資産の部,8,A,英単語帳ver.2,"property, plant and equipment (PPE)",有形固定資産,"【英単語】 property, plant and equipment (PPE)
+
+【和訳】 有形固定資産"
+E-03-01-009,英語対策,第3章 貸借対照表,1.資産の部,9,A,英単語帳ver.2,buildings,建物,"【英単語】 buildings
+
+【和訳】 建物"
+E-03-01-010,英語対策,第3章 貸借対照表,1.資産の部,10,A,英単語帳ver.2,fixtures,備品,"【英単語】 fixtures
+
+【和訳】 備品"
+E-03-01-011,英語対策,第3章 貸借対照表,1.資産の部,11,A,英単語帳ver.2,machinery and equipment,機械装置,"【英単語】 machinery and equipment
+
+【和訳】 機械装置"
+E-03-01-012,英語対策,第3章 貸借対照表,1.資産の部,12,A,英単語帳ver.2,vehicles,車両運搬具,"【英単語】 vehicles
+
+【和訳】 車両運搬具"
+E-03-01-013,英語対策,第3章 貸借対照表,1.資産の部,13,A,英単語帳ver.2,land,土地,"【英単語】 land
+
+【和訳】 土地"
+E-03-01-014,英語対策,第3章 貸借対照表,1.資産の部,14,A,英単語帳ver.2,intangible fixed assets,無形固定資産,"【英単語】 intangible fixed assets
+
+【和訳】 無形固定資産"
+E-03-01-015,英語対策,第3章 貸借対照表,1.資産の部,15,A,英単語帳ver.2,goodwill,のれん,"【英単語】 goodwill
+
+【和訳】 のれん"
+E-03-01-016,英語対策,第3章 貸借対照表,1.資産の部,16,A,英単語帳ver.2,investments and other assets,投資その他の資産,"【英単語】 investments and other assets
+
+【和訳】 投資その他の資産"
+E-03-01-017,英語対策,第3章 貸借対照表,1.資産の部,17,A,英単語帳ver.2,long-term loans receivable,⻑期貸付金,"【英単語】 long-term loans receivable
+
+【和訳】 ⻑期貸付金"
+E-03-02-018,英語対策,第3章 貸借対照表,2.負債の部,18,A,英単語帳ver.2,current liabilities,流動負債,"【英単語】 current liabilities
+
+【和訳】 流動負債"
+E-03-02-019,英語対策,第3章 貸借対照表,2.負債の部,19,A,英単語帳ver.2,notes payable,支払手形,"【英単語】 notes payable
+
+【和訳】 支払手形"
+E-03-02-020,英語対策,第3章 貸借対照表,2.負債の部,20,A,英単語帳ver.2,accounts payable (A/P),買掛金,"【英単語】 accounts payable (A/P)
+
+【和訳】 買掛金"
+E-03-02-021,英語対策,第3章 貸借対照表,2.負債の部,21,A,英単語帳ver.2,short-term borrowings / short-term loans payable,短期借入金,"【英単語】 short-term borrowings / short-term loans payable
+
+【和訳】 短期借入金"
+E-03-02-022,英語対策,第3章 貸借対照表,2.負債の部,22,A,英単語帳ver.2,unearned revenue,前受収益,"【英単語】 unearned revenue
+
+【和訳】 前受収益"
+E-03-02-023,英語対策,第3章 貸借対照表,2.負債の部,23,A,英単語帳ver.2,accrued expenses,未払費用,"【英単語】 accrued expenses
+
+【和訳】 未払費用"
+E-03-02-024,英語対策,第3章 貸借対照表,2.負債の部,24,A,英単語帳ver.2,non-current liabilities / fixed liabilities,固定負債,"【英単語】 non-current liabilities / fixed liabilities
+
+【和訳】 固定負債"
+E-03-03-025,英語対策,第3章 貸借対照表,3.純資産の部,25,A,英単語帳ver.2,shareholders' equity,株主資本,"【英単語】 shareholders' equity
+
+【和訳】 株主資本"
+E-03-03-026,英語対策,第3章 貸借対照表,3.純資産の部,26,A,英単語帳ver.2,capital stock / common stock,資本金,"【英単語】 capital stock / common stock
+
+【和訳】 資本金"
+E-03-03-027,英語対策,第3章 貸借対照表,3.純資産の部,27,A,英単語帳ver.2,additional paid-in capital (APIC) / capital surplus,資本剰余金,"【英単語】 additional paid-in capital (APIC) / capital surplus
+
+【和訳】 資本剰余金"
+E-03-03-028,英語対策,第3章 貸借対照表,3.純資産の部,28,A,英単語帳ver.2,legal capital surplus / capital reserve,資本準備金,"【英単語】 legal capital surplus / capital reserve
+
+【和訳】 資本準備金"
+E-03-03-029,英語対策,第3章 貸借対照表,3.純資産の部,29,A,英単語帳ver.2,other capital surplus,その他資本剰余金,"【英単語】 other capital surplus
+
+【和訳】 その他資本剰余金"
+E-03-03-030,英語対策,第3章 貸借対照表,3.純資産の部,30,A,英単語帳ver.2,retained earnings,利益剰余金,"【英単語】 retained earnings
+
+【和訳】 利益剰余金"
+E-03-03-031,英語対策,第3章 貸借対照表,3.純資産の部,31,A,英単語帳ver.2,legal retained earnings / legal reserve,利益準備金,"【英単語】 legal retained earnings / legal reserve
+
+【和訳】 利益準備金"
+E-03-03-032,英語対策,第3章 貸借対照表,3.純資産の部,32,A,英単語帳ver.2,other retained earnings,その他利益剰余金,"【英単語】 other retained earnings
+
+【和訳】 その他利益剰余金"
+E-03-03-033,英語対策,第3章 貸借対照表,3.純資産の部,33,A,英単語帳ver.2,retained earnings brought forward,繰越利益剰余金,"【英単語】 retained earnings brought forward
+
+【和訳】 繰越利益剰余金"
+E-03-03-034,英語対策,第3章 貸借対照表,3.純資産の部,34,A,英単語帳ver.2,reserve,積立金,"【英単語】 reserve
+
+【和訳】 積立金"
+E-03-03-035,英語対策,第3章 貸借対照表,3.純資産の部,35,A,英単語帳ver.2,valuation difference on available-for-sale securities,その他有価証券評価差,"【英単語】 valuation difference on available-for-sale securities
+
+【和訳】 その他有価証券評価差"
+E-04-01-001,英語対策,第4章 財務会計論,1.概念フレームワーク,1,A,英単語帳ver.2,conceptual framework,概念フレームワーク,"【英単語】 conceptual framework
+
+【和訳】 概念フレームワーク"
+E-04-01-002,英語対策,第4章 財務会計論,1.概念フレームワーク,2,A,英単語帳ver.2,reporting entity,報告主体,"【英単語】 reporting entity
+
+【和訳】 報告主体"
+E-04-01-003,英語対策,第4章 財務会計論,1.概念フレームワーク,3,A,英単語帳ver.2,economic resources,経済的資源,"【英単語】 economic resources
+
+【和訳】 経済的資源"
+E-04-01-004,英語対策,第4章 財務会計論,1.概念フレームワーク,4,A,英単語帳ver.2,relinquish,放棄する,"【英単語】 relinquish
+
+【和訳】 放棄する"
+E-04-01-005,英語対策,第4章 財務会計論,1.概念フレームワーク,5,A,英単語帳ver.2,obligation,義務,"【英単語】 obligation
+
+【和訳】 義務"
+E-04-01-006,英語対策,第4章 財務会計論,1.概念フレームワーク,6,A,英単語帳ver.2,element,構成要素,"【英単語】 element
+
+【和訳】 構成要素"
+E-04-01-007,英語対策,第4章 財務会計論,1.概念フレームワーク,7,A,英単語帳ver.2,useful financial information,有用な財務情報,"【英単語】 useful financial information
+
+【和訳】 有用な財務情報"
+E-04-01-008,英語対策,第4章 財務会計論,1.概念フレームワーク,8,A,英単語帳ver.2,provision of information,情報提供,"【英単語】 provision of information
+
+【和訳】 情報提供
+
+【関連用語・補足】
+provide:〜を提供する"
+E-04-01-009,英語対策,第4章 財務会計論,1.概念フレームワーク,9,A,英単語帳ver.2,material information,重要性のある情報,"【英単語】 material information
+
+【和訳】 重要性のある情報
+
+【関連用語・補足】
+material:重要性のある"
+E-04-01-010,英語対策,第4章 財務会計論,1.概念フレームワーク,10,A,英単語帳ver.2,comparability,比較可能性,"【英単語】 comparability
+
+【和訳】 比較可能性"
+E-04-01-011,英語対策,第4章 財務会計論,1.概念フレームワーク,11,A,英単語帳ver.2,going concern,継続企業,"【英単語】 going concern
+
+【和訳】 継続企業"
+E-04-01-012,英語対策,第4章 財務会計論,1.概念フレームワーク,12,A,英単語帳ver.2,internally generated goodwill,自己創設のれん,"【英単語】 internally generated goodwill
+
+【和訳】 自己創設のれん"
+E-04-02-013,英語対策,第4章 財務会計論,2.有価証券,13,A,英単語帳ver.2,securities,有価証券,"【英単語】 securities
+
+【和訳】 有価証券"
+E-04-02-014,英語対策,第4章 財務会計論,2.有価証券,14,A,英単語帳ver.2,investment securities,投資有価証券,"【英単語】 investment securities
+
+【和訳】 投資有価証券"
+E-04-02-015,英語対策,第4章 財務会計論,2.有価証券,15,A,英単語帳ver.2,trading securities,売買目的有価証券,"【英単語】 trading securities
+
+【和訳】 売買目的有価証券"
+E-04-02-016,英語対策,第4章 財務会計論,2.有価証券,16,A,英単語帳ver.2,held-to-maturity securities / held-to-maturity bonds,満期保有目的の債券,"【英単語】 held-to-maturity securities / held-to-maturity bonds
+
+【和訳】 満期保有目的の債券"
+E-04-02-017,英語対策,第4章 財務会計論,2.有価証券,17,A,英単語帳ver.2,investments in subsidiaries,子会社株式,"【英単語】 investments in subsidiaries
+
+【和訳】 子会社株式"
+E-04-02-018,英語対策,第4章 財務会計論,2.有価証券,18,A,英単語帳ver.2,investments in associates,関連会社株式,"【英単語】 investments in associates
+
+【和訳】 関連会社株式"
+E-04-02-019,英語対策,第4章 財務会計論,2.有価証券,19,A,英単語帳ver.2,available-for-sale securities,その他有価証券,"【英単語】 available-for-sale securities
+
+【和訳】 その他有価証券"
+E-04-02-020,英語対策,第4章 財務会計論,2.有価証券,20,A,英単語帳ver.2,shares / stocks,株式,"【英単語】 shares / stocks
+
+【和訳】 株式"
+E-04-02-021,英語対策,第4章 財務会計論,2.有価証券,21,A,英単語帳ver.2,bonds,債券,"【英単語】 bonds
+
+【和訳】 債券
+
+【関連用語・補足】
+corporate bonds:社債"
+E-04-02-022,英語対策,第4章 財務会計論,2.有価証券,22,A,英単語帳ver.2,fair value,公正価値,"【英単語】 fair value
+
+【和訳】 公正価値"
+E-04-02-023,英語対策,第4章 財務会計論,2.有価証券,23,A,英単語帳ver.2,face value,額面金額,"【英単語】 face value
+
+【和訳】 額面金額"
+E-04-02-024,英語対策,第4章 財務会計論,2.有価証券,24,A,英単語帳ver.2,interest rate,金利,"【英単語】 interest rate
+
+【和訳】 金利"
+E-04-02-025,英語対策,第4章 財務会計論,2.有価証券,25,A,英単語帳ver.2,effective interest rate (EIR),実効利子率,"【英単語】 effective interest rate (EIR)
+
+【和訳】 実効利子率"
+E-04-02-026,英語対策,第4章 財務会計論,2.有価証券,26,A,英単語帳ver.2,amortized cost method,償却原価法,"【英単語】 amortized cost method
+
+【和訳】 償却原価法"
+E-04-02-027,英語対策,第4章 財務会計論,2.有価証券,27,A,英単語帳ver.2,effective interest method,利息法,"【英単語】 effective interest method
+
+【和訳】 利息法"
+E-04-02-028,英語対策,第4章 財務会計論,2.有価証券,28,A,英単語帳ver.2,straight-line method,定額法,"【英単語】 straight-line method
+
+【和訳】 定額法"
+E-04-02-029,英語対策,第4章 財務会計論,2.有価証券,29,A,英単語帳ver.2,maturity date,満期日,"【英単語】 maturity date
+
+【和訳】 満期日"
+E-04-02-030,英語対策,第4章 財務会計論,2.有価証券,30,A,英単語帳ver.2,interest payment date,利払日,"【英単語】 interest payment date
+
+【和訳】 利払日"
+E-04-02-031,英語対策,第4章 財務会計論,2.有価証券,31,A,英単語帳ver.2,significantly,著しく,"【英単語】 significantly
+
+【和訳】 著しく"
+E-04-02-032,英語対策,第4章 財務会計論,2.有価証券,32,A,英単語帳ver.2,decline,下落する,"【英単語】 decline
+
+【和訳】 下落する"
+E-04-02-033,英語対策,第4章 財務会計論,2.有価証券,33,A,英単語帳ver.2,shares without a market price,市場価格のない株式,"【英単語】 shares without a market price
+
+【和訳】 市場価格のない株式"
+E-04-02-034,英語対策,第4章 財務会計論,2.有価証券,34,A,英単語帳ver.2,substantive value,実質価額,"【英単語】 substantive value
+
+【和訳】 実質価額"
+E-04-02-035,英語対策,第4章 財務会計論,2.有価証券,35,A,英単語帳ver.2,unrealized gain,含み益,"【英単語】 unrealized gain
+
+【和訳】 含み益"
+E-04-03-036,英語対策,第4章 財務会計論,3.棚卸資産,36,A,英単語帳ver.2,inventory,棚卸資産,"【英単語】 inventory
+
+【和訳】 棚卸資産
+
+【関連用語・補足】
+ending inventory:
+期末棚卸資産"
+E-04-03-037,英語対策,第4章 財務会計論,3.棚卸資産,37,A,英単語帳ver.2,merchandise,商品,"【英単語】 merchandise
+
+【和訳】 商品"
+E-04-03-038,英語対策,第4章 財務会計論,3.棚卸資産,38,A,英単語帳ver.2,purchase,仕入,"【英単語】 purchase
+
+【和訳】 仕入"
+E-04-03-039,英語対策,第4章 財務会計論,3.棚卸資産,39,A,英単語帳ver.2,return,返品,"【英単語】 return
+
+【和訳】 返品
+
+【関連用語・補足】
+purchase returns:
+仕入戻し"
+E-04-03-040,英語対策,第4章 財務会計論,3.棚卸資産,40,A,英単語帳ver.2,discount,割引,"【英単語】 discount
+
+【和訳】 割引
+
+【関連用語・補足】
+purchase discounts:
+仕入割引"
+E-04-03-041,英語対策,第4章 財務会計論,3.棚卸資産,41,A,英単語帳ver.2,purchase price,購入代価,"【英単語】 purchase price
+
+【和訳】 購入代価"
+E-04-03-042,英語対策,第4章 財務会計論,3.棚卸資産,42,A,英単語帳ver.2,incidental costs,付随費用,"【英単語】 incidental costs
+
+【和訳】 付随費用"
+E-04-03-043,英語対策,第4章 財務会計論,3.棚卸資産,43,A,英単語帳ver.2,acquisition cost,取得原価,"【英単語】 acquisition cost
+
+【和訳】 取得原価"
+E-04-03-044,英語対策,第4章 財務会計論,3.棚卸資産,44,A,英単語帳ver.2,carrying amount,帳簿価額,"【英単語】 carrying amount
+
+【和訳】 帳簿価額"
+E-04-03-045,英語対策,第4章 財務会計論,3.棚卸資産,45,A,英単語帳ver.2,specific identification method,個別法,"【英単語】 specific identification method
+
+【和訳】 個別法"
+E-04-03-046,英語対策,第4章 財務会計論,3.棚卸資産,46,A,英単語帳ver.2,"first-in, first-out (FIFO) method",先入先出法,"【英単語】 first-in, first-out (FIFO) method
+
+【和訳】 先入先出法"
+E-04-03-047,英語対策,第4章 財務会計論,3.棚卸資産,47,A,英単語帳ver.2,moving-average method,移動平均法,"【英単語】 moving-average method
+
+【和訳】 移動平均法"
+E-04-03-048,英語対策,第4章 財務会計論,3.棚卸資産,48,A,英単語帳ver.2,weighted-average method,総平均法,"【英単語】 weighted-average method
+
+【和訳】 総平均法"
+E-04-03-049,英語対策,第4章 財務会計論,3.棚卸資産,49,A,英単語帳ver.2,"last-in, first-out (LIFO) method",後入先出法,"【英単語】 last-in, first-out (LIFO) method
+
+【和訳】 後入先出法"
+E-04-03-050,英語対策,第4章 財務会計論,3.棚卸資産,50,A,英単語帳ver.2,physical inventory,実地棚卸,"【英単語】 physical inventory
+
+【和訳】 実地棚卸"
+E-04-03-051,英語対策,第4章 財務会計論,3.棚卸資産,51,A,英単語帳ver.2,inventory shrinkage,棚卸減耗,"【英単語】 inventory shrinkage
+
+【和訳】 棚卸減耗"
+E-04-03-052,英語対策,第4章 財務会計論,3.棚卸資産,52,A,英単語帳ver.2,market price,市場価格,"【英単語】 market price
+
+【和訳】 市場価格"
+E-04-03-053,英語対策,第4章 財務会計論,3.棚卸資産,53,A,英単語帳ver.2,net selling value,正味売却価額,"【英単語】 net selling value
+
+【和訳】 正味売却価額"
+E-04-03-054,英語対策,第4章 財務会計論,3.棚卸資産,54,A,英単語帳ver.2,net realizable value (NRV),正味実現可能価額,"【英単語】 net realizable value (NRV)
+
+【和訳】 正味実現可能価額"
+E-04-03-055,英語対策,第4章 財務会計論,3.棚卸資産,55,A,英単語帳ver.2,replacement cost,再調達原価,"【英単語】 replacement cost
+
+【和訳】 再調達原価"
+E-04-03-056,英語対策,第4章 財務会計論,3.棚卸資産,56,A,英単語帳ver.2,unit price,単価,"【英単語】 unit price
+
+【和訳】 単価"
+E-04-03-057,英語対策,第4章 財務会計論,3.棚卸資産,57,A,英単語帳ver.2,decline in profitability,収益性の低下,"【英単語】 decline in profitability
+
+【和訳】 収益性の低下"
+E-04-03-058,英語対策,第4章 財務会計論,3.棚卸資産,58,A,英単語帳ver.2,write-down,簿価切り下げ,"【英単語】 write-down
+
+【和訳】 簿価切り下げ"
+E-04-04-059,英語対策,第4章 財務会計論,4.有形固定資産,59,A,英単語帳ver.2,"property, plant and equipment (PPE)",有形固定資産,"【英単語】 property, plant and equipment (PPE)
+
+【和訳】 有形固定資産"
+E-04-04-060,英語対策,第4章 財務会計論,4.有形固定資産,60,A,英単語帳ver.2,place into service,使用を開始する,"【英単語】 place into service
+
+【和訳】 使用を開始する"
+E-04-04-061,英語対策,第4章 財務会計論,4.有形固定資産,61,A,英単語帳ver.2,depreciation,減価償却,"【英単語】 depreciation
+
+【和訳】 減価償却"
+E-04-04-062,英語対策,第4章 財務会計論,4.有形固定資産,62,A,英単語帳ver.2,accumulated depreciation,減価償却累計額,"【英単語】 accumulated depreciation
+
+【和訳】 減価償却累計額"
+E-04-04-063,英語対策,第4章 財務会計論,4.有形固定資産,63,A,英単語帳ver.2,straight-line method,定額法,"【英単語】 straight-line method
+
+【和訳】 定額法"
+E-04-04-064,英語対策,第4章 財務会計論,4.有形固定資産,64,A,英単語帳ver.2,declining-balance method,定率法,"【英単語】 declining-balance method
+
+【和訳】 定率法"
+E-04-04-065,英語対策,第4章 財務会計論,4.有形固定資産,65,A,英単語帳ver.2,useful life,耐用年数,"【英単語】 useful life
+
+【和訳】 耐用年数"
+E-04-04-066,英語対策,第4章 財務会計論,4.有形固定資産,66,A,英単語帳ver.2,remaining useful life,残存耐用年数,"【英単語】 remaining useful life
+
+【和訳】 残存耐用年数"
+E-04-04-067,英語対策,第4章 財務会計論,4.有形固定資産,67,A,英単語帳ver.2,residual value / salvage value,残存価額,"【英単語】 residual value / salvage value
+
+【和訳】 残存価額"
+E-04-04-068,英語対策,第4章 財務会計論,4.有形固定資産,68,A,英単語帳ver.2,estimated disposal value,見積処分価額,"【英単語】 estimated disposal value
+
+【和訳】 見積処分価額
+
+【関連用語・補足】
+estimate:〜を見積る"
+E-04-05-069,英語対策,第4章 財務会計論,5.純資産,69,A,英単語帳ver.2,new shares,新株,"【英単語】 new shares
+
+【和訳】 新株"
+E-04-05-070,英語対策,第4章 財務会計論,5.純資産,70,A,英単語帳ver.2,issuance,発行,"【英単語】 issuance
+
+【和訳】 発行
+
+【関連用語・補足】
+issue:〜を発行する"
+E-04-05-071,英語対策,第4章 財務会計論,5.純資産,71,A,英単語帳ver.2,voting rights,議決権,"【英単語】 voting rights
+
+【和訳】 議決権"
+E-04-05-072,英語対策,第4章 財務会計論,5.純資産,72,A,英単語帳ver.2,capital increase,増資,"【英単語】 capital increase
+
+【和訳】 増資"
+E-04-05-073,英語対策,第4章 財務会計論,5.純資産,73,A,英単語帳ver.2,amount paid-in,払込金額,"【英単語】 amount paid-in
+
+【和訳】 払込金額"
+E-04-05-074,英語対策,第4章 財務会計論,5.純資産,74,A,英単語帳ver.2,paid-in capital / contributed capital,払込資本,"【英単語】 paid-in capital / contributed capital
+
+【和訳】 払込資本"
+E-04-05-075,英語対策,第4章 財務会計論,5.純資産,75,A,英単語帳ver.2,shareholders' equity,株主資本,"【英単語】 shareholders' equity
+
+【和訳】 株主資本"
+E-04-05-076,英語対策,第4章 財務会計論,5.純資産,76,A,英単語帳ver.2,capital transaction,資本取引,"【英単語】 capital transaction
+
+【和訳】 資本取引"
+E-04-05-077,英語対策,第4章 財務会計論,5.純資産,77,A,英単語帳ver.2,profit and loss transaction,損益取引,"【英単語】 profit and loss transaction
+
+【和訳】 損益取引"
+E-04-05-078,英語対策,第4章 財務会計論,5.純資産,78,A,英単語帳ver.2,dividend,配当金,"【英単語】 dividend
+
+【和訳】 配当金"
+E-04-05-079,英語対策,第4章 財務会計論,5.純資産,79,A,英単語帳ver.2,distributable amount / amount available for distribution,分配可能額,"【英単語】 distributable amount / amount available for distribution
+
+【和訳】 分配可能額"
+E-04-05-080,英語対策,第4章 財務会計論,5.純資産,80,A,英単語帳ver.2,Companies Act,会社法,"【英単語】 Companies Act
+
+【和訳】 会社法"
+E-04-06-081,英語対策,第4章 財務会計論,6.会計方針の注記,81,A,英単語帳ver.2,accounting policies,会計方針,"【英単語】 accounting policies
+
+【和訳】 会計方針"
+E-04-06-082,英語対策,第4章 財務会計論,6.会計方針の注記,82,A,英単語帳ver.2,change,変更,"【英単語】 change
+
+【和訳】 変更"
+E-04-06-083,英語対策,第4章 財務会計論,6.会計方針の注記,83,A,英単語帳ver.2,notes,注記,"【英単語】 notes
+
+【和訳】 注記"
+E-04-06-084,英語対策,第4章 財務会計論,6.会計方針の注記,84,A,英単語帳ver.2,consistent application,継続適用,"【英単語】 consistent application
+
+【和訳】 継続適用"
+E-04-07-085,英語対策,第4章 財務会計論,7.収益認識,85,A,英単語帳ver.2,revenue recognition,収益認識,"【英単語】 revenue recognition
+
+【和訳】 収益認識"
+E-04-07-086,英語対策,第4章 財務会計論,7.収益認識,86,A,英単語帳ver.2,contract,契約,"【英単語】 contract
+
+【和訳】 契約"
+E-04-07-087,英語対策,第4章 財務会計論,7.収益認識,87,A,英単語帳ver.2,customer,顧客,"【英単語】 customer
+
+【和訳】 顧客"
+E-04-07-088,英語対策,第4章 財務会計論,7.収益認識,88,A,英単語帳ver.2,identification,識別,"【英単語】 identification
+
+【和訳】 識別
+
+【関連用語・補足】
+identify:〜を識別する"
+E-04-07-089,英語対策,第4章 財務会計論,7.収益認識,89,A,英単語帳ver.2,performance obligation,履行義務,"【英単語】 performance obligation
+
+【和訳】 履行義務"
+E-04-07-090,英語対策,第4章 財務会計論,7.収益認識,90,A,英単語帳ver.2,transaction price,取引価格,"【英単語】 transaction price
+
+【和訳】 取引価格"
+E-04-07-091,英語対策,第4章 財務会計論,7.収益認識,91,A,英単語帳ver.2,allocation,配分,"【英単語】 allocation
+
+【和訳】 配分
+
+【関連用語・補足】
+allocate:〜を配分する"
+E-04-07-092,英語対策,第4章 財務会計論,7.収益認識,92,A,英単語帳ver.2,stand-alone selling price,独立販売価格,"【英単語】 stand-alone selling price
+
+【和訳】 独立販売価格"
+E-04-07-093,英語対策,第4章 財務会計論,7.収益認識,93,A,英単語帳ver.2,bundled selling price,セット販売価格,"【英単語】 bundled selling price
+
+【和訳】 セット販売価格"
+E-04-07-094,英語対策,第4章 財務会計論,7.収益認識,94,A,英単語帳ver.2,residual approach,残余アプローチ,"【英単語】 residual approach
+
+【和訳】 残余アプローチ"
+E-04-07-095,英語対策,第4章 財務会計論,7.収益認識,95,A,英単語帳ver.2,transfer of control,支配の移転,"【英単語】 transfer of control
+
+【和訳】 支配の移転"
+E-04-07-096,英語対策,第4章 財務会計論,7.収益認識,96,A,英単語帳ver.2,satisfaction,充足,"【英単語】 satisfaction
+
+【和訳】 充足
+
+【関連用語・補足】
+satisfy:〜を充足する"
+E-04-07-097,英語対策,第4章 財務会計論,7.収益認識,97,A,英単語帳ver.2,at a point in time,一時点で,"【英単語】 at a point in time
+
+【和訳】 一時点で"
+E-04-07-098,英語対策,第4章 財務会計論,7.収益認識,98,A,英単語帳ver.2,over time,一定の期間にわたり,"【英単語】 over time
+
+【和訳】 一定の期間にわたり"
+E-04-07-099,英語対策,第4章 財務会計論,7.収益認識,99,A,英単語帳ver.2,contract asset,契約資産,"【英単語】 contract asset
+
+【和訳】 契約資産"
+E-04-07-100,英語対策,第4章 財務会計論,7.収益認識,100,A,英単語帳ver.2,contract liability,契約負債,"【英単語】 contract liability
+
+【和訳】 契約負債"
+E-04-07-101,英語対策,第4章 財務会計論,7.収益認識,101,A,英単語帳ver.2,refund liability,返金負債,"【英単語】 refund liability
+
+【和訳】 返金負債"
+E-04-07-102,英語対策,第4章 財務会計論,7.収益認識,102,A,英単語帳ver.2,construction revenue,工事収益,"【英単語】 construction revenue
+
+【和訳】 工事収益"
+E-04-07-103,英語対策,第4章 財務会計論,7.収益認識,103,A,英単語帳ver.2,construction costs,工事原価,"【英単語】 construction costs
+
+【和訳】 工事原価"
+E-04-07-104,英語対策,第4章 財務会計論,7.収益認識,104,A,英単語帳ver.2,measure of progress,進捗度,"【英単語】 measure of progress
+
+【和訳】 進捗度"
+E-04-07-105,英語対策,第4章 財務会計論,7.収益認識,105,A,英単語帳ver.2,input method based on costs / cost-to-cost method,コストに基づくインプ ット法,"【英単語】 input method based on costs / cost-to-cost method
+
+【和訳】 コストに基づくインプ ット法"
+E-04-07-106,英語対策,第4章 財務会計論,7.収益認識,106,A,英単語帳ver.2,cost-recovery method,原価回収基準,"【英単語】 cost-recovery method
+
+【和訳】 原価回収基準"
+E-04-08-107,英語対策,第4章 財務会計論,8.固定資産の減損,107,A,英単語帳ver.2,impairment,減損,"【英単語】 impairment
+
+【和訳】 減損"
+E-04-08-108,英語対策,第4章 財務会計論,8.固定資産の減損,108,A,英単語帳ver.2,indication,兆候,"【英単語】 indication
+
+【和訳】 兆候"
+E-04-08-109,英語対策,第4章 財務会計論,8.固定資産の減損,109,A,英単語帳ver.2,cash-generating unit (CGU),資金生成単位,"【英単語】 cash-generating unit (CGU)
+
+【和訳】 資金生成単位"
+E-04-08-110,英語対策,第4章 財務会計論,8.固定資産の減損,110,A,英単語帳ver.2,undiscounted future cash flows,割引前将来キャッシュ・ フロー,"【英単語】 undiscounted future cash flows
+
+【和訳】 割引前将来キャッシュ・ フロー"
+E-04-08-111,英語対策,第4章 財務会計論,8.固定資産の減損,111,A,英単語帳ver.2,recoverable amount,回収可能価額,"【英単語】 recoverable amount
+
+【和訳】 回収可能価額"
+E-04-08-112,英語対策,第4章 財務会計論,8.固定資産の減損,112,A,英単語帳ver.2,net selling value,正味売却価額,"【英単語】 net selling value
+
+【和訳】 正味売却価額"
+E-04-08-113,英語対策,第4章 財務会計論,8.固定資産の減損,113,A,英単語帳ver.2,estimated disposal costs,処分費用見込額,"【英単語】 estimated disposal costs
+
+【和訳】 処分費用見込額"
+E-04-08-114,英語対策,第4章 財務会計論,8.固定資産の減損,114,A,英単語帳ver.2,value in use,使用価値,"【英単語】 value in use
+
+【和訳】 使用価値"
+E-04-08-115,英語対策,第4章 財務会計論,8.固定資産の減損,115,A,英単語帳ver.2,impairment loss,減損損失,"【英単語】 impairment loss
+
+【和訳】 減損損失"
+E-04-08-116,英語対策,第4章 財務会計論,8.固定資産の減損,116,A,英単語帳ver.2,reversal,戻入れ,"【英単語】 reversal
+
+【和訳】 戻入れ
+
+【関連用語・補足】
+reverse:
+〜を戻し入れる"
+E-04-09-117,英語対策,第4章 財務会計論,9.連結会計,117,A,英単語帳ver.2,consolidated financial statements,連結財務諸表,"【英単語】 consolidated financial statements
+
+【和訳】 連結財務諸表"
+E-04-09-118,英語対策,第4章 財務会計論,9.連結会計,118,A,英単語帳ver.2,group,企業集団,"【英単語】 group
+
+【和訳】 企業集団"
+E-04-09-119,英語対策,第4章 財務会計論,9.連結会計,119,A,英単語帳ver.2,control,支配,"【英単語】 control
+
+【和訳】 支配"
+E-04-09-120,英語対策,第4章 財務会計論,9.連結会計,120,A,英単語帳ver.2,consolidated subsidiary,連結子会社,"【英単語】 consolidated subsidiary
+
+【和訳】 連結子会社
+
+【関連用語・補足】
+subsidiary:子会社"
+E-04-09-121,英語対策,第4章 財務会計論,9.連結会計,121,A,英単語帳ver.2,acquisition date,取得日,"【英単語】 acquisition date
+
+【和訳】 取得日"
+E-04-09-122,英語対策,第4章 財務会計論,9.連結会計,122,A,英単語帳ver.2,capital contribution,出資,"【英単語】 capital contribution
+
+【和訳】 出資"
+E-04-09-123,英語対策,第4章 財務会計論,9.連結会計,123,A,英単語帳ver.2,number of shares issued,発行済株式総数,"【英単語】 number of shares issued
+
+【和訳】 発行済株式総数"
+E-04-09-124,英語対策,第4章 財務会計論,9.連結会計,124,A,英単語帳ver.2,shares of Company S,S社株式,"【英単語】 shares of Company S
+
+【和訳】 S社株式"
+E-04-09-125,英語対策,第4章 財務会計論,9.連結会計,125,A,英単語帳ver.2,interest,持分,"【英単語】 interest
+
+【和訳】 持分"
+E-04-09-126,英語対策,第4章 財務会計論,9.連結会計,126,A,英単語帳ver.2,non-controlling interests (NCI),非支配株主持分,"【英単語】 non-controlling interests (NCI)
+
+【和訳】 非支配株主持分"
+E-04-09-127,英語対策,第4章 財務会計論,9.連結会計,127,A,英単語帳ver.2,valuation difference,評価差額,"【英単語】 valuation difference
+
+【和訳】 評価差額
+
+【関連用語・補足】
+valuation:評価"
+E-04-09-128,英語対策,第4章 財務会計論,9.連結会計,128,A,英単語帳ver.2,acquisition-related costs,取得関連費用,"【英単語】 acquisition-related costs
+
+【和訳】 取得関連費用"
+E-04-09-129,英語対策,第4章 財務会計論,9.連結会計,129,A,英単語帳ver.2,receivables,債権,"【英単語】 receivables
+
+【和訳】 債権"
+E-04-09-130,英語対策,第4章 財務会計論,9.連結会計,130,A,英単語帳ver.2,payables,債務,"【英単語】 payables
+
+【和訳】 債務"
+E-04-09-131,英語対策,第4章 財務会計論,9.連結会計,131,A,英単語帳ver.2,offset and eliminate,相殺消去する,"【英単語】 offset and eliminate
+
+【和訳】 相殺消去する"
+E-04-09-132,英語対策,第4章 財務会計論,9.連結会計,132,A,英単語帳ver.2,goods in transit,未達商品,"【英単語】 goods in transit
+
+【和訳】 未達商品"
+E-04-09-133,英語対策,第4章 財務会計論,9.連結会計,133,A,英単語帳ver.2,unrealized profit,未実現利益,"【英単語】 unrealized profit
+
+【和訳】 未実現利益"
+E-04-09-134,英語対策,第4章 財務会計論,9.連結会計,134,A,英単語帳ver.2,net income attributable to owners of the parent,親会社株主に帰属する 当期純利益,"【英単語】 net income attributable to owners of the parent
+
+【和訳】 親会社株主に帰属する 当期純利益"
+E-04-09-135,英語対策,第4章 財務会計論,9.連結会計,135,A,英単語帳ver.2,net income attributable to non-controlling interests,非支配株主に帰属する 当期純利益,"【英単語】 net income attributable to non-controlling interests
+
+【和訳】 非支配株主に帰属する 当期純利益"
+E-04-10-136,英語対策,第4章 財務会計論,10.企業結合,136,A,英単語帳ver.2,business combination,企業結合,"【英単語】 business combination
+
+【和訳】 企業結合"
+E-04-10-137,英語対策,第4章 財務会計論,10.企業結合,137,A,英単語帳ver.2,merger,合併,"【英単語】 merger
+
+【和訳】 合併"
+E-04-10-138,英語対策,第4章 財務会計論,10.企業結合,138,A,英単語帳ver.2,share exchange,株式交換,"【英単語】 share exchange
+
+【和訳】 株式交換"
+E-04-10-139,英語対策,第4章 財務会計論,10.企業結合,139,A,英単語帳ver.2,share transfer,株式移転,"【英単語】 share transfer
+
+【和訳】 株式移転"
+E-04-10-140,英語対策,第4章 財務会計論,10.企業結合,140,A,英単語帳ver.2,surviving company,存続会社,"【英単語】 surviving company
+
+【和訳】 存続会社"
+E-04-10-141,英語対策,第4章 財務会計論,10.企業結合,141,A,英単語帳ver.2,disappearing company,消滅会社,"【英単語】 disappearing company
+
+【和訳】 消滅会社"
+E-04-10-142,英語対策,第4章 財務会計論,10.企業結合,142,A,英単語帳ver.2,economic substance,経済的実態,"【英単語】 economic substance
+
+【和訳】 経済的実態"
+E-04-10-143,英語対策,第4章 財務会計論,10.企業結合,143,A,英単語帳ver.2,acquisition,取得,"【英単語】 acquisition
+
+【和訳】 取得
+
+【関連用語・補足】
+acquire:〜を取得する"
+E-04-10-144,英語対策,第4章 財務会計論,10.企業結合,144,A,英単語帳ver.2,acquirer,取得企業 -er:〜する側(能動),"【英単語】 acquirer
+
+【和訳】 取得企業 -er:〜する側(能動)"
+E-04-10-145,英語対策,第4章 財務会計論,10.企業結合,145,A,英単語帳ver.2,acquiree,被取得企業 -ee:〜される側(受動),"【英単語】 acquiree
+
+【和訳】 被取得企業 -ee:〜される側(受動)"
+E-04-10-146,英語対策,第4章 財務会計論,10.企業結合,146,A,英単語帳ver.2,market capitalization,時価総額,"【英単語】 market capitalization
+
+【和訳】 時価総額"
+E-04-10-147,英語対策,第4章 財務会計論,10.企業結合,147,A,英単語帳ver.2,exchange at equivalent value,等価交換,"【英単語】 exchange at equivalent value
+
+【和訳】 等価交換"
+E-04-10-148,英語対策,第4章 財務会計論,10.企業結合,148,A,英単語帳ver.2,identifiable,識別可能,"【英単語】 identifiable
+
+【和訳】 識別可能"
+E-04-10-149,英語対策,第4章 財務会計論,10.企業結合,149,A,英単語帳ver.2,separable,分離可能,"【英単語】 separable
+
+【和訳】 分離可能"
+E-04-10-150,英語対策,第4章 財務会計論,10.企業結合,150,A,英単語帳ver.2,intangible assets,無形資産,"【英単語】 intangible assets
+
+【和訳】 無形資産"
+E-04-10-151,英語対策,第4章 財務会計論,10.企業結合,151,A,英単語帳ver.2,amortization,(無形資産の)償却,"【英単語】 amortization
+
+【和訳】 (無形資産の)償却"
+E-04-10-152,英語対策,第4章 財務会計論,10.企業結合,152,A,英単語帳ver.2,negative goodwill,負ののれん,"【英単語】 negative goodwill
+
+【和訳】 負ののれん"
+E-04-11-153,英語対策,第4章 財務会計論,11.外貨換算,153,A,英単語帳ver.2,foreign currency transactions,外貨建取引,"【英単語】 foreign currency transactions
+
+【和訳】 外貨建取引"
+E-04-11-154,英語対策,第4章 財務会計論,11.外貨換算,154,A,英単語帳ver.2,exchange rate,為替レート,"【英単語】 exchange rate
+
+【和訳】 為替レート"
+E-04-11-155,英語対策,第4章 財務会計論,11.外貨換算,155,A,英単語帳ver.2,historical rate (HR),取得時レート,"【英単語】 historical rate (HR)
+
+【和訳】 取得時レート"
+E-04-11-156,英語対策,第4章 財務会計論,11.外貨換算,156,A,英単語帳ver.2,average rate (AR),期中平均レート,"【英単語】 average rate (AR)
+
+【和訳】 期中平均レート"
+E-04-11-157,英語対策,第4章 財務会計論,11.外貨換算,157,A,英単語帳ver.2,closing rate (CR),決算日レート,"【英単語】 closing rate (CR)
+
+【和訳】 決算日レート"
+E-04-11-158,英語対策,第4章 財務会計論,11.外貨換算,158,A,英単語帳ver.2,exchange rate at the settlement date,決済日レート,"【英単語】 exchange rate at the settlement date
+
+【和訳】 決済日レート"
+E-04-11-159,英語対策,第4章 財務会計論,11.外貨換算,159,A,英単語帳ver.2,foreign exchange gains (losses),為替差益(損),"【英単語】 foreign exchange gains (losses)
+
+【和訳】 為替差益(損)"
+E-04-11-160,英語対策,第4章 財務会計論,11.外貨換算,160,A,英単語帳ver.2,foreign-currency- denominated,外貨建ての,"【英単語】 foreign-currency- denominated
+
+【和訳】 外貨建ての"
+E-04-11-161,英語対策,第4章 財務会計論,11.外貨換算,161,A,英単語帳ver.2,foreign subsidiary,在外子会社,"【英単語】 foreign subsidiary
+
+【和訳】 在外子会社"
+E-04-11-162,英語対策,第4章 財務会計論,11.外貨換算,162,A,英単語帳ver.2,translate foreign currency into Japanese yen,外貨を円換算する,"【英単語】 translate foreign currency into Japanese yen
+
+【和訳】 外貨を円換算する"
+E-04-12-163,英語対策,第4章 財務会計論,12.その他,163,A,英単語帳ver.2,International Financial Reporting Standards (IFRS),国際財務報告基準,"【英単語】 International Financial Reporting Standards (IFRS)
+
+【和訳】 国際財務報告基準"
+E-04-12-164,英語対策,第4章 財務会計論,12.その他,164,A,英単語帳ver.2,Japanese GAAP,日本基準,"【英単語】 Japanese GAAP
+
+【和訳】 日本基準"
+E-04-12-165,英語対策,第4章 財務会計論,12.その他,165,A,英単語帳ver.2,practical guidelines / practical guidance,実務指針,"【英単語】 practical guidelines / practical guidance
+
+【和訳】 実務指針"
+E-04-12-166,英語対策,第4章 財務会計論,12.その他,166,A,英単語帳ver.2,application guidance,適用指針,"【英単語】 application guidance
+
+【和訳】 適用指針"
+E-04-12-167,英語対策,第4章 財務会計論,12.その他,167,A,英単語帳ver.2,normal operating cycle basis,正常営業循環基準,"【英単語】 normal operating cycle basis
+
+【和訳】 正常営業循環基準"
+E-04-12-168,英語対策,第4章 財務会計論,12.その他,168,A,英単語帳ver.2,one-year basis,一年基準,"【英単語】 one-year basis
+
+【和訳】 一年基準"
+E-05-01-001,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,1,A,英単語帳ver.2,account,会計 / 計算 / 勘定,"【英単語】 account
+
+【和訳】 会計 / 計算 / 勘定"
+E-05-01-002,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,2,A,英単語帳ver.2,profit,利益,"【英単語】 profit
+
+【和訳】 利益"
+E-05-01-003,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,3,A,英単語帳ver.2,rate,"率,割合 □ 関","【英単語】 rate
+
+【和訳】 率,割合 □ 関
+
+【関連用語・補足】
+discount rate:割引率,
+tax rate:税率"
+E-05-01-004,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,4,A,英単語帳ver.2,allocation,配賦,"【英単語】 allocation
+
+【和訳】 配賦"
+E-05-01-005,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,5,A,英単語帳ver.2,amount,"金額,量","【英単語】 amount
+
+【和訳】 金額,量"
+E-05-01-006,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,6,A,英単語帳ver.2,quantity,数量,"【英単語】 quantity
+
+【和訳】 数量"
+E-05-01-007,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,7,A,英単語帳ver.2,variable costs,変動費 □ 関 semi-variable costs,"【英単語】 variable costs
+
+【和訳】 変動費 □ 関 semi-variable costs
+
+【関連用語・補足】
+/ mixed costs:準変動費"
+E-05-01-008,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,8,A,英単語帳ver.2,fixed costs,固定費 □ 関 semi-fixed costs,"【英単語】 fixed costs
+
+【和訳】 固定費 □ 関 semi-fixed costs
+
+【関連用語・補足】
+/ step costs:準固定費"
+E-05-01-009,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,9,A,英単語帳ver.2,traceable fixed costs,個別固定費,"【英単語】 traceable fixed costs
+
+【和訳】 個別固定費"
+E-05-01-010,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,10,A,英単語帳ver.2,common fixed costs,共通固定費,"【英単語】 common fixed costs
+
+【和訳】 共通固定費"
+E-05-01-011,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,11,A,英単語帳ver.2,〜 per unit,単位当たり〜 □ 関 costs per unit: 単位当たり原価,"【英単語】 〜 per unit
+
+【和訳】 単位当たり〜 □ 関 costs per unit: 単位当たり原価"
+E-05-01-012,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,12,A,英単語帳ver.2,target,目標 □ 関 target profit: 利益目標,"【英単語】 target
+
+【和訳】 目標 □ 関 target profit: 利益目標"
+E-05-01-013,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,13,A,英単語帳ver.2,variance,差異,"【英単語】 variance
+
+【和訳】 差異"
+E-05-01-014,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,14,A,英単語帳ver.2,favorable variance,有利差異 □ 関 credit variance: 貸方差異,"【英単語】 favorable variance
+
+【和訳】 有利差異 □ 関 credit variance: 貸方差異"
+E-05-01-015,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,15,A,英単語帳ver.2,unfavorable variance,不利差異 □ 関 debit variance: 借方差異,"【英単語】 unfavorable variance
+
+【和訳】 不利差異 □ 関 debit variance: 借方差異"
+E-05-01-016,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,16,A,英単語帳ver.2,contribution margin,貢献利益 □ 関 marginal profit: 限界利益,"【英単語】 contribution margin
+
+【和訳】 貢献利益 □ 関 marginal profit: 限界利益"
+E-05-01-017,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,17,A,英単語帳ver.2,profit margin / profit margin ratio,利益率,"【英単語】 profit margin / profit margin ratio
+
+【和訳】 利益率"
+E-05-01-018,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,18,A,英単語帳ver.2,operating profit margin,営業利益率,"【英単語】 operating profit margin
+
+【和訳】 営業利益率"
+E-05-01-019,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,19,A,英単語帳ver.2,return on sales (ROS),売上高利益率,"【英単語】 return on sales (ROS)
+
+【和訳】 売上高利益率"
+E-05-01-020,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,20,A,英単語帳ver.2,volume,営業量 □ 関 production volume: 製造量,"【英単語】 volume
+
+【和訳】 営業量 □ 関 production volume: 製造量"
+E-05-01-021,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,21,A,英単語帳ver.2,direct labor hours,直接作業時間,"【英単語】 direct labor hours
+
+【和訳】 直接作業時間"
+E-05-01-022,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,22,A,英単語帳ver.2,machine hours,機械稼働時間,"【英単語】 machine hours
+
+【和訳】 機械稼働時間"
+E-05-01-023,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,23,A,英単語帳ver.2,acquisition cost,取得原価,"【英単語】 acquisition cost
+
+【和訳】 取得原価
+
+【関連用語・補足】
+acquisition:取得"
+E-05-01-024,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,24,A,英単語帳ver.2,book value / carrying amount,帳簿価額,"【英単語】 book value / carrying amount
+
+【和訳】 帳簿価額"
+E-05-01-025,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,25,A,英単語帳ver.2,allowance / discount,値引,"【英単語】 allowance / discount
+
+【和訳】 値引"
+E-05-01-026,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,26,A,英単語帳ver.2,sales price,販売価格,"【英単語】 sales price
+
+【和訳】 販売価格"
+E-05-01-027,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,27,A,英単語帳ver.2,market price / market value,市場価格,"【英単語】 market price / market value
+
+【和訳】 市場価格"
+E-05-01-028,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,28,A,英単語帳ver.2,estimated,見積りの,"【英単語】 estimated
+
+【和訳】 見積りの"
+E-05-01-029,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,29,A,英単語帳ver.2,normal,正常な,"【英単語】 normal
+
+【和訳】 正常な"
+E-05-01-030,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,30,A,英単語帳ver.2,manufacture,製造,"【英単語】 manufacture
+
+【和訳】 製造"
+E-05-01-031,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,31,A,英単語帳ver.2,process,工程,"【英単語】 process
+
+【和訳】 工程"
+E-05-01-032,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,32,A,英単語帳ver.2,facilities / equipment,設備,"【英単語】 facilities / equipment
+
+【和訳】 設備"
+E-05-01-033,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,33,A,英単語帳ver.2,factory,工場,"【英単語】 factory
+
+【和訳】 工場"
+E-05-01-034,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,34,A,英単語帳ver.2,depreciation,減価償却,"【英単語】 depreciation
+
+【和訳】 減価償却"
+E-05-01-035,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,35,A,英単語帳ver.2,useful life,耐用年数,"【英単語】 useful life
+
+【和訳】 耐用年数"
+E-05-01-036,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,36,A,英単語帳ver.2,residual value / salvage value,残存価額,"【英単語】 residual value / salvage value
+
+【和訳】 残存価額"
+E-05-01-037,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,37,A,英単語帳ver.2,straight-line method,定額法,"【英単語】 straight-line method
+
+【和訳】 定額法"
+E-05-01-038,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,38,A,英単語帳ver.2,land,土地,"【英単語】 land
+
+【和訳】 土地"
+E-05-01-039,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,39,A,英単語帳ver.2,investor,投資家,"【英単語】 investor
+
+【和訳】 投資家"
+E-05-01-040,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,40,A,英単語帳ver.2,creditor,債権者,"【英単語】 creditor
+
+【和訳】 債権者"
+E-05-01-041,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,41,A,英単語帳ver.2,employee,従業員,"【英単語】 employee
+
+【和訳】 従業員"
+E-05-01-042,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,42,A,英単語帳ver.2,executives,役員,"【英単語】 executives
+
+【和訳】 役員"
+E-05-01-043,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,43,A,英単語帳ver.2,manager,管理者,"【英単語】 manager
+
+【和訳】 管理者"
+E-05-01-044,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,44,A,英単語帳ver.2,workers,作業員,"【英単語】 workers
+
+【和訳】 作業員"
+E-05-01-045,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,45,A,英単語帳ver.2,representatives,担当者,"【英単語】 representatives
+
+【和訳】 担当者"
+E-05-01-046,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,46,A,英単語帳ver.2,supervisors,監督者,"【英単語】 supervisors
+
+【和訳】 監督者"
+E-05-01-047,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,47,A,英単語帳ver.2,wages,賃金,"【英単語】 wages
+
+【和訳】 賃金"
+E-05-01-048,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,48,A,英単語帳ver.2,salary,給料,"【英単語】 salary
+
+【和訳】 給料"
+E-05-01-049,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,49,A,英単語帳ver.2,bonus,賞与,"【英単語】 bonus
+
+【和訳】 賞与"
+E-05-01-050,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,50,A,英単語帳ver.2,compensation,報酬,"【英単語】 compensation
+
+【和訳】 報酬"
+E-05-01-051,英語対策,第5章 管理会計論,1.管理会計論全般で用いられる用語,51,A,英単語帳ver.2,motivation,動機付け,"【英単語】 motivation
+
+【和訳】 動機付け"
+E-05-02-052,英語対策,第5章 管理会計論,2.原価概念,52,A,英単語帳ver.2,cost accounting,原価計算,"【英単語】 cost accounting
+
+【和訳】 原価計算"
+E-05-02-053,英語対策,第5章 管理会計論,2.原価概念,53,A,英単語帳ver.2,actual cost,実際原価,"【英単語】 actual cost
+
+【和訳】 実際原価
+
+【関連用語・補足】
+actual:実際の"
+E-05-02-054,英語対策,第5章 管理会計論,2.原価概念,54,A,英単語帳ver.2,standard cost,標準原価 □ 関 cost standard: 原価標準,"【英単語】 standard cost
+
+【和訳】 標準原価 □ 関 cost standard: 原価標準"
+E-05-02-055,英語対策,第5章 管理会計論,2.原価概念,55,A,英単語帳ver.2,differential cost,差額原価 □ 関 avoidable cost: 回避可能原価,"【英単語】 differential cost
+
+【和訳】 差額原価 □ 関 avoidable cost: 回避可能原価"
+E-05-02-056,英語対策,第5章 管理会計論,2.原価概念,56,A,英単語帳ver.2,opportunity cost,機会原価 □ 関 opportunity loss: 機会損失,"【英単語】 opportunity cost
+
+【和訳】 機会原価 □ 関 opportunity loss: 機会損失"
+E-05-02-057,英語対策,第5章 管理会計論,2.原価概念,57,A,英単語帳ver.2,sunk cost,埋没原価 □ 関 unavoidable cost: 回避不能原価,"【英単語】 sunk cost
+
+【和訳】 埋没原価 □ 関 unavoidable cost: 回避不能原価"
+E-05-02-058,英語対策,第5章 管理会計論,2.原価概念,58,A,英単語帳ver.2,relevant cost,関連原価 □ 関 irrelevant cost: 無関連原価,"【英単語】 relevant cost
+
+【和訳】 関連原価 □ 関 irrelevant cost: 無関連原価"
+E-05-02-059,英語対策,第5章 管理会計論,2.原価概念,59,A,英単語帳ver.2,future costs,未来原価,"【英単語】 future costs
+
+【和訳】 未来原価"
+E-05-02-060,英語対策,第5章 管理会計論,2.原価概念,60,A,英単語帳ver.2,past costs,過去原価,"【英単語】 past costs
+
+【和訳】 過去原価"
+E-05-03-061,英語対策,第5章 管理会計論,3.原価計算分野,61,A,英単語帳ver.2,absorption costing / full costing,全部原価計算 製品が固定費を absorption(吸収)する,"【英単語】 absorption costing / full costing
+
+【和訳】 全部原価計算 製品が固定費を absorption(吸収)する"
+E-05-03-062,英語対策,第5章 管理会計論,3.原価計算分野,62,A,英単語帳ver.2,direct costing,直接原価計算 □ 関,"【英単語】 direct costing
+
+【和訳】 直接原価計算 □ 関
+
+【関連用語・補足】
+direct standard
+costing:
+直接標準原価計算"
+E-05-03-063,英語対策,第5章 管理会計論,3.原価計算分野,63,A,英単語帳ver.2,variable costing,変動原価計算 直接原価計算と同義,"【英単語】 variable costing
+
+【和訳】 変動原価計算 直接原価計算と同義"
+E-05-03-064,英語対策,第5章 管理会計論,3.原価計算分野,64,A,英単語帳ver.2,material costs,材料費,"【英単語】 material costs
+
+【和訳】 材料費"
+E-05-03-065,英語対策,第5章 管理会計論,3.原価計算分野,65,A,英単語帳ver.2,labor costs,"労務費,人件費","【英単語】 labor costs
+
+【和訳】 労務費,人件費"
+E-05-03-066,英語対策,第5章 管理会計論,3.原価計算分野,66,A,英単語帳ver.2,direct costs,直接費,"【英単語】 direct costs
+
+【和訳】 直接費"
+E-05-03-067,英語対策,第5章 管理会計論,3.原価計算分野,67,A,英単語帳ver.2,direct material costs,直接材料費,"【英単語】 direct material costs
+
+【和訳】 直接材料費"
+E-05-03-068,英語対策,第5章 管理会計論,3.原価計算分野,68,A,英単語帳ver.2,direct labor costs,直接労務費,"【英単語】 direct labor costs
+
+【和訳】 直接労務費"
+E-05-03-069,英語対策,第5章 管理会計論,3.原価計算分野,69,A,英単語帳ver.2,indirect costs,間接費 □ 関 factory overhead: 製造間接費,"【英単語】 indirect costs
+
+【和訳】 間接費 □ 関 factory overhead: 製造間接費"
+E-05-03-070,英語対策,第5章 管理会計論,3.原価計算分野,70,A,英単語帳ver.2,indirect material costs,間接材料費,"【英単語】 indirect material costs
+
+【和訳】 間接材料費"
+E-05-03-071,英語対策,第5章 管理会計論,3.原価計算分野,71,A,英単語帳ver.2,indirect labor costs,間接労務費,"【英単語】 indirect labor costs
+
+【和訳】 間接労務費"
+E-05-03-072,英語対策,第5章 管理会計論,3.原価計算分野,72,A,英単語帳ver.2,conversion costs / processing costs,加工費,"【英単語】 conversion costs / processing costs
+
+【和訳】 加工費"
+E-05-03-073,英語対策,第5章 管理会計論,3.原価計算分野,73,A,英単語帳ver.2,prime cost,素価,"【英単語】 prime cost
+
+【和訳】 素価"
+E-05-03-074,英語対策,第5章 管理会計論,3.原価計算分野,74,A,英単語帳ver.2,raw materials,原材料,"【英単語】 raw materials
+
+【和訳】 原材料"
+E-05-03-075,英語対策,第5章 管理会計論,3.原価計算分野,75,A,英単語帳ver.2,purchase cost,購入原価,"【英単語】 purchase cost
+
+【和訳】 購入原価"
+E-05-03-076,英語対策,第5章 管理会計論,3.原価計算分野,76,A,英単語帳ver.2,predetermined price,予定価格,"【英単語】 predetermined price
+
+【和訳】 予定価格"
+E-05-03-077,英語対策,第5章 管理会計論,3.原価計算分野,77,A,英単語帳ver.2,buying commission,買入手数料,"【英単語】 buying commission
+
+【和訳】 買入手数料"
+E-05-03-078,英語対策,第5章 管理会計論,3.原価計算分野,78,A,英単語帳ver.2,freight-in,引取運賃,"【英単語】 freight-in
+
+【和訳】 引取運賃"
+E-05-03-079,英語対策,第5章 管理会計論,3.原価計算分野,79,A,英単語帳ver.2,handling expenses,荷役費,"【英単語】 handling expenses
+
+【和訳】 荷役費"
+E-05-03-080,英語対策,第5章 管理会計論,3.原価計算分野,80,A,英単語帳ver.2,insurance premium,保険料,"【英単語】 insurance premium
+
+【和訳】 保険料"
+E-05-03-081,英語対策,第5章 管理会計論,3.原価計算分野,81,A,英単語帳ver.2,customs duty,関税,"【英単語】 customs duty
+
+【和訳】 関税"
+E-05-03-082,英語対策,第5章 管理会計論,3.原価計算分野,82,A,英単語帳ver.2,working hours,就業時間,"【英単語】 working hours
+
+【和訳】 就業時間"
+E-05-03-083,英語対策,第5章 管理会計論,3.原価計算分野,83,A,英単語帳ver.2,direct labor hours,直接作業時間 □ 関 indirect labor,"【英単語】 direct labor hours
+
+【和訳】 直接作業時間 □ 関 indirect labor
+
+【関連用語・補足】
+hours:
+間接作業時間"
+E-05-03-084,英語対策,第5章 管理会計論,3.原価計算分野,84,A,英単語帳ver.2,setup hours,段取時間,"【英単語】 setup hours
+
+【和訳】 段取時間"
+E-05-03-085,英語対策,第5章 管理会計論,3.原価計算分野,85,A,英単語帳ver.2,idle hours,手待時間,"【英単語】 idle hours
+
+【和訳】 手待時間"
+E-05-03-086,英語対策,第5章 管理会計論,3.原価計算分野,86,A,英単語帳ver.2,work in process (WIP),仕掛品,"【英単語】 work in process (WIP)
+
+【和訳】 仕掛品"
+E-05-03-087,英語対策,第5章 管理会計論,3.原価計算分野,87,A,英単語帳ver.2,finished goods,完成品,"【英単語】 finished goods
+
+【和訳】 完成品"
+E-05-03-088,英語対策,第5章 管理会計論,3.原価計算分野,88,A,英単語帳ver.2,"first-in, first-out (FIFO) method",先入先出法,"【英単語】 first-in, first-out (FIFO) method
+
+【和訳】 先入先出法"
+E-05-03-089,英語対策,第5章 管理会計論,3.原価計算分野,89,A,英単語帳ver.2,average method,平均法,"【英単語】 average method
+
+【和訳】 平均法"
+E-05-03-090,英語対策,第5章 管理会計論,3.原価計算分野,90,A,英単語帳ver.2,product,製品,"【英単語】 product
+
+【和訳】 製品"
+E-05-03-091,英語対策,第5章 管理会計論,3.原価計算分野,91,A,英単語帳ver.2,spoilage,仕損(品) □ 関 abnormal,"【英単語】 spoilage
+
+【和訳】 仕損(品) □ 関 abnormal
+
+【関連用語・補足】
+spoilage:
+異常仕損"
+E-05-03-092,英語対策,第5章 管理会計論,3.原価計算分野,92,A,英単語帳ver.2,spoilage costs,仕損費,"【英単語】 spoilage costs
+
+【和訳】 仕損費"
+E-05-03-093,英語対策,第5章 管理会計論,3.原価計算分野,93,A,英単語帳ver.2,waste,減損 □ 関 abnormal waste: 異常減損,"【英単語】 waste
+
+【和訳】 減損 □ 関 abnormal waste: 異常減損"
+E-05-03-094,英語対策,第5章 管理会計論,3.原価計算分野,94,A,英単語帳ver.2,activity level / capacity utilization,操業度,"【英単語】 activity level / capacity utilization
+
+【和訳】 操業度"
+E-05-03-095,英語対策,第5章 管理会計論,3.原価計算分野,95,A,英単語帳ver.2,department,部門,"【英単語】 department
+
+【和訳】 部門"
+E-05-03-096,英語対策,第5章 管理会計論,3.原価計算分野,96,A,英単語帳ver.2,assembly,組立,"【英単語】 assembly
+
+【和訳】 組立"
+E-05-03-097,英語対策,第5章 管理会計論,3.原価計算分野,97,A,英単語帳ver.2,cost variance,原価差異,"【英単語】 cost variance
+
+【和訳】 原価差異"
+E-05-03-098,英語対策,第5章 管理会計論,3.原価計算分野,98,A,英単語帳ver.2,material-price variance,価格差異,"【英単語】 material-price variance
+
+【和訳】 価格差異"
+E-05-03-099,英語対策,第5章 管理会計論,3.原価計算分野,99,A,英単語帳ver.2,labor-rate variance,賃率差異,"【英単語】 labor-rate variance
+
+【和訳】 賃率差異"
+E-05-04-100,英語対策,第5章 管理会計論,4.管理会計の基礎知識,100,A,英単語帳ver.2,management accounting,管理会計,"【英単語】 management accounting
+
+【和訳】 管理会計"
+E-05-04-101,英語対策,第5章 管理会計論,4.管理会計の基礎知識,101,A,英単語帳ver.2,financial (performance) measures,財務尺度 □ 関 non-financial,"【英単語】 financial (performance) measures
+
+【和訳】 財務尺度 □ 関 non-financial
+
+【関連用語・補足】
+(performance)
+measures:非財務尺度"
+E-05-04-102,英語対策,第5章 管理会計論,4.管理会計の基礎知識,102,A,英単語帳ver.2,usefulness,有用性 管理会計情報の性質,"【英単語】 usefulness
+
+【和訳】 有用性 管理会計情報の性質"
+E-05-04-103,英語対策,第5章 管理会計論,4.管理会計の基礎知識,103,A,英単語帳ver.2,relevance,目的適合性 管理会計情報の性質,"【英単語】 relevance
+
+【和訳】 目的適合性 管理会計情報の性質"
+E-05-04-104,英語対策,第5章 管理会計論,4.管理会計の基礎知識,104,A,英単語帳ver.2,timeliness,適時性 / 迅速性 管理会計情報の性質,"【英単語】 timeliness
+
+【和訳】 適時性 / 迅速性 管理会計情報の性質"
+E-05-04-105,英語対策,第5章 管理会計論,4.管理会計の基礎知識,105,A,英単語帳ver.2,responsibility center,責任センター,"【英単語】 responsibility center
+
+【和訳】 責任センター"
+E-05-04-106,英語対策,第5章 管理会計論,4.管理会計の基礎知識,106,A,英単語帳ver.2,cost center,原価センター 責任センター,"【英単語】 cost center
+
+【和訳】 原価センター 責任センター"
+E-05-04-107,英語対策,第5章 管理会計論,4.管理会計の基礎知識,107,A,英単語帳ver.2,revenue center,収益センター 責任センター,"【英単語】 revenue center
+
+【和訳】 収益センター 責任センター"
+E-05-04-108,英語対策,第5章 管理会計論,4.管理会計の基礎知識,108,A,英単語帳ver.2,profit center,利益センター 責任センター,"【英単語】 profit center
+
+【和訳】 利益センター 責任センター"
+E-05-04-109,英語対策,第5章 管理会計論,4.管理会計の基礎知識,109,A,英単語帳ver.2,investment center,投資センター 責任センター,"【英単語】 investment center
+
+【和訳】 投資センター 責任センター"
+E-05-04-110,英語対策,第5章 管理会計論,4.管理会計の基礎知識,110,A,英単語帳ver.2,decision-making accounting,意思決定会計 経営管理機能に基づく 管理会計の体系,"【英単語】 decision-making accounting
+
+【和訳】 意思決定会計 経営管理機能に基づく 管理会計の体系"
+E-05-04-111,英語対策,第5章 管理会計論,4.管理会計の基礎知識,111,A,英単語帳ver.2,performance management accounting,業績管理会計 経営管理機能に基づく 管理会計の体系,"【英単語】 performance management accounting
+
+【和訳】 業績管理会計 経営管理機能に基づく 管理会計の体系"
+E-05-04-112,英語対策,第5章 管理会計論,4.管理会計の基礎知識,112,A,英単語帳ver.2,project planning,個別計画設定,"【英単語】 project planning
+
+【和訳】 個別計画設定"
+E-05-04-113,英語対策,第5章 管理会計論,4.管理会計の基礎知識,113,A,英単語帳ver.2,period planning,期間計画設定,"【英単語】 period planning
+
+【和訳】 期間計画設定"
+E-05-04-114,英語対策,第5章 管理会計論,4.管理会計の基礎知識,114,A,英単語帳ver.2,strategy formulation,戦略策定 経営管理プロセスに 基づく管理会計の体系,"【英単語】 strategy formulation
+
+【和訳】 戦略策定 経営管理プロセスに 基づく管理会計の体系"
+E-05-04-115,英語対策,第5章 管理会計論,4.管理会計の基礎知識,115,A,英単語帳ver.2,management control,マネジメント・ コントロール 経営管理プロセスに 基づく管理会計の体系,"【英単語】 management control
+
+【和訳】 マネジメント・ コントロール 経営管理プロセスに 基づく管理会計の体系"
+E-05-04-116,英語対策,第5章 管理会計論,4.管理会計の基礎知識,116,A,英単語帳ver.2,task control / operational control,タスク(オペレーショナ ル)・コントロール 経営管理プロセスに 基づく管理会計の体系,"【英単語】 task control / operational control
+
+【和訳】 タスク(オペレーショナ ル)・コントロール 経営管理プロセスに 基づく管理会計の体系"
+E-05-04-117,英語対策,第5章 管理会計論,4.管理会計の基礎知識,117,A,英単語帳ver.2,balanced scorecard,バランスト・ スコアカード(BSC),"【英単語】 balanced scorecard
+
+【和訳】 バランスト・ スコアカード(BSC)"
+E-05-04-118,英語対策,第5章 管理会計論,4.管理会計の基礎知識,118,A,英単語帳ver.2,outcome measures,成果指標(成果尺度),"【英単語】 outcome measures
+
+【和訳】 成果指標(成果尺度)"
+E-05-04-119,英語対策,第5章 管理会計論,4.管理会計の基礎知識,119,A,英単語帳ver.2,performance drivers,先行指標(先行尺度),"【英単語】 performance drivers
+
+【和訳】 先行指標(先行尺度)"
+E-05-04-120,英語対策,第5章 管理会計論,4.管理会計の基礎知識,120,A,英単語帳ver.2,corporate strategy,企業戦略 経営戦略の分類の一つ,"【英単語】 corporate strategy
+
+【和訳】 企業戦略 経営戦略の分類の一つ"
+E-05-04-121,英語対策,第5章 管理会計論,4.管理会計の基礎知識,121,A,英単語帳ver.2,business strategy / business unit strategy,事業戦略 経営戦略の分類の一つ,"【英単語】 business strategy / business unit strategy
+
+【和訳】 事業戦略 経営戦略の分類の一つ"
+E-05-04-122,英語対策,第5章 管理会計論,4.管理会計の基礎知識,122,A,英単語帳ver.2,competitive strategy,競争戦略,"【英単語】 competitive strategy
+
+【和訳】 競争戦略"
+E-05-04-123,英語対策,第5章 管理会計論,4.管理会計の基礎知識,123,A,英単語帳ver.2,cost leadership strategy,コストリーダーシップ 戦略 競争戦略における 基本戦略の一つ,"【英単語】 cost leadership strategy
+
+【和訳】 コストリーダーシップ 戦略 競争戦略における 基本戦略の一つ"
+E-05-04-124,英語対策,第5章 管理会計論,4.管理会計の基礎知識,124,A,英単語帳ver.2,differentiation strategy,差別化戦略 競争戦略における 基本戦略の一つ,"【英単語】 differentiation strategy
+
+【和訳】 差別化戦略 競争戦略における 基本戦略の一つ"
+E-05-04-125,英語対策,第5章 管理会計論,4.管理会計の基礎知識,125,A,英単語帳ver.2,focus strategy,集中戦略 競争戦略における 基本戦略の一つ,"【英単語】 focus strategy
+
+【和訳】 集中戦略 競争戦略における 基本戦略の一つ"
+E-05-04-126,英語対策,第5章 管理会計論,4.管理会計の基礎知識,126,A,英単語帳ver.2,revenue management,レベニュー・マネジメント,"【英単語】 revenue management
+
+【和訳】 レベニュー・マネジメント"
+E-05-04-127,英語対策,第5章 管理会計論,4.管理会計の基礎知識,127,A,英単語帳ver.2,shared services,シェアード・サービス,"【英単語】 shared services
+
+【和訳】 シェアード・サービス"
+E-05-04-128,英語対策,第5章 管理会計論,4.管理会計の基礎知識,128,A,英単語帳ver.2,value chain,価値連鎖,"【英単語】 value chain
+
+【和訳】 価値連鎖"
+E-05-04-129,英語対策,第5章 管理会計論,4.管理会計の基礎知識,129,A,英単語帳ver.2,value engineering,価値工学(VE) value(価値) =function(機能) / cost(原価),"【英単語】 value engineering
+
+【和訳】 価値工学(VE) value(価値) =function(機能) / cost(原価)"
+E-05-04-130,英語対策,第5章 管理会計論,4.管理会計の基礎知識,130,A,英単語帳ver.2,customer value,顧客価値,"【英単語】 customer value
+
+【和訳】 顧客価値"
+E-05-05-131,英語対策,第5章 管理会計論,5.財務情報分析,131,A,英単語帳ver.2,return on assets,総資本利益率(ROA) 総資本事業利益率を 指すことが多い,"【英単語】 return on assets
+
+【和訳】 総資本利益率(ROA) 総資本事業利益率を 指すことが多い"
+E-05-05-132,英語対策,第5章 管理会計論,5.財務情報分析,132,A,英単語帳ver.2,financial income,金融収益,"【英単語】 financial income
+
+【和訳】 金融収益"
+E-05-05-133,英語対策,第5章 管理会計論,5.財務情報分析,133,A,英単語帳ver.2,return on equity,自己資本利益率(ROE),"【英単語】 return on equity
+
+【和訳】 自己資本利益率(ROE)"
+E-05-05-134,英語対策,第5章 管理会計論,5.財務情報分析,134,A,英単語帳ver.2,financial leverage,財務レバレッジ,"【英単語】 financial leverage
+
+【和訳】 財務レバレッジ"
+E-05-05-135,英語対策,第5章 管理会計論,5.財務情報分析,135,A,英単語帳ver.2,return on invested capital,投下資本利益率(ROIC),"【英単語】 return on invested capital
+
+【和訳】 投下資本利益率(ROIC)"
+E-05-05-136,英語対策,第5章 管理会計論,5.財務情報分析,136,A,英単語帳ver.2,net working capital,正味運転資本,"【英単語】 net working capital
+
+【和訳】 正味運転資本
+
+【関連用語・補足】
+working capital:運転資本"
+E-05-05-137,英語対策,第5章 管理会計論,5.財務情報分析,137,A,英単語帳ver.2,turnover,回転率 回転期間 (turnover period)の逆数,"【英単語】 turnover
+
+【和訳】 回転率 回転期間 (turnover period)の逆数"
+E-05-05-138,英語対策,第5章 管理会計論,5.財務情報分析,138,A,英単語帳ver.2,total asset turnover,総資産回転率,"【英単語】 total asset turnover
+
+【和訳】 総資産回転率"
+E-05-05-139,英語対策,第5章 管理会計論,5.財務情報分析,139,A,英単語帳ver.2,turnover period,"回転期間 回転率(turnover)の逆数 回転期間の日数は ""days""とも表される","【英単語】 turnover period
+
+【和訳】 回転期間 回転率(turnover)の逆数 回転期間の日数は ""days""とも表される"
+E-05-05-140,英語対策,第5章 管理会計論,5.財務情報分析,140,A,英単語帳ver.2,accounts payable turnover period,買掛金回転期間 □ 関 days payable,"【英単語】 accounts payable turnover period
+
+【和訳】 買掛金回転期間 □ 関 days payable
+
+【関連用語・補足】
+outstanding (DPO):
+買掛金回転日数"
+E-05-05-141,英語対策,第5章 管理会計論,5.財務情報分析,141,A,英単語帳ver.2,accounts receivable turnover period,売掛金回転期間 □ 関 days sales,"【英単語】 accounts receivable turnover period
+
+【和訳】 売掛金回転期間 □ 関 days sales
+
+【関連用語・補足】
+outstanding (DSO):
+売掛金回転日数"
+E-05-05-142,英語対策,第5章 管理会計論,5.財務情報分析,142,A,英単語帳ver.2,inventory turnover period,棚卸資産回転期間 □ 関 days sales in,"【英単語】 inventory turnover period
+
+【和訳】 棚卸資産回転期間 □ 関 days sales in
+
+【関連用語・補足】
+inventory (DIO):
+棚卸資産回転日数"
+E-05-05-143,英語対策,第5章 管理会計論,5.財務情報分析,143,A,英単語帳ver.2,solvency analysis,安全性分析,"【英単語】 solvency analysis
+
+【和訳】 安全性分析
+
+【関連用語・補足】
+solvency:支払能力
+□
+関 liquidity:流動性"
+E-05-05-144,英語対策,第5章 管理会計論,5.財務情報分析,144,A,英単語帳ver.2,short-term,短期の,"【英単語】 short-term
+
+【和訳】 短期の"
+E-05-05-145,英語対策,第5章 管理会計論,5.財務情報分析,145,A,英単語帳ver.2,long-term,⻑期の,"【英単語】 long-term
+
+【和訳】 ⻑期の"
+E-05-05-146,英語対策,第5章 管理会計論,5.財務情報分析,146,A,英単語帳ver.2,current ratio,流動比率,"【英単語】 current ratio
+
+【和訳】 流動比率"
+E-05-05-147,英語対策,第5章 管理会計論,5.財務情報分析,147,A,英単語帳ver.2,quick ratio / acid-test ratio,当座比率,"【英単語】 quick ratio / acid-test ratio
+
+【和訳】 当座比率"
+E-05-05-148,英語対策,第5章 管理会計論,5.財務情報分析,148,A,英単語帳ver.2,equity ratio,自己資本比率,"【英単語】 equity ratio
+
+【和訳】 自己資本比率"
+E-05-05-149,英語対策,第5章 管理会計論,5.財務情報分析,149,A,英単語帳ver.2,debt-equity ratio,負債比率(D/E レシオ),"【英単語】 debt-equity ratio
+
+【和訳】 負債比率(D/E レシオ)"
+E-05-05-150,英語対策,第5章 管理会計論,5.財務情報分析,150,A,英単語帳ver.2,debt to assets ratio,負債対総資産比率 負債依存度ともいう,"【英単語】 debt to assets ratio
+
+【和訳】 負債対総資産比率 負債依存度ともいう"
+E-05-05-151,英語対策,第5章 管理会計論,5.財務情報分析,151,A,英単語帳ver.2,fixed assets ratio / fixed ratio,固定比率,"【英単語】 fixed assets ratio / fixed ratio
+
+【和訳】 固定比率"
+E-05-05-152,英語対策,第5章 管理会計論,5.財務情報分析,152,A,英単語帳ver.2,ratio of fixed assets to long-term capital,固定⻑期適合率,"【英単語】 ratio of fixed assets to long-term capital
+
+【和訳】 固定⻑期適合率
+
+【関連用語・補足】
+long-term capital:
+⻑期資本
+(自己資本+固定負債)"
+E-05-05-153,英語対策,第5章 管理会計論,5.財務情報分析,153,A,英単語帳ver.2,interest coverage ratio,インタレスト ・カバレッジ・レシオ,"【英単語】 interest coverage ratio
+
+【和訳】 インタレスト ・カバレッジ・レシオ"
+E-05-06-154,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,154,A,英単語帳ver.2,short-term profit planning,短期利益計画,"【英単語】 short-term profit planning
+
+【和訳】 短期利益計画"
+E-05-06-155,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,155,A,英単語帳ver.2,CVP analysis / Cost-Volume-Profit analysis CVP,分析,"【英単語】 CVP analysis / Cost-Volume-Profit analysis CVP
+
+【和訳】 分析"
+E-05-06-156,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,156,A,英単語帳ver.2,planned sales,計画売上高,"【英単語】 planned sales
+
+【和訳】 計画売上高
+
+【関連用語・補足】
+planned:計画された"
+E-05-06-157,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,157,A,英単語帳ver.2,break-even point (BEP),損益分岐点 □ 関 break-even sales: 損益分岐点売上高,"【英単語】 break-even point (BEP)
+
+【和訳】 損益分岐点 □ 関 break-even sales: 損益分岐点売上高"
+E-05-06-158,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,158,A,英単語帳ver.2,margin of safety ratio,安全余裕率,"【英単語】 margin of safety ratio
+
+【和訳】 安全余裕率"
+E-05-06-159,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,159,A,英単語帳ver.2,degree of operating leverage (DOL),経営レバレッジ係数,"【英単語】 degree of operating leverage (DOL)
+
+【和訳】 経営レバレッジ係数"
+E-05-06-160,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,160,A,英単語帳ver.2,cost behavior,原価態様,"【英単語】 cost behavior
+
+【和訳】 原価態様"
+E-05-06-161,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,161,A,英単語帳ver.2,industrial engineering method IE,法(技術的予測法),"【英単語】 industrial engineering method IE
+
+【和訳】 法(技術的予測法)"
+E-05-06-162,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,162,A,英単語帳ver.2,capacity costs,キャパシティ・コスト,"【英単語】 capacity costs
+
+【和訳】 キャパシティ・コスト"
+E-05-06-163,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,163,A,英単語帳ver.2,committed costs,コミッテド・コスト,"【英単語】 committed costs
+
+【和訳】 コミッテド・コスト"
+E-05-06-164,英語対策,第5章 管理会計論,6.短期利益計画のための管理会計,164,A,英単語帳ver.2,managed costs,マネジド・コスト,"【英単語】 managed costs
+
+【和訳】 マネジド・コスト"
+E-05-07-165,英語対策,第5章 管理会計論,7.意思決定会計,165,A,英単語帳ver.2,decision making,意思決定,"【英単語】 decision making
+
+【和訳】 意思決定"
+E-05-07-166,英語対策,第5章 管理会計論,7.意思決定会計,166,A,英単語帳ver.2,operational decision-making / tactical decision-making,業務的意思決定 (戦術的意思決定),"【英単語】 operational decision-making / tactical decision-making
+
+【和訳】 業務的意思決定 (戦術的意思決定)"
+E-05-07-167,英語対策,第5章 管理会計論,7.意思決定会計,167,A,英単語帳ver.2,make-or-buy decision,自製か購入かの 意思決定,"【英単語】 make-or-buy decision
+
+【和訳】 自製か購入かの 意思決定"
+E-05-07-168,英語対策,第5章 管理会計論,7.意思決定会計,168,A,英単語帳ver.2,special order decision,受注可否の意思決定,"【英単語】 special order decision
+
+【和訳】 受注可否の意思決定"
+E-05-07-169,英語対策,第5章 管理会計論,7.意思決定会計,169,A,英単語帳ver.2,economic order quantity,経済的発注量(EOQ),"【英単語】 economic order quantity
+
+【和訳】 経済的発注量(EOQ)"
+E-05-07-170,英語対策,第5章 管理会計論,7.意思決定会計,170,A,英単語帳ver.2,strategic decision-making,戦略的意思決定,"【英単語】 strategic decision-making
+
+【和訳】 戦略的意思決定
+
+【関連用語・補足】
+strategy:戦略"
+E-05-07-171,英語対策,第5章 管理会計論,7.意思決定会計,171,A,英単語帳ver.2,capital investment,設備投資,"【英単語】 capital investment
+
+【和訳】 設備投資"
+E-05-07-172,英語対策,第5章 管理会計論,7.意思決定会計,172,A,英単語帳ver.2,initial investment,初期投資,"【英単語】 initial investment
+
+【和訳】 初期投資"
+E-05-07-173,英語対策,第5章 管理会計論,7.意思決定会計,173,A,英単語帳ver.2,earnings before interest and taxes (EBIT),利払前・税引前利益 設備投資の問題では 営業利益と解釈してよい,"【英単語】 earnings before interest and taxes (EBIT)
+
+【和訳】 利払前・税引前利益 設備投資の問題では 営業利益と解釈してよい"
+E-05-07-174,英語対策,第5章 管理会計論,7.意思決定会計,174,A,英単語帳ver.2,free cash flow,"フリー・キャッシュ・ フロー(FCF) 一般に,""〜to equity (FCFE)""ではなく""〜to firm (FCFF)""を指す","【英単語】 free cash flow
+
+【和訳】 フリー・キャッシュ・ フロー(FCF) 一般に,""〜to equity (FCFE)""ではなく""〜to firm (FCFF)""を指す"
+E-05-07-175,英語対策,第5章 管理会計論,7.意思決定会計,175,A,英単語帳ver.2,weighted average cost of capital,加重平均資本コスト,"【英単語】 weighted average cost of capital
+
+【和訳】 加重平均資本コスト
+
+【関連用語・補足】
+(WACC)
+cost of capital:
+資本コスト"
+E-05-07-176,英語対策,第5章 管理会計論,7.意思決定会計,176,A,英単語帳ver.2,interest-bearing debt / interest-bearing liabilities,有利子負債,"【英単語】 interest-bearing debt / interest-bearing liabilities
+
+【和訳】 有利子負債"
+E-05-07-177,英語対策,第5章 管理会計論,7.意思決定会計,177,A,英単語帳ver.2,invested capital,投下資本,"【英単語】 invested capital
+
+【和訳】 投下資本"
+E-05-07-178,英語対策,第5章 管理会計論,7.意思決定会計,178,A,英単語帳ver.2,independent projects,独立投資案,"【英単語】 independent projects
+
+【和訳】 独立投資案"
+E-05-07-179,英語対策,第5章 管理会計論,7.意思決定会計,179,A,英単語帳ver.2,mutually exclusive projects,相互排他的投資案,"【英単語】 mutually exclusive projects
+
+【和訳】 相互排他的投資案"
+E-05-07-180,英語対策,第5章 管理会計論,7.意思決定会計,180,A,英単語帳ver.2,investment appraisal,投資評価,"【英単語】 investment appraisal
+
+【和訳】 投資評価"
+E-05-07-181,英語対策,第5章 管理会計論,7.意思決定会計,181,A,英単語帳ver.2,discounted cash flow (DCF) method,割引キャッシュ・フロ ー(DCF)法,"【英単語】 discounted cash flow (DCF) method
+
+【和訳】 割引キャッシュ・フロ ー(DCF)法"
+E-05-07-182,英語対策,第5章 管理会計論,7.意思決定会計,182,A,英単語帳ver.2,net present value (NPV) method,正味現在価値(NPV)法,"【英単語】 net present value (NPV) method
+
+【和訳】 正味現在価値(NPV)法"
+E-05-07-183,英語対策,第5章 管理会計論,7.意思決定会計,183,A,英単語帳ver.2,internal rate of return (IRR) method,内部利益率(IRR)法,"【英単語】 internal rate of return (IRR) method
+
+【和訳】 内部利益率(IRR)法"
+E-05-07-184,英語対策,第5章 管理会計論,7.意思決定会計,184,A,英単語帳ver.2,payback period (PP) method,回収期間法 □ 関 discounted payback,"【英単語】 payback period (PP) method
+
+【和訳】 回収期間法 □ 関 discounted payback
+
+【関連用語・補足】
+period method:
+割引回収期間法"
+E-05-07-185,英語対策,第5章 管理会計論,7.意思決定会計,185,A,英単語帳ver.2,profitability index (PI) method,収益性指数法,"【英単語】 profitability index (PI) method
+
+【和訳】 収益性指数法"
+E-05-07-186,英語対策,第5章 管理会計論,7.意思決定会計,186,A,英単語帳ver.2,tax shield,節税効果,"【英単語】 tax shield
+
+【和訳】 節税効果"
+E-05-07-187,英語対策,第5章 管理会計論,7.意思決定会計,187,A,英単語帳ver.2,present value factor,現価係数 □ 関 present value of an,"【英単語】 present value factor
+
+【和訳】 現価係数 □ 関 present value of an
+
+【関連用語・補足】
+annuity factor
+(PVAF):
+年金現価係数"
+E-05-08-188,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,188,A,英単語帳ver.2,centralized organization,集権的組織,"【英単語】 centralized organization
+
+【和訳】 集権的組織"
+E-05-08-189,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,189,A,英単語帳ver.2,functional organization,職能別組織,"【英単語】 functional organization
+
+【和訳】 職能別組織"
+E-05-08-190,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,190,A,英単語帳ver.2,decentralized organization,分権化組織,"【英単語】 decentralized organization
+
+【和訳】 分権化組織"
+E-05-08-191,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,191,A,英単語帳ver.2,divisional organization,事業部制組織,"【英単語】 divisional organization
+
+【和訳】 事業部制組織
+
+【関連用語・補足】
+division:事業部"
+E-05-08-192,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,192,A,英単語帳ver.2,return on investment,投資利益率(ROI),"【英単語】 return on investment
+
+【和訳】 投資利益率(ROI)"
+E-05-08-193,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,193,A,英単語帳ver.2,residual income,残余利益(RI),"【英単語】 residual income
+
+【和訳】 残余利益(RI)"
+E-05-08-194,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,194,A,英単語帳ver.2,controllability,管理可能性,"【英単語】 controllability
+
+【和訳】 管理可能性"
+E-05-08-195,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,195,A,英単語帳ver.2,controllable cost,管理可能費 □ 関 uncontrollable,"【英単語】 controllable cost
+
+【和訳】 管理可能費 □ 関 uncontrollable
+
+【関連用語・補足】
+cost:
+管理不能費"
+E-05-08-196,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,196,A,英単語帳ver.2,traceability,追跡可能性,"【英単語】 traceability
+
+【和訳】 追跡可能性"
+E-05-08-197,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,197,A,英単語帳ver.2,common cost,共通費,"【英単語】 common cost
+
+【和訳】 共通費"
+E-05-08-198,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,198,A,英単語帳ver.2,internal capital,社内資本金,"【英単語】 internal capital
+
+【和訳】 社内資本金
+
+【関連用語・補足】
+internal:内部の"
+E-05-08-199,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,199,A,英単語帳ver.2,internal interest rate,社内金利,"【英単語】 internal interest rate
+
+【和訳】 社内金利
+
+【関連用語・補足】
+internal:内部の"
+E-05-08-200,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,200,A,英単語帳ver.2,transfer price,振替価格,"【英単語】 transfer price
+
+【和訳】 振替価格"
+E-05-08-201,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,201,A,英単語帳ver.2,market-based transfer price,市価基準の振替価格,"【英単語】 market-based transfer price
+
+【和訳】 市価基準の振替価格"
+E-05-08-202,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,202,A,英単語帳ver.2,market-minus transfer price,市価差引基準の 振替価格,"【英単語】 market-minus transfer price
+
+【和訳】 市価差引基準の 振替価格"
+E-05-08-203,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,203,A,英単語帳ver.2,mini-profit center,ミニ・プロフィット・ センター,"【英単語】 mini-profit center
+
+【和訳】 ミニ・プロフィット・ センター"
+E-05-08-204,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,204,A,英単語帳ver.2,Economic Value Added / EVA,経済的付加価値(EVA),"【英単語】 Economic Value Added / EVA
+
+【和訳】 経済的付加価値(EVA)
+
+【関連用語・補足】
+EVA=NOPAT
+−invested capital(投下資本)
+×WACC"
+E-05-08-205,英語対策,第5章 管理会計論,8.分権化組織とグループ経営の管理会計,205,A,英単語帳ver.2,net operating profit after tax,税引後営業利益,"【英単語】 net operating profit after tax
+
+【和訳】 税引後営業利益
+
+【関連用語・補足】
+(NOPAT)"
+E-06-01-001,英語対策,第6章 監査論,0.基本用語,1,A,英単語帳ver.2,audit,監査,"【英単語】 audit
+
+【和訳】 監査"
+E-06-01-002,英語対策,第6章 監査論,0.基本用語,2,A,英単語帳ver.2,auditor,監査人,"【英単語】 auditor
+
+【和訳】 監査人
+
+【関連用語・補足】
+Certified Public
+Accountant / CPA:
+公認会計士"
+E-06-01-003,英語対策,第6章 監査論,0.基本用語,3,A,英単語帳ver.2,audit engagement,監査業務 / 監査契約,"【英単語】 audit engagement
+
+【和訳】 監査業務 / 監査契約
+
+【関連用語・補足】
+audit engagement letter:
+監査契約書"
+E-06-01-004,英語対策,第6章 監査論,0.基本用語,4,A,英単語帳ver.2,independent auditor’s report,独立監査人の監査報告書,"【英単語】 independent auditor’s report
+
+【和訳】 独立監査人の監査報告書
+
+【関連用語・補足】
+independent:独立した"
+E-06-01-005,英語対策,第6章 監査論,0.基本用語,5,A,英単語帳ver.2,financial statements,財務諸表(計算書類),"【英単語】 financial statements
+
+【和訳】 財務諸表(計算書類)
+
+【関連用語・補足】
+financial documents:
+財務書類
+financial information:
+財務情報"
+E-06-01-006,英語対策,第6章 監査論,0.基本用語,6,A,英単語帳ver.2,misstatement,虚偽表示,"【英単語】 misstatement
+
+【和訳】 虚偽表示
+
+【関連用語・補足】
+material
+misstatement:
+重要な虚偽表示
+misstatements, individually
+or in the aggregate:
+個別に又は集計した虚偽表示"
+E-06-01-007,英語対策,第6章 監査論,0.基本用語,7,A,英単語帳ver.2,fraud,不正,"【英単語】 fraud
+
+【和訳】 不正
+
+【関連用語・補足】
+error:誤謬"
+E-06-01-008,英語対策,第6章 監査論,0.基本用語,8,A,英単語帳ver.2,disclosure,開示,"【英単語】 disclosure
+
+【和訳】 開示"
+E-06-01-009,英語対策,第6章 監査論,0.基本用語,9,A,英単語帳ver.2,management,経営者,"【英単語】 management
+
+【和訳】 経営者"
+E-06-01-010,英語対策,第6章 監査論,0.基本用語,10,A,英単語帳ver.2,the entity being audited / the entity subject to the audit / client / auditee,被監査会社,"【英単語】 the entity being audited / the entity subject to the audit / client / auditee
+
+【和訳】 被監査会社"
+E-06-01-011,英語対策,第6章 監査論,0.基本用語,11,A,英単語帳ver.2,users of financial statements,財務諸表利用者,"【英単語】 users of financial statements
+
+【和訳】 財務諸表利用者
+
+【関連用語・補足】
+users of auditor’s
+report:
+監査報告書利用者
+stakeholders:
+利害関係者
+investor:投資家"
+E-06-01-012,英語対策,第6章 監査論,0.基本用語,12,A,英単語帳ver.2,audit & supervisory board member / corporate auditor,監査役,"【英単語】 audit & supervisory board member / corporate auditor
+
+【和訳】 監査役
+
+【関連用語・補足】
+those charged with
+governance:
+ガバナンスに責任を
+有する者(監査役等)"
+E-06-01-013,英語対策,第6章 監査論,0.基本用語,13,A,英単語帳ver.2,internal auditors,内部監査人,"【英単語】 internal auditors
+
+【和訳】 内部監査人"
+E-06-01-014,英語対策,第6章 監査論,0.基本用語,14,A,英単語帳ver.2,(internal) controls,内部統制,"【英単語】 (internal) controls
+
+【和訳】 内部統制"
+E-06-01-015,英語対策,第6章 監査論,0.基本用語,15,A,英単語帳ver.2,corporate governance,コーポレート・ガバナンス,"【英単語】 corporate governance
+
+【和訳】 コーポレート・ガバナンス"
+E-06-01-016,英語対策,第6章 監査論,0.基本用語,16,A,英単語帳ver.2,auditing standards generally accepted in Japan,我が国において一般に公 正妥当と認められる監査 の基準,"【英単語】 auditing standards generally accepted in Japan
+
+【和訳】 我が国において一般に公 正妥当と認められる監査 の基準
+
+【関連用語・補足】
+Generally Accepted Auditing
+Standards (GAAS):
+一般に公正妥当と認めら
+れる監査の基準"
+E-06-01-017,英語対策,第6章 監査論,0.基本用語,17,A,英単語帳ver.2,auditing standards,監査基準,"【英単語】 auditing standards
+
+【和訳】 監査基準"
+E-06-01-018,英語対策,第6章 監査論,0.基本用語,18,A,英単語帳ver.2,The Japanese Institute of Certified Public Accountants / JICPA,日本公認会計士協会,"【英単語】 The Japanese Institute of Certified Public Accountants / JICPA
+
+【和訳】 日本公認会計士協会"
+E-06-01-019,英語対策,第6章 監査論,0.基本用語,19,A,英単語帳ver.2,Certified Public Accountants and Auditing Oversight Board / CPAAOB,公認会計士・監査審査会,"【英単語】 Certified Public Accountants and Auditing Oversight Board / CPAAOB
+
+【和訳】 公認会計士・監査審査会"
+E-06-01-020,英語対策,第6章 監査論,0.基本用語,20,A,英単語帳ver.2,firm,監査事務所,"【英単語】 firm
+
+【和訳】 監査事務所"
+E-06-01-021,英語対策,第6章 監査論,0.基本用語,21,A,英単語帳ver.2,engagement team,監査チーム,"【英単語】 engagement team
+
+【和訳】 監査チーム"
+E-06-01-022,英語対策,第6章 監査論,0.基本用語,22,A,英単語帳ver.2,engagement partner,監査責任者,"【英単語】 engagement partner
+
+【和訳】 監査責任者"
+E-06-01-023,英語対策,第6章 監査論,0.基本用語,23,A,英単語帳ver.2,assistant,監査補助者,"【英単語】 assistant
+
+【和訳】 監査補助者"
+E-06-01-024,英語対策,第6章 監査論,0.基本用語,24,A,英単語帳ver.2,professional standards,職業的専門家としての 基準及び適用される法令等,"【英単語】 professional standards
+
+【和訳】 職業的専門家としての 基準及び適用される法令等"
+E-06-01-025,英語対策,第6章 監査論,0.基本用語,25,A,英単語帳ver.2,relevant ethical requirements,我が国における 職業倫理に関する規定,"【英単語】 relevant ethical requirements
+
+【和訳】 我が国における 職業倫理に関する規定"
+E-06-01-026,英語対策,第6章 監査論,0.基本用語,26,A,英単語帳ver.2,review,査閲,"【英単語】 review
+
+【和訳】 査閲"
+E-06-01-027,英語対策,第6章 監査論,0.基本用語,27,A,英単語帳ver.2,engagement quality (control) review,審査,"【英単語】 engagement quality (control) review
+
+【和訳】 審査"
+E-06-01-028,英語対策,第6章 監査論,0.基本用語,28,A,英単語帳ver.2,engagement quality reviewer,審査担当者,"【英単語】 engagement quality reviewer
+
+【和訳】 審査担当者"
+E-06-01-029,英語対策,第6章 監査論,0.基本用語,29,A,英単語帳ver.2,date of approval of the financial statements,財務諸表の承認日,"【英単語】 date of approval of the financial statements
+
+【和訳】 財務諸表の承認日"
+E-06-01-030,英語対策,第6章 監査論,0.基本用語,30,A,英単語帳ver.2,signature / sign-off,署名,"【英単語】 signature / sign-off
+
+【和訳】 署名"
+E-06-01-031,英語対策,第6章 監査論,0.基本用語,31,A,英単語帳ver.2,subsequent events,後発事象,"【英単語】 subsequent events
+
+【和訳】 後発事象"
+E-06-01-032,英語対策,第6章 監査論,0.基本用語,32,A,英単語帳ver.2,going concern assumption,継続企業の前提,"【英単語】 going concern assumption
+
+【和訳】 継続企業の前提"
+E-06-01-033,英語対策,第6章 監査論,0.基本用語,33,A,英単語帳ver.2,material uncertainty,重要な不確実性,"【英単語】 material uncertainty
+
+【和訳】 重要な不確実性"
+E-06-01-034,英語対策,第6章 監査論,0.基本用語,34,A,英単語帳ver.2,fraudulent financial reporting,不正な財務報告,"【英単語】 fraudulent financial reporting
+
+【和訳】 不正な財務報告"
+E-06-01-035,英語対策,第6章 監査論,0.基本用語,35,A,英単語帳ver.2,misappropriation of assets,資産の流用,"【英単語】 misappropriation of assets
+
+【和訳】 資産の流用"
+E-06-01-036,英語対策,第6章 監査論,0.基本用語,36,A,英単語帳ver.2,risks of fraud,不正リスク,"【英単語】 risks of fraud
+
+【和訳】 不正リスク"
+E-06-01-037,英語対策,第6章 監査論,0.基本用語,37,A,英単語帳ver.2,fraud risk factors,不正リスク要因,"【英単語】 fraud risk factors
+
+【和訳】 不正リスク要因
+
+【関連用語・補足】
+incentive:動機
+pressure:プレッシャー
+opportunity:機会
+attitude:姿勢
+rationalization:正当化"
+E-06-01-038,英語対策,第6章 監査論,0.基本用語,38,A,英単語帳ver.2,visiting location,往査先,"【英単語】 visiting location
+
+【和訳】 往査先"
+E-06-01-039,英語対策,第6章 監査論,0.基本用語,39,A,英単語帳ver.2,non-compliance,違法行為,"【英単語】 non-compliance
+
+【和訳】 違法行為"
+E-06-01-040,英語対策,第6章 監査論,0.基本用語,40,A,英単語帳ver.2,deficiency in internal control,内部統制の不備,"【英単語】 deficiency in internal control
+
+【和訳】 内部統制の不備"
+E-06-01-041,英語対策,第6章 監査論,0.基本用語,41,A,英単語帳ver.2,Certified Public Accountants Act,公認会計士法,"【英単語】 Certified Public Accountants Act
+
+【和訳】 公認会計士法"
+E-06-01-042,英語対策,第6章 監査論,0.基本用語,42,A,英単語帳ver.2,audit certification (services),監査証明業務,"【英単語】 audit certification (services)
+
+【和訳】 監査証明業務"
+E-06-01-043,英語対策,第6章 監査論,0.基本用語,43,A,英単語帳ver.2,non-audit services,非監査業務,"【英単語】 non-audit services
+
+【和訳】 非監査業務"
+E-06-01-044,英語対策,第6章 監査論,0.基本用語,44,A,英単語帳ver.2,code (of ethics),倫理規則,"【英単語】 code (of ethics)
+
+【和訳】 倫理規則"
+E-06-01-045,英語対策,第6章 監査論,0.基本用語,45,A,英単語帳ver.2,fundamental principles,基本原則,"【英単語】 fundamental principles
+
+【和訳】 基本原則
+
+【関連用語・補足】
+integrity:誠実性
+objectivity:客観性
+professional competence
+and due care:
+職業的専門家としての
+能力及び正当な注意
+confidentiality:
+守秘義務(秘密保持)
+professional
+behavior:
+職業的専門家としての行動"
+E-06-01-046,英語対策,第6章 監査論,0.基本用語,46,A,英単語帳ver.2,threats,阻害要因,"【英単語】 threats
+
+【和訳】 阻害要因
+
+【関連用語・補足】
+self-interest threats:
+自己利益
+self-review threats:
+自己レビュー
+advocacy threats:
+擁護
+familiarity threats:
+馴れ合い
+intimidation threats:
+不当なプレッシャー"
+E-06-01-047,英語対策,第6章 監査論,0.基本用語,47,A,英単語帳ver.2,safeguards,セーフガード,"【英単語】 safeguards
+
+【和訳】 セーフガード"
+E-06-01-048,英語対策,第6章 監査論,0.基本用語,48,A,英単語帳ver.2,board of directors,取締役会,"【英単語】 board of directors
+
+【和訳】 取締役会"
+E-06-01-049,英語対策,第6章 監査論,0.基本用語,49,A,英単語帳ver.2,company with company auditors,監査役設置会社,"【英単語】 company with company auditors
+
+【和訳】 監査役設置会社"
+E-06-01-050,英語対策,第6章 監査論,0.基本用語,50,A,英単語帳ver.2,audit & supervisory board / board of company auditors,監査役会,"【英単語】 audit & supervisory board / board of company auditors
+
+【和訳】 監査役会"
+E-06-01-051,英語対策,第6章 監査論,0.基本用語,51,A,英単語帳ver.2,company with a board of company auditors,監査役会設置会社,"【英単語】 company with a board of company auditors
+
+【和訳】 監査役会設置会社"
+E-06-01-052,英語対策,第6章 監査論,0.基本用語,52,A,英単語帳ver.2,audit committee,監査委員会,"【英単語】 audit committee
+
+【和訳】 監査委員会"
+E-06-01-053,英語対策,第6章 監査論,0.基本用語,53,A,英単語帳ver.2,"company with nominating committee, etc.",指名委員会等設置会社,"【英単語】 company with nominating committee, etc.
+
+【和訳】 指名委員会等設置会社"
+E-06-01-054,英語対策,第6章 監査論,0.基本用語,54,A,英単語帳ver.2,audit and supervisory committee,監査等委員会,"【英単語】 audit and supervisory committee
+
+【和訳】 監査等委員会"
+E-06-01-055,英語対策,第6章 監査論,0.基本用語,55,A,英単語帳ver.2,company with an audit and supervisory committee,監査等委員会設置会社,"【英単語】 company with an audit and supervisory committee
+
+【和訳】 監査等委員会設置会社"
+E-06-02-056,英語対策,第6章 監査論,1−1.監査総論,56,A,英単語帳ver.2,materiality,重要性,"【英単語】 materiality
+
+【和訳】 重要性"
+E-06-02-057,英語対策,第6章 監査論,1−1.監査総論,57,A,英単語帳ver.2,in all material respects,全ての重要な点において,"【英単語】 in all material respects
+
+【和訳】 全ての重要な点において"
+E-06-02-058,英語対策,第6章 監査論,1−1.監査総論,58,A,英単語帳ver.2,reasonable assurance,合理的な保証,"【英単語】 reasonable assurance
+
+【和訳】 合理的な保証"
+E-06-02-059,英語対策,第6章 監査論,1−1.監査総論,59,A,英単語帳ver.2,level of assurance,保証水準,"【英単語】 level of assurance
+
+【和訳】 保証水準"
+E-06-02-060,英語対策,第6章 監査論,1−1.監査総論,60,A,英単語帳ver.2,acceptably low level,許容可能な低い水準,"【英単語】 acceptably low level
+
+【和訳】 許容可能な低い水準"
+E-06-02-061,英語対策,第6章 監査論,1−1.監査総論,61,A,英単語帳ver.2,applicable financial reporting framework,適用される財務報告の 枠組み,"【英単語】 applicable financial reporting framework
+
+【和訳】 適用される財務報告の 枠組み"
+E-06-02-062,英語対策,第6章 監査論,1−1.監査総論,62,A,英単語帳ver.2,general purpose financial statements,一般目的の財務諸表,"【英単語】 general purpose financial statements
+
+【和訳】 一般目的の財務諸表
+
+【関連用語・補足】
+special purpose
+financial statements:
+特別目的の財務諸表"
+E-06-02-063,英語対策,第6章 監査論,1−1.監査総論,63,A,英単語帳ver.2,general purpose framework,一般目的の財務報告の 枠組み,"【英単語】 general purpose framework
+
+【和訳】 一般目的の財務報告の 枠組み
+
+【関連用語・補足】
+special purpose
+framework:
+特別目的の財務報告の
+枠組み"
+E-06-02-064,英語対策,第6章 監査論,1−1.監査総論,64,A,英単語帳ver.2,opinion on the fairness,適正性に関する意見,"【英単語】 opinion on the fairness
+
+【和訳】 適正性に関する意見
+
+【関連用語・補足】
+fairness:適正性
+opinion on compliance:
+準拠性に関する意見"
+E-06-02-065,英語対策,第6章 監査論,1−1.監査総論,65,A,英単語帳ver.2,fair presentation framework,適正表示の枠組み,"【英単語】 fair presentation framework
+
+【和訳】 適正表示の枠組み
+
+【関連用語・補足】
+compliance framework:
+準拠性の枠組み"
+E-06-02-066,英語対策,第6章 監査論,1−1.監査総論,66,A,英単語帳ver.2,distinction between responsibilities of auditor and management,二重責任の原則,"【英単語】 distinction between responsibilities of auditor and management
+
+【和訳】 二重責任の原則"
+E-06-02-067,英語対策,第6章 監査論,1−1.監査総論,67,A,英単語帳ver.2,expectation gap,期待ギャップ,"【英単語】 expectation gap
+
+【和訳】 期待ギャップ"
+E-06-02-068,英語対策,第6章 監査論,1−1.監査総論,68,A,英単語帳ver.2,inherent limitations of an audit,監査の固有の限界,"【英単語】 inherent limitations of an audit
+
+【和訳】 監査の固有の限界"
+E-06-03-069,英語対策,第6章 監査論,2−1.監査主体論総論,69,A,英単語帳ver.2,professional competence,職業的専門家としての 専門能力,"【英単語】 professional competence
+
+【和訳】 職業的専門家としての 専門能力"
+E-06-03-070,英語対策,第6章 監査論,2−1.監査主体論総論,70,A,英単語帳ver.2,attitude of fairness and impartiality,公正不偏の態度,"【英単語】 attitude of fairness and impartiality
+
+【和訳】 公正不偏の態度"
+E-06-03-071,英語対策,第6章 監査論,2−1.監査主体論総論,71,A,英単語帳ver.2,independence,独立性,"【英単語】 independence
+
+【和訳】 独立性
+
+【関連用語・補足】
+independence of mind:
+精神的独立性
+independence in
+appearance:
+外観的独立性"
+E-06-03-072,英語対策,第6章 監査論,2−1.監査主体論総論,72,A,英単語帳ver.2,professional due care,職業的専門家としての 正当な注意,"【英単語】 professional due care
+
+【和訳】 職業的専門家としての 正当な注意"
+E-06-03-073,英語対策,第6章 監査論,2−1.監査主体論総論,73,A,英単語帳ver.2,professional skepticism,職業的専門家としての 懐疑心(職業的懐疑心),"【英単語】 professional skepticism
+
+【和訳】 職業的専門家としての 懐疑心(職業的懐疑心)"
+E-06-03-074,英語対策,第6章 監査論,2−1.監査主体論総論,74,A,英単語帳ver.2,(duty of) confidentiality,守秘義務(秘密保持),"【英単語】 (duty of) confidentiality
+
+【和訳】 守秘義務(秘密保持)"
+E-06-03-075,英語対策,第6章 監査論,2−1.監査主体論総論,75,A,英単語帳ver.2,professional judgment,職業的専門家としての 判断,"【英単語】 professional judgment
+
+【和訳】 職業的専門家としての 判断"
+E-06-04-076,英語対策,第6章 監査論,3−1.監査実施論総論,76,A,英単語帳ver.2,assertions,アサーション (監査要点),"【英単語】 assertions
+
+【和訳】 アサーション (監査要点)
+
+【関連用語・補足】
+relevant assertions:
+関連するアサーション"
+E-06-04-077,英語対策,第6章 監査論,3−1.監査実施論総論,77,A,英単語帳ver.2,existence,実在性,"【英単語】 existence
+
+【和訳】 実在性"
+E-06-04-078,英語対策,第6章 監査論,3−1.監査実施論総論,78,A,英単語帳ver.2,completeness,網羅性,"【英単語】 completeness
+
+【和訳】 網羅性"
+E-06-04-079,英語対策,第6章 監査論,3−1.監査実施論総論,79,A,英単語帳ver.2,valuation,評価,"【英単語】 valuation
+
+【和訳】 評価"
+E-06-04-080,英語対策,第6章 監査論,3−1.監査実施論総論,80,A,英単語帳ver.2,accuracy,正確性,"【英単語】 accuracy
+
+【和訳】 正確性"
+E-06-04-081,英語対策,第6章 監査論,3−1.監査実施論総論,81,A,英単語帳ver.2,occurrence,発生,"【英単語】 occurrence
+
+【和訳】 発生"
+E-06-04-082,英語対策,第6章 監査論,3−1.監査実施論総論,82,A,英単語帳ver.2,cutoff,期間帰属,"【英単語】 cutoff
+
+【和訳】 期間帰属"
+E-06-04-083,英語対策,第6章 監査論,3−1.監査実施論総論,83,A,英単語帳ver.2,audit evidence,監査証拠,"【英単語】 audit evidence
+
+【和訳】 監査証拠"
+E-06-04-084,英語対策,第6章 監査論,3−1.監査実施論総論,84,A,英単語帳ver.2,sufficient appropriate audit evidence,十分かつ適切な監査証拠,"【英単語】 sufficient appropriate audit evidence
+
+【和訳】 十分かつ適切な監査証拠
+
+【関連用語・補足】
+sufficiency
+(of audit evidence):
+(監査証拠の)十分性
+appropriateness
+(of audit evidence):
+(監査証拠の)適切性"
+E-06-04-085,英語対策,第6章 監査論,3−1.監査実施論総論,85,A,英単語帳ver.2,relevance and reliability,適合性と信頼性,"【英単語】 relevance and reliability
+
+【和訳】 適合性と信頼性"
+E-06-04-086,英語対策,第6章 監査論,3−1.監査実施論総論,86,A,英単語帳ver.2,management’s expert,経営者の利用する専門家,"【英単語】 management’s expert
+
+【和訳】 経営者の利用する専門家"
+E-06-04-087,英語対策,第6章 監査論,3−1.監査実施論総論,87,A,英単語帳ver.2,accounting records,会計記録,"【英単語】 accounting records
+
+【和訳】 会計記録"
+E-06-04-088,英語対策,第6章 監査論,3−1.監査実施論総論,88,A,英単語帳ver.2,audit procedures,監査手続,"【英単語】 audit procedures
+
+【和訳】 監査手続
+
+【関連用語・補足】
+alternative audit
+procedures:
+代替的な監査手続"
+E-06-04-089,英語対策,第6章 監査論,3−1.監査実施論総論,89,A,英単語帳ver.2,"nature, timing and extent","(手続の) 種類,時期及び範囲","【英単語】 nature, timing and extent
+
+【和訳】 (手続の) 種類,時期及び範囲"
+E-06-04-090,英語対策,第6章 監査論,3−1.監査実施論総論,90,A,英単語帳ver.2,inspection of records or documents,記録や文書の閲覧,"【英単語】 inspection of records or documents
+
+【和訳】 記録や文書の閲覧"
+E-06-04-091,英語対策,第6章 監査論,3−1.監査実施論総論,91,A,英単語帳ver.2,inspection of tangible assets,実査,"【英単語】 inspection of tangible assets
+
+【和訳】 実査
+
+【関連用語・補足】
+cash count:現金実査"
+E-06-04-092,英語対策,第6章 監査論,3−1.監査実施論総論,92,A,英単語帳ver.2,observation,観察,"【英単語】 observation
+
+【和訳】 観察"
+E-06-04-093,英語対策,第6章 監査論,3−1.監査実施論総論,93,A,英単語帳ver.2,recalculation,再計算,"【英単語】 recalculation
+
+【和訳】 再計算"
+E-06-04-094,英語対策,第6章 監査論,3−1.監査実施論総論,94,A,英単語帳ver.2,reperformance,再実施,"【英単語】 reperformance
+
+【和訳】 再実施"
+E-06-04-095,英語対策,第6章 監査論,3−1.監査実施論総論,95,A,英単語帳ver.2,inquiry,質問,"【英単語】 inquiry
+
+【和訳】 質問"
+E-06-04-096,英語対策,第6章 監査論,3−1.監査実施論総論,96,A,英単語帳ver.2,testing all items in a population,精査,"【英単語】 testing all items in a population
+
+【和訳】 精査"
+E-06-04-097,英語対策,第6章 監査論,3−1.監査実施論総論,97,A,英単語帳ver.2,testing some selected items in a population,試査,"【英単語】 testing some selected items in a population
+
+【和訳】 試査"
+E-06-04-098,英語対策,第6章 監査論,3−1.監査実施論総論,98,A,英単語帳ver.2,testing specific items,特定項目抽出による試査,"【英単語】 testing specific items
+
+【和訳】 特定項目抽出による試査"
+E-06-04-099,英語対策,第6章 監査論,3−1.監査実施論総論,99,A,英単語帳ver.2,audit sampling,監査サンプリング,"【英単語】 audit sampling
+
+【和訳】 監査サンプリング"
+E-06-05-100,英語対策,第6章 監査論,3−2.確認,100,A,英単語帳ver.2,external confirmation,確認,"【英単語】 external confirmation
+
+【和訳】 確認"
+E-06-05-101,英語対策,第6章 監査論,3−2.確認,101,A,英単語帳ver.2,positive confirmation request,積極的確認,"【英単語】 positive confirmation request
+
+【和訳】 積極的確認
+
+【関連用語・補足】
+negative confirmation
+request:消極的確認"
+E-06-05-102,英語対策,第6章 監査論,3−2.確認,102,A,英単語帳ver.2,confirming party,確認回答者,"【英単語】 confirming party
+
+【和訳】 確認回答者"
+E-06-05-103,英語対策,第6章 監査論,3−2.確認,103,A,英単語帳ver.2,non-response,未回答,"【英単語】 non-response
+
+【和訳】 未回答"
+E-06-05-104,英語対策,第6章 監査論,3−2.確認,104,A,英単語帳ver.2,exception (in relation to confirmation),確認差異,"【英単語】 exception (in relation to confirmation)
+
+【和訳】 確認差異
+
+【関連用語・補足】
+discrepancy:差異"
+E-06-06-105,英語対策,第6章 監査論,3−3.分析的手続,105,A,英単語帳ver.2,analytical procedures,分析的手続,"【英単語】 analytical procedures
+
+【和訳】 分析的手続"
+E-06-06-106,英語対策,第6章 監査論,3−3.分析的手続,106,A,英単語帳ver.2,substantive analytical procedures,分析的実証手続,"【英単語】 substantive analytical procedures
+
+【和訳】 分析的実証手続"
+E-06-06-107,英語対策,第6章 監査論,3−3.分析的手続,107,A,英単語帳ver.2,analytical procedures near the end of the audit that assist the auditor when forming an overall conclusion,全般的結論を形成する ための分析的手続,"【英単語】 analytical procedures near the end of the audit that assist the auditor when forming an overall conclusion
+
+【和訳】 全般的結論を形成する ための分析的手続"
+E-06-07-108,英語対策,第6章 監査論,3−4.内部統制,108,A,英単語帳ver.2,system of internal control,内部統制システム,"【英単語】 system of internal control
+
+【和訳】 内部統制システム"
+E-06-07-109,英語対策,第6章 監査論,3−4.内部統制,109,A,英単語帳ver.2,control environment,統制環境,"【英単語】 control environment
+
+【和訳】 統制環境"
+E-06-07-110,英語対策,第6章 監査論,3−4.内部統制,110,A,英単語帳ver.2,entity’s risk assessment process,企業のリスク評価プロセス,"【英単語】 entity’s risk assessment process
+
+【和訳】 企業のリスク評価プロセス"
+E-06-07-111,英語対策,第6章 監査論,3−4.内部統制,111,A,英単語帳ver.2,entity’s process to monitor the system of internal control,内部統制システムを監視する 企業のプロセス,"【英単語】 entity’s process to monitor the system of internal control
+
+【和訳】 内部統制システムを監視する 企業のプロセス"
+E-06-07-112,英語対策,第6章 監査論,3−4.内部統制,112,A,英単語帳ver.2,information system and communication,情報システムと伝達,"【英単語】 information system and communication
+
+【和訳】 情報システムと伝達"
+E-06-07-113,英語対策,第6章 監査論,3−4.内部統制,113,A,英単語帳ver.2,control activities,統制活動,"【英単語】 control activities
+
+【和訳】 統制活動"
+E-06-08-114,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,114,A,英単語帳ver.2,risk-based approach,リスク・アプローチ,"【英単語】 risk-based approach
+
+【和訳】 リスク・アプローチ"
+E-06-08-115,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,115,A,英単語帳ver.2,audit risk,監査リスク,"【英単語】 audit risk
+
+【和訳】 監査リスク"
+E-06-08-116,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,116,A,英単語帳ver.2,risk of material misstatement,重要な虚偽表示リスク,"【英単語】 risk of material misstatement
+
+【和訳】 重要な虚偽表示リスク
+
+【関連用語・補足】
+risks of material
+misstatement at the
+financial statement
+level:
+財務諸表全体レベルの重要
+な虚偽表示リスク
+risks of material
+misstatement at the
+assertion level:
+アサーション・レベルの
+重要な虚偽表示リスク"
+E-06-08-117,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,117,A,英単語帳ver.2,inherent risk,固有リスク,"【英単語】 inherent risk
+
+【和訳】 固有リスク
+
+【関連用語・補足】
+inherent risk factors:
+固有リスク要因"
+E-06-08-118,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,118,A,英単語帳ver.2,control risk,統制リスク,"【英単語】 control risk
+
+【和訳】 統制リスク"
+E-06-08-119,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,119,A,英単語帳ver.2,detection risk,発見リスク,"【英単語】 detection risk
+
+【和訳】 発見リスク"
+E-06-08-120,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,120,A,英単語帳ver.2,business risk,事業上のリスク,"【英単語】 business risk
+
+【和訳】 事業上のリスク"
+E-06-08-121,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,121,A,英単語帳ver.2,risk assessment procedures,リスク評価手続,"【英単語】 risk assessment procedures
+
+【和訳】 リスク評価手続
+
+【関連用語・補足】
+test of design:
+デザインの評価"
+E-06-08-122,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,122,A,英単語帳ver.2,walk-through test,ウォークスルー,"【英単語】 walk-through test
+
+【和訳】 ウォークスルー"
+E-06-08-123,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,123,A,英単語帳ver.2,further audit procedures,リスク対応手続,"【英単語】 further audit procedures
+
+【和訳】 リスク対応手続"
+E-06-08-124,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,124,A,英単語帳ver.2,tests of controls,運用評価手続,"【英単語】 tests of controls
+
+【和訳】 運用評価手続
+
+【関連用語・補足】
+test of operating
+effectiveness:
+運用状況の評価"
+E-06-08-125,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,125,A,英単語帳ver.2,substantive procedure,実証手続,"【英単語】 substantive procedure
+
+【和訳】 実証手続"
+E-06-08-126,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,126,A,英単語帳ver.2,test of detail,詳細テスト,"【英単語】 test of detail
+
+【和訳】 詳細テスト"
+E-06-08-127,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,127,A,英単語帳ver.2,overall responses,全般的な対応,"【英単語】 overall responses
+
+【和訳】 全般的な対応"
+E-06-08-128,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,128,A,英単語帳ver.2,"class of transactions, account balance or disclosure","取引種類,勘定残高 又は注記事項","【英単語】 class of transactions, account balance or disclosure
+
+【和訳】 取引種類,勘定残高 又は注記事項
+
+【関連用語・補足】
+significant class of
+transactions, account
+balance or disclosure:
+重要な取引種類,勘定
+残高又は注記事項
+material class of
+transactions, account
+balance or disclosure:
+重要性のある取引種類,
+勘定残高又は注記事項"
+E-06-08-129,英語対策,第6章 監査論,3−5〜7.リスク・アプローチ監査関連,129,A,英単語帳ver.2,dual-purpose test,二重目的テスト,"【英単語】 dual-purpose test
+
+【和訳】 二重目的テスト"
+E-06-09-130,英語対策,第6章 監査論,3−8.特別な検討を必要とするリスク,130,A,英単語帳ver.2,significant risk,特別な検討を 必要とするリスク,"【英単語】 significant risk
+
+【和訳】 特別な検討を 必要とするリスク"
+E-06-10-131,英語対策,第6章 監査論,3−9.監査の計画及び実施における重要性,131,A,英単語帳ver.2,materiality for the financial statements as a whole,重要性の基準値,"【英単語】 materiality for the financial statements as a whole
+
+【和訳】 重要性の基準値"
+E-06-10-132,英語対策,第6章 監査論,3−9.監査の計画及び実施における重要性,132,A,英単語帳ver.2,"materiality level or levels for particular classes of transactions, account balances or disclosures","特定の取引種類, 勘定残高又は注記事項に 対する重要性の基準値","【英単語】 materiality level or levels for particular classes of transactions, account balances or disclosures
+
+【和訳】 特定の取引種類, 勘定残高又は注記事項に 対する重要性の基準値"
+E-06-10-133,英語対策,第6章 監査論,3−9.監査の計画及び実施における重要性,133,A,英単語帳ver.2,performance materiality,手続実施上の重要性,"【英単語】 performance materiality
+
+【和訳】 手続実施上の重要性"
+E-06-11-134,英語対策,第6章 監査論,3−10.監査の過程で識別した虚偽表示の評価,134,A,英単語帳ver.2,clearly trivial,明らかに僅少なもの,"【英単語】 clearly trivial
+
+【和訳】 明らかに僅少なもの"
+E-06-11-135,英語対策,第6章 監査論,3−10.監査の過程で識別した虚偽表示の評価,135,A,英単語帳ver.2,uncorrected misstatements,未修正の虚偽表示,"【英単語】 uncorrected misstatements
+
+【和訳】 未修正の虚偽表示"
+E-06-11-136,英語対策,第6章 監査論,3−10.監査の過程で識別した虚偽表示の評価,136,A,英単語帳ver.2,undetected misstatements,未発見の虚偽表示,"【英単語】 undetected misstatements
+
+【和訳】 未発見の虚偽表示"
+E-06-11-137,英語対策,第6章 監査論,3−10.監査の過程で識別した虚偽表示の評価,137,A,英単語帳ver.2,financial aspects,金額的な側面,"【英単語】 financial aspects
+
+【和訳】 金額的な側面"
+E-06-11-138,英語対策,第6章 監査論,3−10.監査の過程で識別した虚偽表示の評価,138,A,英単語帳ver.2,qualitative aspects,質的な側面,"【英単語】 qualitative aspects
+
+【和訳】 質的な側面"
+E-06-12-139,英語対策,第6章 監査論,3−11.監査計画,139,A,英単語帳ver.2,audit plan,監査計画,"【英単語】 audit plan
+
+【和訳】 監査計画"
+E-06-12-140,英語対策,第6章 監査論,3−11.監査計画,140,A,英単語帳ver.2,overall audit strategy,監査の基本的な方針,"【英単語】 overall audit strategy
+
+【和訳】 監査の基本的な方針"
+E-06-12-141,英語対策,第6章 監査論,3−11.監査計画,141,A,英単語帳ver.2,(detailed) audit plan,詳細な監査計画,"【英単語】 (detailed) audit plan
+
+【和訳】 詳細な監査計画"
+E-06-12-142,英語対策,第6章 監査論,3−11.監査計画,142,A,英単語帳ver.2,continuing audit / recurring audit,継続監査,"【英単語】 continuing audit / recurring audit
+
+【和訳】 継続監査
+
+【関連用語・補足】
+initial audit engagement:
+初年度監査"
+E-06-13-143,英語対策,第6章 監査論,3−12.監査調書,143,A,英単語帳ver.2,audit documentation / engagement documentation,監査調書,"【英単語】 audit documentation / engagement documentation
+
+【和訳】 監査調書"
+E-06-13-144,英語対策,第6章 監査論,3−12.監査調書,144,A,英単語帳ver.2,audit file,監査ファイル,"【英単語】 audit file
+
+【和訳】 監査ファイル"
+E-06-13-145,英語対策,第6章 監査論,3−12.監査調書,145,A,英単語帳ver.2,experienced auditor,経験豊富な監査人,"【英単語】 experienced auditor
+
+【和訳】 経験豊富な監査人"
+E-06-14-146,英語対策,第6章 監査論,3−13.監査サンプリング,146,A,英単語帳ver.2,population,母集団,"【英単語】 population
+
+【和訳】 母集団"
+E-06-14-147,英語対策,第6章 監査論,3−13.監査サンプリング,147,A,英単語帳ver.2,statistical sampling,統計的サンプリング,"【英単語】 statistical sampling
+
+【和訳】 統計的サンプリング
+
+【関連用語・補足】
+non-statistical
+sampling:
+非統計的サンプリング"
+E-06-14-148,英語対策,第6章 監査論,3−13.監査サンプリング,148,A,英単語帳ver.2,expected rate of deviation,予想逸脱率,"【英単語】 expected rate of deviation
+
+【和訳】 予想逸脱率
+
+【関連用語・補足】
+tolerable rate of
+deviation:
+許容逸脱率"
+E-06-14-149,英語対策,第6章 監査論,3−13.監査サンプリング,149,A,英単語帳ver.2,expected misstatement,予想虚偽表示額,"【英単語】 expected misstatement
+
+【和訳】 予想虚偽表示額
+
+【関連用語・補足】
+tolerable
+misstatement:
+許容虚偽表示額"
+E-06-14-150,英語対策,第6章 監査論,3−13.監査サンプリング,150,A,英単語帳ver.2,anomaly,例外的事象,"【英単語】 anomaly
+
+【和訳】 例外的事象"
+E-06-15-151,英語対策,第6章 監査論,3−14.会計上の見積りの監査,151,A,英単語帳ver.2,accounting estimate,会計上の見積り,"【英単語】 accounting estimate
+
+【和訳】 会計上の見積り"
+E-06-15-152,英語対策,第6章 監査論,3−14.会計上の見積りの監査,152,A,英単語帳ver.2,estimation uncertainty,見積りの不確実性,"【英単語】 estimation uncertainty
+
+【和訳】 見積りの不確実性
+
+【関連用語・補足】
+complexity:複雑性
+subjectivity:主観性"
+E-06-15-153,英語対策,第6章 監査論,3−14.会計上の見積りの監査,153,A,英単語帳ver.2,management’s point estimate,経営者の見積額,"【英単語】 management’s point estimate
+
+【和訳】 経営者の見積額"
+E-06-15-154,英語対策,第6章 監査論,3−14.会計上の見積りの監査,154,A,英単語帳ver.2,outcome of an accounting estimate,会計上の見積りの確定額,"【英単語】 outcome of an accounting estimate
+
+【和訳】 会計上の見積りの確定額"
+E-06-15-155,英語対策,第6章 監査論,3−14.会計上の見積りの監査,155,A,英単語帳ver.2,auditor’s point estimate or auditor’s range,監査人の見積額又は 監査人の見積りの許容範囲,"【英単語】 auditor’s point estimate or auditor’s range
+
+【和訳】 監査人の見積額又は 監査人の見積りの許容範囲"
+E-06-15-156,英語対策,第6章 監査論,3−14.会計上の見積りの監査,156,A,英単語帳ver.2,management bias,経営者の偏向,"【英単語】 management bias
+
+【和訳】 経営者の偏向"
+E-06-15-157,英語対策,第6章 監査論,3−14.会計上の見積りの監査,157,A,英単語帳ver.2,retrospective review,遡及的な検討,"【英単語】 retrospective review
+
+【和訳】 遡及的な検討"
+E-06-15-158,英語対策,第6章 監査論,3−14.会計上の見積りの監査,158,A,英単語帳ver.2,methods,見積手法,"【英単語】 methods
+
+【和訳】 見積手法"
+E-06-15-159,英語対策,第6章 監査論,3−14.会計上の見積りの監査,159,A,英単語帳ver.2,assumptions,(会計上の見積りにおける) 仮定,"【英単語】 assumptions
+
+【和訳】 (会計上の見積りにおける) 仮定"
+E-06-15-160,英語対策,第6章 監査論,3−14.会計上の見積りの監査,160,A,英単語帳ver.2,data,(会計上の見積りにおける) データ,"【英単語】 data
+
+【和訳】 (会計上の見積りにおける) データ"
+E-06-16-161,英語対策,第6章 監査論,3−15.経営者確認書,161,A,英単語帳ver.2,written representation (from management),経営者確認書,"【英単語】 written representation (from management)
+
+【和訳】 経営者確認書"
+E-06-17-162,英語対策,第6章 監査論,3−16.特定項目の監査証拠,162,A,英単語帳ver.2,attendance at physical inventory counting,実地棚卸の立会,"【英単語】 attendance at physical inventory counting
+
+【和訳】 実地棚卸の立会"
+E-06-17-163,英語対策,第6章 監査論,3−16.特定項目の監査証拠,163,A,英単語帳ver.2,test counts,テスト・カウント,"【英単語】 test counts
+
+【和訳】 テスト・カウント"
+E-06-18-164,英語対策,第6章 監査論,4−2.監査報告書の基本形,164,A,英単語帳ver.2,audit opinion,監査意見,"【英単語】 audit opinion
+
+【和訳】 監査意見"
+E-06-18-165,英語対策,第6章 監査論,4−2.監査報告書の基本形,165,A,英単語帳ver.2,basis for opinion,意見の根拠,"【英単語】 basis for opinion
+
+【和訳】 意見の根拠"
+E-06-18-166,英語対策,第6章 監査論,4−2.監査報告書の基本形,166,A,英単語帳ver.2,date of the auditor’s report,監査報告書日,"【英単語】 date of the auditor’s report
+
+【和訳】 監査報告書日"
+E-06-18-167,英語対策,第6章 監査論,4−2.監査報告書の基本形,167,A,英単語帳ver.2,"financial position, financial performance and cash flows","財政状態,経営成績, キャッシュ・フローの状況","【英単語】 financial position, financial performance and cash flows
+
+【和訳】 財政状態,経営成績, キャッシュ・フローの状況"
+E-06-18-168,英語対策,第6章 監査論,4−2.監査報告書の基本形,168,A,英単語帳ver.2,forming an opinion,意見を形成すること,"【英単語】 forming an opinion
+
+【和訳】 意見を形成すること"
+E-06-19-169,英語対策,第6章 監査論,4−3.除外事項,169,A,英単語帳ver.2,unmodified opinion,無限定意見 (無限定適正意見),"【英単語】 unmodified opinion
+
+【和訳】 無限定意見 (無限定適正意見)"
+E-06-19-170,英語対策,第6章 監査論,4−3.除外事項,170,A,英単語帳ver.2,modified opinion,除外事項付意見,"【英単語】 modified opinion
+
+【和訳】 除外事項付意見"
+E-06-19-171,英語対策,第6章 監査論,4−3.除外事項,171,A,英単語帳ver.2,qualified opinion,限定意見 (限定付適正意見),"【英単語】 qualified opinion
+
+【和訳】 限定意見 (限定付適正意見)"
+E-06-19-172,英語対策,第6章 監査論,4−3.除外事項,172,A,英単語帳ver.2,adverse opinion,不適正意見 (否定的意見),"【英単語】 adverse opinion
+
+【和訳】 不適正意見 (否定的意見)"
+E-06-19-173,英語対策,第6章 監査論,4−3.除外事項,173,A,英単語帳ver.2,disclaimer of opinion,意見不表明,"【英単語】 disclaimer of opinion
+
+【和訳】 意見不表明"
+E-06-19-174,英語対策,第6章 監査論,4−3.除外事項,174,A,英単語帳ver.2,limitation on the scope of the audit,監査範囲の制約,"【英単語】 limitation on the scope of the audit
+
+【和訳】 監査範囲の制約"
+E-06-19-175,英語対策,第6章 監査論,4−3.除外事項,175,A,英単語帳ver.2,pervasive,広範な,"【英単語】 pervasive
+
+【和訳】 広範な"
+E-06-20-176,英語対策,第6章 監査論,4−4.監査上の主要な検討事項,176,A,英単語帳ver.2,key audit matters,監査上の主要な検討事項,"【英単語】 key audit matters
+
+【和訳】 監査上の主要な検討事項"
+E-06-21-177,英語対策,第6章 監査論,5−1.グループ監査における特別な考慮事項,177,A,英単語帳ver.2,component,構成単位,"【英単語】 component
+
+【和訳】 構成単位"
+E-06-21-178,英語対策,第6章 監査論,5−1.グループ監査における特別な考慮事項,178,A,英単語帳ver.2,aggregation risk,合算リスク,"【英単語】 aggregation risk
+
+【和訳】 合算リスク"
+E-06-21-179,英語対策,第6章 監査論,5−1.グループ監査における特別な考慮事項,179,A,英単語帳ver.2,instruction,指示書,"【英単語】 instruction
+
+【和訳】 指示書"
+E-06-21-180,英語対策,第6章 監査論,5−1.グループ監査における特別な考慮事項,180,A,英単語帳ver.2,early warning memorandum,早期警告メモ,"【英単語】 early warning memorandum
+
+【和訳】 早期警告メモ"
+E-06-22-181,英語対策,第6章 監査論,5−2.専門家の業務の利用,181,A,英単語帳ver.2,Expertise,専門知識,"【英単語】 Expertise
+
+【和訳】 専門知識"
+E-06-22-182,英語対策,第6章 監査論,5−2.専門家の業務の利用,182,A,英単語帳ver.2,auditor’s expert,監査人の利用する専門家,"【英単語】 auditor’s expert
+
+【和訳】 監査人の利用する専門家"
+E-06-23-183,英語対策,第6章 監査論,5−3.内部監査人の作業の利用,183,A,英単語帳ver.2,internal audit function,内部監査機能,"【英単語】 internal audit function
+
+【和訳】 内部監査機能"
