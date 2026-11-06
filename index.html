@@ -679,7 +679,97 @@ svg{display:block}
   font-size: 11px;
 }
 
-</style>
+
+    /* テキスト該当箇所参照カード */
+    .text-ref-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .text-ref-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .text-ref-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--sub);
+      letter-spacing: 0.02em;
+    }
+    .text-ref-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      background: rgba(30, 144, 255, 0.12);
+      border: 1px solid rgba(30, 144, 255, 0.25);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .text-ref-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .text-ref-loc {
+      font-size: 13px;
+      color: var(--text);
+    }
+    .text-ref-loc-sub {
+      font-size: 11px;
+      color: var(--sub);
+      margin-bottom: 2px;
+    }
+    .text-ref-loc-page {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .text-ref-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .text-ref-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .qz-text-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(30, 144, 255, 0.1);
+      border: 1px solid rgba(30, 144, 255, 0.25);
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+  </style>
 <!-- Firebase SDK (無料版・端末間自動同期用) -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
@@ -56983,6 +57073,39 @@ const QUESTIONS = [
   }
 ];
 
+
+const TEXT_MAPPING_ZAIMU = {"第1章 財務会計における基礎概念": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.28〜p.45", "sections": {"第1節 財務会計総論": "p.29〜p.34", "第2節 制度会計": "p.35〜p.39", "第3節 企業会計原則": "p.40〜p.41", "第4節 会計公準": "p.42〜p.45"}}, "第2章 一般原則": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.46〜p.71", "sections": {"第1節 一般原則の体系": "p.47", "第2節 真実性の原則": "p.48", "第3節 正規の簿記の原則": "p.49〜p.51", "第4節 資本取引・損益取引区分の原則": "p.52〜p.54", "第5節 明瞭性の原則": "p.55〜p.60", "第6節 継続性の原則": "p.61〜p.62", "第7節 保守主義の原則": "p.63〜p.65", "第8節 単一性の原則": "p.66", "第9節 重要性の原則": "p.67〜p.71"}}, "第3章 貸借対照表・損益計算書総論": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.72〜p.79", "sections": {"第1節 貸借対照表・損益計算書総論": "p.73〜p.79"}}, "第4章 収益費用アプローチと資産負債アプローチ": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.80〜p.85", "sections": {"第1節 利益の捉え方": "p.81〜p.84", "第2節 わが国の財務会計の歴史と各アプローチとの関係性": "p.85"}}, "第5章 損益会計": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.86〜p.107", "sections": {"第1節 収益と費用": "p.87", "第2節 利益の特質及び当期業績主義/包括主義": "p.88〜p.89", "第3節 現金主義会計と発生主義会計 (収益・費用の認識基準)": "p.90〜p.92", "第4節 収益・費用の測定基準": "p.93", "第5節 収益の認識基準": "p.94〜p.99", "第6節 費用の認識基準": "p.100〜p.103", "第7節 損益計算書の各項目とその表示": "p.104〜p.107"}}, "第6章 貸借対照表総論": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.108〜p.113", "sections": {"第1節 貸借対照表の表示・作成": "p.109〜p.113"}}, "第7章 資産会計総論": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.114〜p.127", "sections": {"第1節 資産の概念": "p.115〜p.116", "第2節 資産の分類": "p.117〜p.118", "第3節 資産の評価": "p.119〜p.127"}}, "第8章 流動資産・固定資産": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.128〜p.157", "sections": {"第1節 流動資産総論": "p.129", "第2節 固定資産の意義と分類": "p.130", "第3節 有形固定資産各論": "p.131〜p.137", "第4節 減価償却": "p.138〜p.152", "第5節 有形固定資産の表示": "p.153", "第6節 無形固定資産": "p.154〜p.156", "第7節 投資その他の資産": "p.157"}}, "第9章 繰延資産": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.158〜p.169", "sections": {"第1節 繰延資産総論": "p.159〜p.161", "第2節 繰延資産各論": "p.162〜p.168", "第3節 臨時巨額の損失": "p.169"}}, "第10章 負債会計": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.170〜p.187", "sections": {"第1節 負債会計総論": "p.171〜p.173", "第2節 引当金": "p.174〜p.183", "第3節 偶発債務と偶発損失": "p.184〜p.187"}}, "第11章 資本会計(伝統論)": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.188〜p.199", "sections": {"第1節 会計主体論": "p.189", "第2節 贈与剰余金": "p.190〜p.194", "第3節 評価替剰余金": "p.195〜p.196", "第4節 資本維持論": "p.197〜p.199"}}, "第12章 財務会計の概念フレームワーク": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.200〜p.253", "sections": {"第1節 財務会計の概念フレームワークの公表にあたって": "p.201〜p.202", "第2節 財務報告の目的 (概念フレームワーク第1章)": "p.203〜p.208", "第3節 会計情報の質的特性 (概念フレームワーク第2章)": "p.209〜p.216", "第4節 財務諸表の構成要素 (概念フレームワーク第3章)": "p.217〜p.229", "第5節 財務諸表における認識と測定 (概念フレームワーク第4章)": "p.230〜p.253"}}, "第13章 会計基準等": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.254〜p.259", "sections": {"第1節 我が国における基準設定主体": "p.255", "第2節 国際財務報告基準(IFRS)等の特徴及び適用": "p.256〜p.259"}}, "第14章 セグメント情報等の開示に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.260〜p.283", "sections": {"第1節 セグメント情報等に関する基本事項": "p.261", "第2節 マネジメント・アプローチ": "p.262〜p.265", "第3節 本会計基準の適用範囲と基本原則": "p.266", "第4節 事業セグメントの識別": "p.267〜p.268", "第5節 報告セグメントの決定": "p.269〜p.275", "第6節 セグメント情報の開示項目と測定方法": "p.276〜p.280", "第7節 その他の開示内容": "p.281〜p.283"}}, "第15章 関連当事者の開示に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.284〜p.293", "sections": {"第1節 関連当事者の開示に関する基本事項": "p.285〜p.286", "第2節 関連当事者に該当する者": "p.287〜p.289", "第3節 関連当事者との取引に関する開示": "p.290〜p.292", "第4節 関連当事者の存在に関する開示": "p.293"}}, "第16章 賃貸等不動産の時価等の開示に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.294〜p.297", "sections": {"第1節 本会計基準の具体的な内容": "p.295〜p.297"}}, "第17章 役員賞与に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.298〜p.301", "sections": {"第1節 役員賞与の会計処理": "p.299〜p.301"}}, "第18章 時価の算定に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.302〜p.311", "sections": {"第1節 本会計基準の概要": "p.303〜p.305", "第2節 時価の算定": "p.306〜p.311"}}, "第19章 法人税,住民税及び事業税等に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.312〜p.323", "sections": {"第1節 用語の定義": "p.313", "第2節 当事業年度の所得等に対する法人税,住民税及び事業税等": "p.314〜p.320", "第3節 更正等による追徴及び還付": "p.321〜p.322", "第4節 その他の規定": "p.323"}}, "第20章 一株当たり当期純利益に関する会計基準": {"vol": 1, "volName": "テキスト1", "fid": "17oyGnpiq7U1qFEjRjiWXsEYdWgzX43UM", "p": "p.324〜p.335", "sections": {"第1節 一株当たり情報に関する基本事項": "p.325", "第2節 一株当たり当期純利益の算定": "p.326", "第3節 潜在株式調整後一株当たり当期純利益の基本的な考え方": "p.327〜p.328", "第4節 ワラントが存在する場合": "p.329", "第5節 転換証券が存在する場合": "p.330〜p.331", "第6節 その他の論点": "p.332〜p.335"}}, "第21章 棚卸資産の評価に関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.14〜p.43", "sections": {"第1節 棚卸資産の範囲": "p.15〜p.16", "第2節 棚卸資産の取得原価": "p.17〜p.19", "第3節 棚卸資産の数量計算": "p.20", "第4節 棚卸資産の単価(価格)計算": "p.21〜p.26", "第5節 棚卸資産の会計処理の基本的な考え方": "p.27〜p.30", "第6節 適用する時価": "p.31〜p.35", "第7節 棚卸資産に関するその他の論点": "p.36〜p.41", "第8節 開示": "p.42〜p.43"}}, "第22章 研究開発費等に係る会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.44〜p.63", "sections": {"第1節 本会計基準の適用範囲及び研究開発費の会計処理": "p.45〜p.50", "第2節 ソフトウェアの分類と会計処理": "p.51〜p.57", "第3節 ソフトウェアの減価償却": "p.58〜p.60", "第4節 ソフトウェアに関するその他の論点": "p.61〜p.63"}}, "第23章 固定資産の減損に係る会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.64〜p.95", "sections": {"第1節 減損会計総論": "p.65〜p.66", "第2節 減損会計の一連の流れ": "p.67", "第3節 減損会計の対象資産": "p.68", "第4節 資産のグルーピング": "p.69〜p.71", "第5節 減損の兆候": "p.72〜p.73", "第6節 減損損失の認識の判定": "p.74〜p.79", "第7節 減損損失の測定": "p.80〜p.84", "第8節 将来キャッシュ・フローの見積り": "p.85〜p.87", "第9節 共用資産とのれん": "p.88〜p.92", "第10節 減損処理後の会計処理及び財務諸表の開示": "p.93〜p.95"}}, "第24章 退職給付に関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.96〜p.131", "sections": {"第1節 退職給付及び本会計基準の概要": "p.97〜p.99", "第2節 退職給付債務の算定": "p.100〜p.108", "第3節 退職一時金制度と企業年金制度": "p.109〜p.111", "第4節 差異の会計処理": "p.112〜p.120", "第5節 前払年金費用": "p.121", "第6節 特殊な退職給付制度等の会計処理": "p.122〜p.125", "第7節 連結財務諸表上の会計処理及び表示": "p.126〜p.130", "第8節 注記事項": "p.131"}}, "第25章 資産除去債務に関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.132〜p.153", "sections": {"第1節 本会計基準の適用対象": "p.133〜p.134", "第2節 資産除去債務に関する会計処理": "p.135〜p.140", "第3節 資産除去債務の会計処理に関する様々な見解とその論拠": "p.141〜p.145", "第4節 資産除去債務に関するその他の会計処理": "p.146〜p.151", "第5節 注記事項": "p.152〜p.153"}}, "第26章 資本会計(会計基準論点)": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.154〜p.193", "sections": {"第1節 資本の分類": "p.155", "第2節 資本金": "p.156", "第3節 資本剰余金": "p.157", "第4節 利益剰余金": "p.158〜p.162", "第5節 自己株式": "p.163〜p.174", "第6節 新株予約権": "p.175〜p.180", "第7節 貸借対照表の純資産の部の表示に関する会計基準": "p.181〜p.188", "第8節 株主資本等変動計算書に関する会計基準": "p.189〜p.193"}}, "第27章 ストック・オプション等に関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.194〜p.223", "sections": {"第1節 本会計基準の概要": "p.195〜p.197", "第2節 本会計基準の適用対象とする範囲": "p.198〜p.200", "第3節 ストック・オプションに関する会計処理": "p.201〜p.206", "第4節 ストック・オプションの会計処理に関する様々な見解": "p.207〜p.212", "第5節 ストック・オプションに係る条件変更の会計処理": "p.213〜p.217", "第6節 未公開企業における取扱い": "p.218〜p.219", "第7節 自社株式オプション及び自社株式を付与又は交付する場合の会計処理": "p.220〜p.221", "第8節 開示": "p.222〜p.223"}}, "第28章 外貨建取引等会計処理基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.224〜p.259", "sections": {"第1節 換算の概要": "p.225", "第2節 換算方法": "p.226〜p.229", "第3節 換算の基本的な考え方": "p.230〜p.232", "第4節 主な外貨建取引の具体的な換算方法": "p.233〜p.237", "第5節 その他の財務諸表項目の換算": "p.238〜p.242", "第6節 適用する為替相場": "p.243", "第7節 為替予約等": "p.244〜p.249", "第8節 在外支店の外貨表示財務諸表項目の換算": "p.250〜p.251", "第9節 在外子会社の外貨表示財務諸表項目の換算": "p.252〜p.259"}}, "第29章 税効果会計に係る会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.260〜p.303", "sections": {"第1節 税効果会計の概要": "p.261〜p.264", "第2節 税効果会計の方法": "p.265〜p.266", "第3節 税効果会計の対象となる差異": "p.267〜p.273", "第4節 繰延税金等の計上方法": "p.274〜p.286", "第5節 税効果会計に関する注記事項": "p.287〜p.289", "第6節 連結財務諸表における税効果会計": "p.290〜p.303"}}, "第30章 収益認識に関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.304〜p.355", "sections": {"第1節 基準公表の経緯と新たな基準の概要": "p.305〜p.311", "第2節 Step1:契約の識別": "p.312〜p.316", "第3節 Step2:履行義務の識別": "p.317〜p.318", "第4節 Step3:取引価格の算定": "p.319〜p.325", "第5節 Step4:履行義務への取引価格の配分": "p.326〜p.329", "第6節 Step5:履行義務の充足による収益の認識": "p.330〜p.333", "第7節 開示": "p.334〜p.336", "第8節 特定の状況又は取引における取扱い": "p.337〜p.352", "第9節 工事契約等から損失が見込まれる場合の取扱い": "p.353〜p.355"}}, "第31章 リースに関する会計基準": {"vol": 2, "volName": "テキスト2", "fid": "1CE_1lsHupuqj-NdBqY9lN2RaRtbnxOvk", "p": "p.356〜p.399", "sections": {"第1節 基準改正の経緯と概要": "p.357〜p.360", "第2節 リースの識別": "p.361〜p.369", "第3節 リース期間": "p.370〜p.372", "第4節 借手の会計処理": "p.373〜p.380", "第5節 貸手の会計処理": "p.381〜p.389", "第6節 セール・アンド・リースバック取引": "p.390〜p.391", "第7節 サブリース取引": "p.392〜p.394", "第8節 その他のリースに関する論点": "p.395〜p.396", "第9節 注記事項": "p.397〜p.399"}}, "第32章 金融商品に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.10〜p.71", "sections": {"第1節 金融資産及び金融負債の範囲等": "p.12", "第2節 金融資産及び金融負債の発生の認識": "p.13", "第3節 金融資産及び金融負債の消滅の認識": "p.14〜p.24", "第4節 金融商品の消滅に関するその他の論点": "p.25〜p.27", "第5節 金融資産及び金融負債の評価基準に関する基本的な考え方": "p.28", "第6節 金銭債権の貸借対照表価額と貸倒見積高の算定": "p.29〜p.33", "第7節 有価証券": "p.34〜p.46", "第8節 運用目的の金銭の信託": "p.47〜p.48", "第9節 金銭債務": "p.49", "第10節 複合金融商品の概要等": "p.50", "第11節 新株予約権付社債": "p.51〜p.53", "第12節 デリバティブ取引": "p.54", "第13節 ヘッジ会計": "p.55〜p.70", "第14節 注記事項": "p.71"}}, "第33章 期中財務諸表に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.72〜p.99", "sections": {"第1節 期中財務諸表の総論": "p.73〜p.79", "第2節 期中財務諸表の作成基準": "p.80〜p.91", "第3節 期中財務諸表における表示の考え方": "p.92〜p.93", "第4節 期中財務諸表と会計上の変更等": "p.94", "第5節 注記事項": "p.95〜p.99"}}, "第34章 会計方針の開示,会計上の変更及び誤謬の訂正に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.100〜p.123", "sections": {"第1節 本会計基準の必要性": "p.101〜p.102", "第2節 本会計基準の基本事項": "p.103〜p.105", "第3節 会計方針の変更の取扱い": "p.106〜p.113", "第4節 表示方法の変更の取扱い": "p.114〜p.116", "第5節 会計上の見積りの変更の取扱い": "p.117〜p.120", "第6節 過去の誤謬の取扱い": "p.121〜p.122", "第7節 会計上の見積りの開示に関する会計基準": "p.123"}}, "第35章 連結財務諸表に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.124〜p.169", "sections": {"第1節 連結財務諸表と連結基礎概念": "p.125〜p.127", "第2節 連結財務諸表の一般原則": "p.128", "第3節 連結財務諸表の一般基準": "p.129〜p.137", "第4節 資本連結": "p.138〜p.149", "第5節 子会社株式の追加取得及び一部売却等": "p.150〜p.154", "第6節 債権と債務の相殺消去": "p.155", "第7節 連結会社相互間の取引高の消去及び未実現損益の消去": "p.156〜p.158", "第8節 連結会計におけるその他の論点": "p.159〜p.164", "第9節 当期純損益と連結基礎概念": "p.165", "第10節 連結財務諸表の表示及び注記事項": "p.166〜p.169"}}, "第36章 持分法に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.170〜p.189", "sections": {"第1節 持分法とは": "p.171〜p.172", "第2節 持分法の適用範囲": "p.173〜p.177", "第3節 連結会計と持分法会計": "p.178", "第4節 持分法の適用に当たって": "p.179〜p.180", "第5節 持分法の具体的な会計処理": "p.181〜p.186", "第6節 持分法会計におけるその他の論点": "p.187〜p.189"}}, "第37章 包括利益の表示に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.190〜p.203", "sections": {"第1節 包括利益に関する基本事項": "p.191〜p.196", "第2節 その他の包括利益の内訳の開示": "p.197〜p.202", "第3節 包括利益を表示する計算書": "p.203"}}, "第38章 企業結合に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.204〜p.251", "sections": {"第1節 本会計基準の必要性と適用範囲": "p.205〜p.206", "第2節 取得と持分の結合": "p.207〜p.211", "第3節 取得の会計処理": "p.212〜p.239", "第4節 共同支配企業の形成の会計処理": "p.240〜p.242", "第5節 共通支配下の取引の会計処理": "p.243〜p.245", "第6節 非支配株主との取引": "p.246", "第7節 開示": "p.247〜p.251"}}, "第39章 事業分離等に関する会計基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.252〜p.279", "sections": {"第1節 本会計基準における基本的な考え方": "p.253〜p.255", "第2節 事業分離における分離元企業の会計処理": "p.256〜p.260", "第3節 受取対価が現金等の財産のみである場合": "p.261〜p.262", "第4節 受取対価が分離先企業の株式のみである場合": "p.263〜p.270", "第5節 受取対価が現金等の財産と分離先企業の株式である場合": "p.271〜p.275", "第6節 被結合企業の株主に係る会計処理": "p.276〜p.279"}}, "第40章 連結キャッシュ・フロー計算書等の作成基準": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.280〜p.299", "sections": {"第1節 キャッシュ・フロー計算書総論": "p.281", "第2節 資金の範囲": "p.282〜p.283", "第3節 キャッシュ・フロー計算書の表示": "p.284〜p.292", "第4節 連結キャッシュ・フロー計算書": "p.293〜p.297", "第5節 キャッシュ・フロー計算書に関するその他の論点": "p.298〜p.299"}}, "付録 IFRSと日本基準の主要な会計基準差異対照表": {"vol": 3, "volName": "テキスト3", "fid": "1o8p74SKyg0TdrqJw-GrkWSqekA2My52w", "p": "p.300〜p.317", "sections": {}}};
+
+function getTextRef(q) {
+  if(!q || q.subject !== '財務会計論') return null;
+  if(typeof TEXT_MAPPING_ZAIMU === 'undefined') return null;
+
+  const chKey = Object.keys(TEXT_MAPPING_ZAIMU).find(k => k === q.chapter || k.split(' ')[0] === (q.chapter || '').split(' ')[0]);
+  if(!chKey) return null;
+
+  const chData = TEXT_MAPPING_ZAIMU[chKey];
+  let pRange = chData.p;
+  let subName = q.sub || '';
+
+  if(chData.sections && q.sub) {
+    const secKey = Object.keys(chData.sections).find(s => s === q.sub || s.split(' ')[0] === (q.sub || '').split(' ')[0]);
+    if(secKey) {
+      pRange = chData.sections[secKey];
+      subName = secKey;
+    }
+  }
+
+  return {
+    vol: chData.vol,
+    volName: chData.volName,
+    fid: chData.fid,
+    chapter: chKey,
+    sub: subName,
+    pageRange: pRange,
+    driveUrl: `https://drive.google.com/file/d/${chData.fid}/view`
+  };
+}
+
 const SUBJECTS = [
   {key:"企業法", desc:"短答 肢別チェック"},
   {key:"財務会計論", desc:"短答 肢別チェック"},
@@ -58124,7 +58247,7 @@ function renderQuizCard(){
   </div>
   <div class="qz-body">
     <div class="qz-card">
-      <div class="qz-meta">${q.chapter} › ${q.sub}</div>
+      <div class="qz-meta">${q.chapter} › ${q.sub} ${(() => { const tr = getTextRef(q); return tr ? `<span class="qz-text-badge"><svg viewBox="0 0 24 24" style="width:11px;height:11px;fill:currentColor;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg> ${tr.volName} ${tr.pageRange}</span>` : ""; })()}</div>
       <div class="qz-header">
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="font-size:15px;font-weight:800;color:var(--text);">問題 ${q.num}</span>
@@ -58258,6 +58381,33 @@ function answer(userAns){
       </div>
       <div class="exp-text" id="expTextContainer">${getHighlightedExpHtml(q)}</div>
       <div style="font-size:11px;color:var(--muted);margin-top:6px;">※ 解説を指でなぞって「選択マーカー保存」を押すと要点ノートに追加されます</div>
+
+      ${(() => {
+        const tr = getTextRef(q);
+        if(!tr) return '';
+        return `
+        <!-- 公式テキスト該当箇所参照カード -->
+        <div class="text-ref-card">
+          <div class="text-ref-head">
+            <div class="text-ref-title">
+              <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <span>公式テキスト該当箇所</span>
+            </div>
+            <span class="text-ref-badge">${tr.volName}</span>
+          </div>
+          <div class="text-ref-body">
+            <div class="text-ref-loc">
+              <div class="text-ref-loc-sub">${tr.chapter} › ${tr.sub}</div>
+              <div class="text-ref-loc-page">📖 該当ページ: <b>${tr.pageRange}</b></div>
+            </div>
+            <a href="${tr.driveUrl}" target="_blank" rel="noopener" class="text-ref-btn">
+              <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              テキストを開く (Drive)
+            </a>
+          </div>
+        </div>
+        `;
+      })()}
 
       <!-- 問題別メモ入力欄 -->
       <div class="memo-section">
