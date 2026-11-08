@@ -166,7 +166,16 @@ svg{display:block}
 .qz-body{max-width:800px;margin:0 auto;padding:16px 16px 120px}
 .qz-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:14px}
 .qz-meta{font-size:12px;color:var(--muted);margin-bottom:8px}
-.qz-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.qz-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.qz-star-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:18px;border:1px solid var(--line);background:var(--surface);color:var(--sub);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.qz-star-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .15s}
+.qz-star-btn:active{transform:scale(.95)}
+.qz-star-btn.on{background:#fef3c7;border-color:#f59e0b;color:#b45309}
+.qz-star-btn.on svg{fill:#f59e0b;stroke:#f59e0b;transform:scale(1.1)}
+.btn-star-action{background:var(--surface);color:var(--sub);border:1px solid var(--line);padding:4px 10px;border-radius:6px;font-size:11.5px;font-weight:700;display:flex;align-items:center;gap:4px;cursor:pointer;transition:all .15s}
+.btn-star-action svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.btn-star-action.on{background:#fef3c7;border-color:#f59e0b;color:#b45309}
+.btn-star-action.on svg{fill:#f59e0b;stroke:#f59e0b}
 .rank-badge{font-size:11px;font-weight:800;padding:2px 7px;border-radius:4px;background:var(--bg);color:var(--sub);border:1px solid var(--line)}
 .qz-question{font-size:16.5px;line-height:1.8;font-weight:500;color:var(--text);margin-bottom:20px}
 .choices{display:grid;gap:10px}
@@ -57832,6 +57841,41 @@ function toggleStar(id){
   render();
 }
 
+function toggleQuizStar(id){
+  const isOn = !starMap[id];
+  if(isOn) {
+    starMap[id] = true;
+  } else {
+    delete starMap[id];
+  }
+  localStorage.setItem(LS_STAR, JSON.stringify(starMap));
+  triggerCloudSave();
+
+  // クイズカード上部の星ボタン表示を即時更新
+  const qzBtn = document.getElementById("qzStarBtn");
+  if(qzBtn){
+    if(isOn){
+      qzBtn.classList.add("on");
+      qzBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span>★ 要復習</span>`;
+    } else {
+      qzBtn.classList.remove("on");
+      qzBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span>☆ 星をつける</span>`;
+    }
+  }
+
+  // 解説アクション内の星ボタンも即時連動
+  const expBtn = document.getElementById("expStarBtn");
+  if(expBtn){
+    if(isOn){
+      expBtn.classList.add("on");
+      expBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span>★ 復習中</span>`;
+    } else {
+      expBtn.classList.remove("on");
+      expBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span>☆ 星をつける</span>`;
+    }
+  }
+}
+
 // 4. 要点ノート画面（マーカー一覧タブ：科目→章→節の絞り込み対応）
 let noteFilterSubj = "すべて";
 let noteFilterChap = "すべて";
@@ -58256,7 +58300,13 @@ function renderQuizCard(){
             ${stObj.attempts === 0 ? '<span style="color:var(--muted);">未演習</span>' : `演習 ${stObj.attempts}回 · 正答率 ${stRate}% (${stObj.correct}勝${stObj.wrong}敗)`}
           </span>
         </div>
-        ${mCount > 0 ? `<span class="badge-mis-count">誤答 ${mCount}回</span>` : ""}
+        <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+          ${mCount > 0 ? `<span class="badge-mis-count">誤答 ${mCount}回</span>` : ""}
+          <button class="qz-star-btn ${starMap[q.id] ? 'on' : ''}" id="qzStarBtn" onclick="toggleQuizStar('${q.id}')" title="★マークをつける">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <span>${starMap[q.id] ? '★ 要復習' : '☆ 星をつける'}</span>
+          </button>
+        </div>
       </div>
       <div class="qz-question" id="qzQuestionContainer">
         ${q.subject === "英語対策" ? 
@@ -58370,6 +58420,10 @@ function answer(userAns){
       <div class="exp-head">
         <div class="exp-title">解説</div>
         <div class="exp-actions">
+          <button class="btn-star-action ${starMap[q.id] ? 'on' : ''}" id="expStarBtn" onclick="toggleQuizStar('${q.id}')" title="★マークをつける">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <span>${starMap[q.id] ? '★ 復習中' : '☆ 星をつける'}</span>
+          </button>
           <button class="btn-marker-action" onclick="addHighlightFromSelection('${q.id}')">
             <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
             選択マーカー保存
