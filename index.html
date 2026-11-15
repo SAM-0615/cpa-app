@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.4.4</title>
+<title>CPA 短答一問一答 v2.5.0</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -1483,6 +1483,236 @@ svg{display:block}
   box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
   border: 1px solid var(--line);
 }
+
+/* ===== 弱点分析・章選択・保存済みレポート 拡張デザイン ===== */
+.weak-ch-btn {
+  width: 100%;
+  padding: 11px 14px;
+  background: #f8fafc;
+  border: 1.5px solid var(--line);
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all .15s ease;
+  margin-bottom: 10px;
+}
+.weak-ch-btn:hover {
+  background: var(--surface);
+  border-color: var(--primary);
+}
+.weak-ch-arrow {
+  font-size: 12px;
+  transition: transform .2s ease;
+  color: var(--muted);
+}
+.weak-ch-arrow.open {
+  transform: rotate(180deg);
+}
+
+.weak-ch-picker {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: none;
+}
+.weak-ch-picker.open {
+  display: block;
+  animation: fadeIn .2s ease;
+}
+.weak-ch-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--line);
+}
+.ch-preset-btn {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--sub);
+  cursor: pointer;
+  transition: all .15s;
+}
+.ch-preset-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.ch-preset-btn.highlight {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: var(--red);
+}
+.weak-ch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.ch-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  cursor: pointer;
+  transition: all .15s;
+  user-select: none;
+}
+.ch-pill:hover {
+  border-color: #cbd5e1;
+}
+.ch-pill.on {
+  background: #eff6ff;
+  border-color: var(--primary);
+}
+.ch-pill-box {
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  border: 1.5px solid var(--line-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--primary);
+  background: #fff;
+  flex-shrink: 0;
+}
+.ch-pill.on .ch-pill-box {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+.ch-pill-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ch-pill-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  flex-shrink: 0;
+}
+.ch-badge-mis {
+  color: var(--red);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.ch-badge-vague {
+  color: var(--amber);
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* 📁 保存済みレポートアーカイブ */
+.weak-saved-section {
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.weak-saved-header {
+  padding: 12px 16px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text);
+  user-select: none;
+}
+.weak-saved-header:hover {
+  background: #f1f5f9;
+}
+.weak-saved-items {
+  display: none;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  flex-direction: column;
+  gap: 10px;
+}
+.weak-saved-items.open {
+  display: flex;
+}
+.saved-rep-card {
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: all .15s;
+}
+.saved-rep-card:hover {
+  border-color: #818cf8;
+  background: #fdfcff;
+}
+.saved-rep-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+  margin-bottom: 4px;
+}
+.saved-rep-sub {
+  font-size: 11.5px;
+  color: var(--sub);
+  line-height: 1.5;
+}
+.saved-rep-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.weak-report-meta-bar {
+  font-size: 12px;
+  color: var(--sub);
+  background: #f8fafc;
+  border-radius: 6px;
+  padding: 7px 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  border: 1px solid #e2e8f0;
+}
+
 </style>
 <!-- Firebase SDK (無料版・端末間自動同期用) -->
 <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -67062,6 +67292,10 @@ function listenCloudData(){
       if(data.notesList) { notesList = data.notesList; localStorage.setItem(LS_NOTES, JSON.stringify(notesList)); }
       if(data.memoMap) { memoMap = data.memoMap; localStorage.setItem(LS_MEMOS, JSON.stringify(memoMap)); }
       if(data.statsMap) { statsMap = data.statsMap; localStorage.setItem(LS_STATS, JSON.stringify(statsMap)); }
+      if(data.savedAiReports && Array.isArray(data.savedAiReports)) {
+        savedAiReports = data.savedAiReports;
+        localStorage.setItem(LS_AI_REPORTS, JSON.stringify(savedAiReports));
+      }
       syncStatus = "online";
       render();
     } finally {
@@ -67090,6 +67324,7 @@ function triggerCloudSave(){
       notesList,
       memoMap,
       statsMap,
+      savedAiReports,
       lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true }).then(() => {
       syncStatus = "online";
@@ -67289,7 +67524,7 @@ function vSubjects(){
   return `
   <header class="appbar">
     <div class="appbar-in">
-      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.4.4</span></h1>
+      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.5.0</span></h1>
       <div id="syncBadgeEl" class="sync-badge">
         <span class="sync-dot"></span>読込中...
       </div>
@@ -68757,11 +68992,24 @@ initFirebase();
 let currentExpandedQid = null;
 let isMemoLargeFont = false;
 let weakFilterSubj = "財務会計論【理論】";
-let weakFilterRange = "1-11"; // "all" | "1-11" | "12-20" | "21-30" | "31-40"
 let weakActiveTab = "repeat"; // "repeat" | "wrong" | "vague" | "memo"
 let weakAiReport = "";
 let isGeneratingAiReport = false;
 let weakExpandedQid = null;
+let isChapterPickerOpen = false;
+let isSavedReportsOpen = false;
+
+// ユーザーが自由に選択した対象章リスト
+let weakSelectedChapters = [];
+
+// 保存済みレポート管理 (LocalStorage + Firestore自動同期)
+const LS_AI_REPORTS = "cpa_v6_saved_ai_reports";
+let savedAiReports = [];
+try {
+  savedAiReports = JSON.parse(localStorage.getItem(LS_AI_REPORTS) || "[]");
+} catch(e){
+  savedAiReports = [];
+}
 
 const LS_GEMINI_KEY = "CPA_GEMINI_API_KEY";
 function getGeminiApiKey(){ return localStorage.getItem(LS_GEMINI_KEY) || ""; }
@@ -68769,6 +69017,22 @@ function setGeminiApiKey(key){
   if(key) localStorage.setItem(LS_GEMINI_KEY, key.trim());
   else localStorage.removeItem(LS_GEMINI_KEY);
 }
+
+// 科目ごとの全章リスト取得
+function getChaptersForSubj(subj){
+  return CHAPTER_MASTER[subj] || [...new Set(qsOf(subj).map(q => q.chapter))];
+}
+
+// 科目変更時に選択章を自動初期化
+function initWeakSelectedChapters(){
+  const allSubjChs = getChaptersForSubj(weakFilterSubj);
+  if(weakFilterSubj === "財務会計論【理論】"){
+    weakSelectedChapters = allSubjChs.slice(0, 11); // 基礎答練①範囲（第1〜11章）
+  } else {
+    weakSelectedChapters = [...allSubjChs];
+  }
+}
+initWeakSelectedChapters();
 
 // Geminiレスポンスから思考ブロック（thought）を除去し、回答テキストを安全抽出
 function extractGeminiText(data){
@@ -68796,44 +69060,76 @@ function extractGeminiText(data){
   return "";
 }
 
-// AIマークダウン簡易レンダラー（答練レポートを見やすく装飾）
+// AIマークダウン簡易レンダラー（見出し・太字・対比表・箇条書き・リスト装飾）
 function formatAiMarkdown(text){
   if(!text) return "";
   if(text.startsWith("⚠️")){
     return `<div style="color:var(--red);font-weight:700;line-height:1.6;padding:8px 0;">${escapeHtml(text)}</div>`;
   }
+
   let formatted = escapeHtml(text);
+
+  // Markdownテーブル（対比表など）の変換
+  formatted = formatted.replace(/((?:\|[^\n]+\|\r?\n)+)/g, function(tableBlock){
+    const lines = tableBlock.trim().split(/\r?\n/);
+    if(lines.length < 2) return tableBlock;
+    let html = `<div style="overflow-x:auto;margin:14px 0;"><table style="width:100%;border-collapse:collapse;font-size:12.5px;border:1px solid #cbd5e1;background:#fff;border-radius:6px;overflow:hidden;">`;
+    let isHeader = true;
+    for(let line of lines){
+      if(line.includes("---")) {
+        isHeader = false;
+        continue;
+      }
+      const cells = line.split("|").slice(1, -1).map(c => c.trim());
+      html += "<tr>";
+      cells.forEach(c => {
+        if(isHeader) html += `<th style="background:#f1f5f9;font-weight:800;padding:8px 10px;border:1px solid #cbd5e1;text-align:left;color:var(--text);">${c}</th>`;
+        else html += `<td style="padding:8px 10px;border:1px solid #e2e8f0;line-height:1.5;">${c}</td>`;
+      });
+      html += "</tr>";
+    }
+    html += "</table></div>";
+    return html;
+  });
+
+  // 見出し h3, h4
   formatted = formatted.replace(/^###\s+(.*$)/gim, '<h4 style="font-size:14.5px;font-weight:800;color:var(--text);margin:16px 0 6px;border-left:3.5px solid var(--primary);padding-left:8px;">$1</h4>');
-  formatted = formatted.replace(/^##\s+(.*$)/gim, '<h3 style="font-size:16px;font-weight:800;color:var(--text);margin:18px 0 8px;border-bottom:1.5px solid var(--line);padding-bottom:4px;">$1</h3>');
+  formatted = formatted.replace(/^##\s+(.*$)/gim, '<h3 style="font-size:16px;font-weight:800;color:var(--text);margin:20px 0 8px;border-bottom:1.5px solid var(--line);padding-bottom:5px;">$1</h3>');
+
+  // 太字
   formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b style="color:var(--text);font-weight:700;background:rgba(37,99,235,0.06);padding:0 3px;border-radius:3px;">$1</b>');
+
+  // 箇条書き・リスト
   formatted = formatted.replace(/^-\s+(.*$)/gim, '<div style="margin:4px 0 4px 14px;position:relative;"><span style="color:var(--primary);margin-right:6px;">•</span>$1</div>');
   formatted = formatted.replace(/^(\d+)\.\s+(.*$)/gim, '<div style="margin:6px 0;font-weight:600;"><span style="color:var(--primary);font-weight:800;margin-right:4px;">$1.</span> $2</div>');
+
+  // 段落間空行
   formatted = formatted.replace(/\n\n/g, '<div style="height:10px;"></div>');
   formatted = formatted.replace(/\n/g, '<br>');
   return formatted;
 }
 
-// 共通Gemini API呼び出し（gemini-3.8-flash 高速化・タイムアウト20秒制御・段階的フォールバック）
+// 共通Gemini API呼び出し（gemini-3.8-flash 深層思考・90秒高精度推論・段階的フォールバック）
 async function callGeminiApi(promptText){
   const apiKey = getGeminiApiKey();
   if(!apiKey){
     throw new Error("NO_API_KEY");
   }
 
-  // 最新推奨モデル gemini-3.8-flash を最優先（thinkingLevel: "low" で2〜4秒即答）
+  // 最新推奨モデル gemini-3.8-flash を最優先（じっくり時間をかけてテキスト準拠の深層推論を実施）
   const candidateConfigs = [
-    { model: "gemini-3.8-flash", useThinkingLow: true },
-    { model: "gemini-3.8-flash", useThinkingLow: false },
-    { model: "gemini-2.5-flash", useThinkingLow: false },
-    { model: "gemini-1.5-flash", useThinkingLow: false }
+    { model: "gemini-3.8-flash", useThinking: true },
+    { model: "gemini-3.8-flash", useThinking: false },
+    { model: "gemini-2.5-flash", useThinking: false },
+    { model: "gemini-1.5-flash", useThinking: false }
   ];
 
   let lastError = null;
 
   for(let i = 0; i < candidateConfigs.length; i++){
-    const { model, useThinkingLow } = candidateConfigs[i];
+    const { model, useThinking } = candidateConfigs[i];
     const controller = new AbortController();
-    const timeoutTimer = setTimeout(() => controller.abort(), 20000); // 20秒で安全タイムアウト
+    const timeoutTimer = setTimeout(() => controller.abort(), 90000); // じっくり90秒まで許容
 
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
@@ -68843,11 +69139,13 @@ async function callGeminiApi(promptText){
         }]
       };
 
-      if(useThinkingLow){
+      if(useThinking){
         requestPayload.generationConfig = {
           thinkingConfig: {
-            thinkingLevel: "low"
-          }
+            thinkingLevel: "medium" // じっくり深い思考でテキスト準拠の最高品質解説を生成
+          },
+          maxOutputTokens: 4096,
+          temperature: 0.7
         };
       }
 
@@ -68865,7 +69163,7 @@ async function callGeminiApi(promptText){
         
         // パラメータ非対応やモデル廃止の場合は次へフォールバック
         if(res.status === 400 || res.status === 404 || errMsg.includes("no longer available") || errMsg.includes("not found") || errMsg.includes("INVALID_ARGUMENT")){
-          console.warn(`Model ${model} (thinkingLow=${useThinkingLow}) error: ${errMsg}. Trying fallback...`);
+          console.warn(`Model ${model} (thinking=${useThinking}) error: ${errMsg}. Trying fallback...`);
           lastError = new Error(`Gemini API Error: ${errMsg}`);
           continue;
         }
@@ -68880,8 +69178,8 @@ async function callGeminiApi(promptText){
     } catch(e) {
       clearTimeout(timeoutTimer);
       if(e.name === "AbortError"){
-        console.warn(`Model ${model} timed out after 20s. Trying next...`);
-        lastError = new Error("AIサーバーからの応答がタイムアウトしました。通信環境をご確認ください。");
+        console.warn(`Model ${model} timed out after 90s. Trying next...`);
+        lastError = new Error("AIサーバーからの応答がタイムアウトしました。");
         continue;
       }
       if(e.message && (e.message.includes("no longer available") || e.message.includes("not found"))){
@@ -68893,6 +69191,90 @@ async function callGeminiApi(promptText){
   }
 
   throw lastError || new Error("Gemini APIからの回答取得に失敗しました。");
+}
+
+// レポート保存関数（自動保存 & 永続化）
+function saveAiReportToArchive(reportText, subject, chapters, questionCount){
+  const newReport = {
+    id: "rep_" + Date.now(),
+    createdAt: new Date().toISOString(),
+    dateStr: new Date().toLocaleString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' }),
+    subject: subject,
+    chapters: [...chapters],
+    chapterSummary: chapters.length > 3 ? `${chapters.slice(0, 3).map(c => c.split(' ')[0]).join(', ')} など計${chapters.length}章` : chapters.map(c => c.split(' ')[0]).join(', '),
+    questionCount: questionCount,
+    title: `${subject} 答練対策レポート (${new Date().toLocaleDateString('ja-JP')})`,
+    reportText: reportText
+  };
+  savedAiReports.unshift(newReport);
+  if(savedAiReports.length > 30) savedAiReports = savedAiReports.slice(0, 30);
+  localStorage.setItem(LS_AI_REPORTS, JSON.stringify(savedAiReports));
+  triggerCloudSave();
+  return newReport;
+}
+
+// マークダウンファイルとしてダウンロード保存
+function downloadMarkdownReport(reportText, title){
+  const filename = `${title.replace(/[\s\/:*?"<>|]+/g, '_')}.md`;
+  const blob = new Blob([reportText], { type: "text/markdown;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("レポートをマークダウンファイルとして保存しました！");
+}
+
+// 保存済みレポート操作ハンドラー
+function loadSavedReport(id){
+  const rep = savedAiReports.find(r => r.id === id);
+  if(!rep) return;
+  weakAiReport = rep.reportText;
+  isGeneratingAiReport = false;
+  render();
+  setTimeout(() => {
+    const el = document.getElementById("activeReportContainer");
+    if(el && typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function copyReportById(id){
+  const rep = savedAiReports.find(r => r.id === id);
+  if(!rep) return;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(rep.reportText).then(() => {
+      showToast("レポートをクリップボードにコピーしました！");
+    });
+  }
+}
+
+function downloadReportById(id){
+  const rep = savedAiReports.find(r => r.id === id);
+  if(!rep) return;
+  downloadMarkdownReport(rep.reportText, rep.title || "CPA答練対策レポート");
+}
+
+function deleteSavedReport(id){
+  if(!confirm("この保存済みレポートを削除してもよろしいですか？")) return;
+  savedAiReports = savedAiReports.filter(r => r.id !== id);
+  localStorage.setItem(LS_AI_REPORTS, JSON.stringify(savedAiReports));
+  triggerCloudSave();
+  showToast("保存済みレポートを削除しました");
+  render();
+}
+
+function downloadActiveReport(){
+  if(!weakAiReport) return;
+  const title = `CPA答練対策レポート_${weakFilterSubj}_${new Date().toISOString().slice(0, 10)}`;
+  downloadMarkdownReport(weakAiReport, title);
+}
+
+function closeActiveReport(){
+  weakAiReport = "";
+  render();
 }
 
 // Myメモ拡大モーダル
@@ -69117,35 +69499,11 @@ function closeApiKeyModal(){
 
 function vWeakness(){
   const allSubjs = Array.from(new Set(QUESTIONS.map(q => q.subject)));
-  let subQuestions = QUESTIONS.filter(q => q.subject === weakFilterSubj);
+  const allSubjQs = qsOf(weakFilterSubj);
+  const allSubjChs = getChaptersForSubj(weakFilterSubj);
 
-  // 章範囲フィルター
-  function getChNum(chStr){
-    const m = chStr.match(/第(\d+)章/);
-    return m ? parseInt(m[1], 10) : 0;
-  }
-
-  if(weakFilterRange === "1-11"){
-    subQuestions = subQuestions.filter(q => {
-      const n = getChNum(q.chapter);
-      return n >= 1 && n <= 11;
-    });
-  } else if(weakFilterRange === "12-20"){
-    subQuestions = subQuestions.filter(q => {
-      const n = getChNum(q.chapter);
-      return n >= 12 && n <= 20;
-    });
-  } else if(weakFilterRange === "21-30"){
-    subQuestions = subQuestions.filter(q => {
-      const n = getChNum(q.chapter);
-      return n >= 21 && n <= 30;
-    });
-  } else if(weakFilterRange === "31-40"){
-    subQuestions = subQuestions.filter(q => {
-      const n = getChNum(q.chapter);
-      return n >= 31 && n <= 40;
-    });
-  }
+  // ユーザー選択中の章でフィルタリング
+  let subQuestions = allSubjQs.filter(q => weakSelectedChapters.includes(q.chapter));
 
   // 集計
   let solvedCount = 0;
@@ -69196,6 +69554,32 @@ function vWeakness(){
 
   const hasApiKey = Boolean(getGeminiApiKey());
 
+  // 誤答のある章のカウント
+  const mistakeChs = new Set();
+  allSubjQs.forEach(q => {
+    if(statusMap[q.id] === "間違えた" || (mistakeCountMap[q.id] || 0) > 0 || statusMap[q.id] === "曖昧"){
+      mistakeChs.add(q.chapter);
+    }
+  });
+
+  // 章選択サマリーテキスト
+  let chSummaryText = "";
+  if(weakSelectedChapters.length === allSubjChs.length){
+    chSummaryText = `全範囲 (全${allSubjChs.length}章)`;
+  } else if(weakSelectedChapters.length === 0){
+    chSummaryText = `未選択 (0章)`;
+  } else if(weakSelectedChapters.length <= 3){
+    chSummaryText = weakSelectedChapters.map(c => c.split(' ')[0]).join(', ');
+  } else {
+    chSummaryText = `${weakSelectedChapters.slice(0, 2).map(c => c.split(' ')[0]).join(', ')} など計${weakSelectedChapters.length}章`;
+  }
+
+  // 弱点問題（AI分析対象）の総数
+  const totalWeakCandidateCount = subQuestions.filter(q => {
+    const qid = q.id;
+    return (statusMap[qid] === "間違えた" || statusMap[qid] === "曖昧" || (mistakeCountMap[qid] || 0) > 0 || memoMap[qid]);
+  }).length;
+
   return `
   <header class="appbar">
     <div class="appbar-in">
@@ -69213,27 +69597,106 @@ function vWeakness(){
         <select class="weak-select" onchange="onWeakSubjChange(this.value)">
           ${allSubjs.map(s => `<option value="${s}" ${s === weakFilterSubj ? 'selected' : ''}>${s}</option>`).join('')}
         </select>
-        <select class="weak-select" onchange="onWeakRangeChange(this.value)">
-          <option value="1-11" ${weakFilterRange === '1-11' ? 'selected' : ''}>第1章〜第11章 (基礎答練①)</option>
-          <option value="12-20" ${weakFilterRange === '12-20' ? 'selected' : ''}>第12章〜第20章</option>
-          <option value="21-30" ${weakFilterRange === '21-30' ? 'selected' : ''}>第21章〜第30章</option>
-          <option value="31-40" ${weakFilterRange === '31-40' ? 'selected' : ''}>第31章〜第40章</option>
-          <option value="all" ${weakFilterRange === 'all' ? 'selected' : ''}>全範囲 (すべての章)</option>
-        </select>
+      </div>
+
+      <!-- 📖 自由な章選択トリガーボタン -->
+      <button class="weak-ch-btn" onclick="toggleChapterPicker()">
+        <span>📖 対象章: <b>${chSummaryText}</b></span>
+        <span class="weak-ch-arrow ${isChapterPickerOpen ? 'open' : ''}">▾</span>
+      </button>
+
+      <!-- 📖 自由な章選択パネル -->
+      <div class="weak-ch-picker ${isChapterPickerOpen ? 'open' : ''}">
+        <div class="weak-ch-presets">
+          <button class="ch-preset-btn" onclick="selectAllChapters(true)">全選択</button>
+          <button class="ch-preset-btn" onclick="selectAllChapters(false)">全解除</button>
+          <button class="ch-preset-btn highlight" onclick="selectMistakeChaptersOnly()">✕ 誤答あり章のみ (${mistakeChs.size}章)</button>
+          ${weakFilterSubj === "財務会計論【理論】" ? `
+            <button class="ch-preset-btn" onclick="selectRangeChapters(1, 11)">第1〜11章 (基礎①)</button>
+            <button class="ch-preset-btn" onclick="selectRangeChapters(12, 20)">第12〜20章 (基礎②)</button>
+            <button class="ch-preset-btn" onclick="selectRangeChapters(21, 30)">第21〜30章 (応用①)</button>
+            <button class="ch-preset-btn" onclick="selectRangeChapters(31, 40)">第31〜40章 (応用②)</button>
+          ` : ''}
+        </div>
+        <div class="weak-ch-grid">
+          ${allSubjChs.map(chName => {
+            const isChecked = weakSelectedChapters.includes(chName);
+            const chQs = allSubjQs.filter(q => q.chapter === chName);
+            const chMis = chQs.filter(q => (statusMap[q.id] === "間違えた" || (mistakeCountMap[q.id] || 0) > 0)).length;
+            const chVague = chQs.filter(q => statusMap[q.id] === "曖昧").length;
+            return `
+            <div class="ch-pill ${isChecked ? 'on' : ''}" onclick="toggleSelectChapter('${escapeHtml(chName)}')">
+              <span class="ch-pill-box">${isChecked ? '✓' : ''}</span>
+              <span class="ch-pill-name">${escapeHtml(chName)}</span>
+              <span class="ch-pill-meta">
+                ${chMis > 0 ? `<b class="ch-badge-mis">✕${chMis}</b>` : ''}
+                ${chVague > 0 ? `<b class="ch-badge-vague">△${chVague}</b>` : ''}
+                <small>${chQs.length}問</small>
+              </span>
+            </div>`;
+          }).join('')}
+        </div>
       </div>
 
       <!-- 🤖 AI答練対策レポート生成ボタン -->
       <button class="weak-ai-trigger-btn" onclick="generateWeakAiReport()" ${isGeneratingAiReport ? 'disabled' : ''}>
-        ${isGeneratingAiReport ? '🤖 AIが弱点データを分析中...' : '🤖 AIで答練対策レポートを生成する'}
+        ${isGeneratingAiReport ? '🤖 AIが深層推論・分析中...' : `🤖 AIで答練対策レポートを生成する (${weakSelectedChapters.length}章 / 対象${totalWeakCandidateCount}問)`}
       </button>
+    </div>
+
+    <!-- 📁 保存済みレポート一覧アーカイブ -->
+    <div class="weak-saved-section">
+      <div class="weak-saved-header" onclick="toggleSavedReports()">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span>📁 保存済み答練レポート</span>
+          <span class="sec-badge">${savedAiReports.length}件</span>
+        </div>
+        <span class="weak-ch-arrow ${isSavedReportsOpen ? 'open' : ''}">▾</span>
+      </div>
+      
+      <div class="weak-saved-items ${isSavedReportsOpen ? 'open' : ''}">
+        ${savedAiReports.length === 0 ? `
+          <div style="padding:16px;text-align:center;font-size:12.5px;color:var(--muted);">
+            まだ保存されたレポートはありません。「AIで答練対策レポートを生成」すると、ここに自動保存されます。
+          </div>
+        ` : savedAiReports.map(rep => `
+          <div class="saved-rep-card">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+              <div>
+                <span class="saved-rep-title">${escapeHtml(rep.title || '答練対策レポート')}</span>
+                <div class="saved-rep-sub">
+                  <span>📅 ${rep.dateStr || ''}</span> · 
+                  <span style="color:var(--primary);font-weight:700;">${escapeHtml(rep.subject || '')}</span> · 
+                  <span>${escapeHtml(rep.chapterSummary || '')}</span> · 
+                  <span>${rep.questionCount || 0}問分析</span>
+                </div>
+              </div>
+            </div>
+            <div class="saved-rep-actions">
+              <button class="btn-memo-expand" onclick="loadSavedReport('${rep.id}')">📖 開いて読む</button>
+              <button class="btn-memo-expand" onclick="copyReportById('${rep.id}')">📋 コピー</button>
+              <button class="btn-memo-expand" onclick="downloadReportById('${rep.id}')">📥 MD保存</button>
+              <button class="btn-memo-expand" style="color:var(--red);" onclick="deleteSavedReport('${rep.id}')">🗑️ 削除</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
     </div>
 
     <!-- AI生成レポート表示カード -->
     ${weakAiReport ? `
-      <div class="weak-report-container">
+      <div class="weak-report-container" id="activeReportContainer">
         <div class="weak-report-title">
           <span>🤖 Gemini AI 答練対策レポート</span>
-          <button class="btn-memo-expand" onclick="copyWeakReport()">📋 レポートをコピー</button>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn-memo-expand" onclick="copyWeakReport()">📋 コピー</button>
+            <button class="btn-memo-expand" onclick="downloadActiveReport()">📥 MD保存</button>
+            <button class="btn-memo-expand" onclick="closeActiveReport()">✕ 閉じる</button>
+          </div>
+        </div>
+        <div class="weak-report-meta-bar">
+          <span>対象: <b>${escapeHtml(weakFilterSubj)}</b> (${escapeHtml(chSummaryText)})</span>
+          <span style="color:var(--green);font-weight:700;">✓ クラウド自動保存済</span>
         </div>
         <div class="weak-report-body">${formatAiMarkdown(weakAiReport)}</div>
       </div>
@@ -69279,7 +69742,7 @@ function vWeakness(){
     <div class="weak-questions-list">
       ${currentList.length === 0 ? `
         <div style="text-align:center;padding:30px;color:var(--muted);font-size:13px;background:var(--surface);border-radius:12px;border:1px solid var(--line);">
-          該当する問題はありません。順調です！✨
+          選択した章に該当する問題はありません。順調です！✨
         </div>
       ` : currentList.map(item => {
         const q = item.q;
@@ -69322,13 +69785,63 @@ function vWeakness(){
 
 function onWeakSubjChange(val){
   weakFilterSubj = val;
+  initWeakSelectedChapters();
   weakAiReport = "";
   render();
 }
 
-function onWeakRangeChange(val){
-  weakFilterRange = val;
-  weakAiReport = "";
+function toggleChapterPicker(){
+  isChapterPickerOpen = !isChapterPickerOpen;
+  render();
+}
+
+function toggleSavedReports(){
+  isSavedReportsOpen = !isSavedReportsOpen;
+  render();
+}
+
+function toggleSelectChapter(chName){
+  const idx = weakSelectedChapters.indexOf(chName);
+  if(idx >= 0){
+    weakSelectedChapters.splice(idx, 1);
+  } else {
+    weakSelectedChapters.push(chName);
+  }
+  render();
+}
+
+function selectAllChapters(select = true){
+  const allSubjChs = getChaptersForSubj(weakFilterSubj);
+  weakSelectedChapters = select ? [...allSubjChs] : [];
+  render();
+}
+
+function selectMistakeChaptersOnly(){
+  const allSubjQs = qsOf(weakFilterSubj);
+  const chWithMistakes = new Set();
+  allSubjQs.forEach(q => {
+    if(statusMap[q.id] === "間違えた" || (mistakeCountMap[q.id] || 0) > 0 || statusMap[q.id] === "曖昧"){
+      chWithMistakes.add(q.chapter);
+    }
+  });
+  if(chWithMistakes.size === 0){
+    showToast("この科目で誤答・曖昧のある章はありません。");
+    return;
+  }
+  weakSelectedChapters = Array.from(chWithMistakes);
+  render();
+}
+
+function selectRangeChapters(startNum, endNum){
+  const allSubjChs = getChaptersForSubj(weakFilterSubj);
+  function getChNum(chStr){
+    const m = chStr.match(/第(\d+)章/);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+  weakSelectedChapters = allSubjChs.filter(ch => {
+    const n = getChNum(ch);
+    return n >= startNum && n <= endNum;
+  });
   render();
 }
 
@@ -69350,19 +69863,17 @@ function copyWeakReport(){
   }
 }
 
-// 🤖 AI答練対策レポート生成の実行
+// 🤖 AI答練対策レポート生成の実行（テキスト完全準拠＆噛み砕き解説・深層推論）
 async function generateWeakAiReport(){
-  let subQuestions = QUESTIONS.filter(q => q.subject === weakFilterSubj);
-  function getChNum(chStr){
-    const m = chStr.match(/第(\d+)章/);
-    return m ? parseInt(m[1], 10) : 0;
-  }
-  if(weakFilterRange === "1-11") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 1 && getChNum(q.chapter) <= 11);
-  else if(weakFilterRange === "12-20") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 12 && getChNum(q.chapter) <= 20);
-  else if(weakFilterRange === "21-30") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 21 && getChNum(q.chapter) <= 30);
-  else if(weakFilterRange === "31-40") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 31 && getChNum(q.chapter) <= 40);
+  const allSubjQs = qsOf(weakFilterSubj);
+  let subQuestions = allSubjQs.filter(q => weakSelectedChapters.includes(q.chapter));
 
-  // 弱点問題（複数回ミス・間違い・曖昧・メモ）から最重要の8問を抽出（高速＆高密度）
+  if(weakSelectedChapters.length === 0){
+    showToast("対象の章を1つ以上選択してください");
+    return;
+  }
+
+  // 選択された章から、間違えた問題・曖昧・メモありの問題を上位10問抽出
   const weakItems = subQuestions.filter(q => {
     const qid = q.id;
     const curStatus = statusMap[qid];
@@ -69373,28 +69884,56 @@ async function generateWeakAiReport(){
     const misA = Math.max(statsMap[a.id]?.wrong || 0, mistakeCountMap[a.id] || 0);
     const misB = Math.max(statsMap[b.id]?.wrong || 0, mistakeCountMap[b.id] || 0);
     return misB - misA;
-  }).slice(0, 8);
+  }).slice(0, 10);
 
   if(weakItems.length === 0){
-    showToast("この範囲に間違えた問題や曖昧な問題はありません！");
+    showToast("選択した章に間違えた問題や曖昧な問題はありません！順調です✨");
     return;
   }
 
-  const promptText = `公認会計士試験（短答式・論文式）の受験生です。
-現在学習中の「${weakFilterSubj}」（範囲: ${weakFilterRange === 'all' ? '全章' : weakFilterRange}）における、私の実際の回答履歴から抽出した「間違えやすい問題・曖昧な問題・自分のメモ」です。
+  const selectedChNames = weakSelectedChapters.map(c => c.split(' ')[0]).join(', ');
 
-答練・本試験で1点も落とさないよう、以下の構成で【答練対策 弱点克服レポート】を作成してください：
-1. 【全体診断】誤答の集中している論点と、私の思考のクセ・陥りやすい罠
-2. 【頻出引っかけトラップ解説】間違えた問題から、試験委員が狙ってくる「キーワードのすり替え」「制度趣旨・背景の対比」を詳しく解説
-3. 【Myメモの深掘り・補強】私が疑問に感じてメモした点についての決定版解説
-4. 【答練直前！即答チェックリスト】試験直前に確認できる○×形式の要点5選
+  const promptText = `あなたは公認会計士試験（短答式・論文式）の最高峰の指導講師です。
+受講生が自ら選択した学習範囲（${weakFilterSubj} › ${selectedChNames}）において、実際の演習履歴から抽出された「最も間違えやすい重要論点・曖昧な問題・受講生のMyメモ」の分析データです。
 
---- 私の学習データ ---
-${weakItems.map(q => {
-  const m = memoMap[q.id] ? ` [自分のメモ: ${memoMap[q.id]}]` : '';
+【絶対遵守の指導方針】
+1. 【公式テキスト・会計基準・法令規定への厳格な準拠（最優先）】
+   ・各問題に添付された「公式テキストの解説文（条文・会計基準・制度趣旨）」に100%厳格に準拠してください。
+   ・試験で問われる正確な専門用語、定義、規定の要件、根拠条文・基準番号を正確に踏まえてください。
+   ・自己流の解釈や不正確な省略は不合格に直結するため厳禁です。
+
+2. 【受験生目線の噛み砕き解説（電車内・直前でも一読で腹落ちする決定版解説）】
+   ・小難しい条文をそのまま棒読みするのではなく、「なぜこの規定・基準が設けられているのか（制度趣旨・背景の理由付け）」「実務的な具体例」「直感的なイメージ」を、電車の中や直前でも一読してスッと頭に入るよう、噛み砕いて平易に解説してください。
+   ・「要するにどういうことか」が一目でわかる一言まとめを付記してください。
+
+3. 【試験委員の引っかけトラップ看破マップ（対比表付き）】
+   ・短答式試験委員が狙ってくる「キーワードのすり替えパターン」（例: 任意と義務、直ちに・遅滞なく、純額と総額、発生時と決算時、直接控除と間接控除など）を、Markdown対比表や「×の作られ方」として明確に暴いてください。
+
+4. 【受講生のMyメモへの疑問解消・決定版の覚え方】
+   ・受講生が疑問や覚え方をメモしている問題については、その疑問にズバリ答え、誤解を解消し、試験場で絶対に忘れない決定版の覚え方を伝授してください。
+
+5. 【答練・本試験直前！即答チェックリスト（○×形式5選）】
+   ・試験開始直前の5分間に見返すだけで確実に1〜2マーク拾える、○×形式の超重要ポイント5選と、その即答理由（なぜ○か、どこが×か）を提示してください。
+
+--- 受講生の弱点問題データ（公式テキスト解説付き） ---
+${weakItems.map((q, idx) => {
+  const m = memoMap[q.id] ? `\n  ・受講生のMyメモ: 「${memoMap[q.id]}」` : '';
   const mis = Math.max(statsMap[q.id]?.wrong || 0, mistakeCountMap[q.id] || 0);
-  return `・${q.chapter} 問${q.num} (ランク${q.rank}) [誤答:${mis}回, 状態:${statusMap[q.id] || '-'}]${m}\n  問題: ${q.q}\n  正解: ${q.ans}`;
-}).join('\n')}
+  return `【論点${idx+1}】${q.chapter} 問${q.num} (ランク${q.rank || 'B'}) [過去誤答:${mis}回, 現在の状態:${statusMap[q.id] || '-'}]${m}
+  ・問題文: ${q.q}
+  ・正解: ${q.ans}
+  ・公式テキストの解説:
+${q.exp}
+`;
+}).join('\n----------------------------------------\n')}
+
+【出力フォーマット】
+以下の構成で、見出し・太字・対比表（Markdown表）・箇条書きを駆使して、読みやすく洗練された答練対策レポートを作成してください：
+## 1. 【全体診断】誤答傾向とあなたの思考のクセ
+## 2. 【公式テキスト完全準拠】頻出論点・制度趣旨の噛み砕き深掘り解説
+## 3. 【試験委員の罠】キーワードすり替え・対比トラップ看破法（対比表付き）
+## 4. 【Myメモの疑問解消・決定版の覚え方】
+## 5. 【答練直前！即答チェックリスト 5選】（○×と即答理由）
 `;
 
   const apiKey = getGeminiApiKey();
@@ -69405,18 +69944,26 @@ ${weakItems.map(q => {
 
   isGeneratingAiReport = true;
   let elapsedSec = 0;
-  weakAiReport = "🤖 Gemini AIが思考・分析中... (0秒経過)";
+  weakAiReport = "🤖 Gemini AIが思考・深層分析中... (0秒経過)";
   render();
 
-  // リアルタイム秒数カウンター（固まっていないことを明示）
+  // リアルタイム秒数カウンターと進行フェーズ表示
   const timer = setInterval(() => {
     elapsedSec++;
     const repBody = document.querySelector(".weak-report-body");
     if(repBody && isGeneratingAiReport){
-      repBody.innerHTML = `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;font-weight:700;color:var(--primary);">
-        <span>🤖 Gemini AIが思考・分析中... (${elapsedSec}秒経過)</span>
-      </div>
-      <div style="font-size:12px;color:var(--muted);margin-top:2px;">弱点傾向・頻出トラップ・答練対策チェックリストを生成しています...</div>`;
+      let phaseText = "公式テキストの解説と誤答データを照合中...";
+      if(elapsedSec >= 10 && elapsedSec < 25) phaseText = "制度趣旨・背景理論と試験委員の引っかけパターンを深層分析中...";
+      else if(elapsedSec >= 25) phaseText = "噛み砕き解説・対比表・答練直前チェックリストを最終執筆中...";
+
+      repBody.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;font-weight:700;color:var(--primary);font-size:14px;">
+          <div class="sync-dot" style="width:10px;height:10px;background:var(--primary);animation:pulse 1s infinite;"></div>
+          <span>🤖 Gemini AIが思考・深層分析中... (${elapsedSec}秒経過)</span>
+        </div>
+        <div style="font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.5;">${phaseText}</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px;">※ CPA公式テキストに完全準拠した深層レポートを生成しています。約20〜40秒お待ちください。</div>
+      `;
     }
   }, 1000);
 
@@ -69425,8 +69972,18 @@ ${weakItems.map(q => {
     clearInterval(timer);
     weakAiReport = report;
     isGeneratingAiReport = false;
+    
+    // 自動保存アーカイブへ追加
+    saveAiReportToArchive(report, weakFilterSubj, weakSelectedChapters, weakItems.length);
+
     render();
-    showToast("答練対策レポートを生成しました！");
+    showToast("答練対策レポートを生成・保存しました！");
+
+    // レポート位置へスクロール
+    setTimeout(() => {
+      const el = document.getElementById("activeReportContainer");
+      if(el && typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   } catch(e){
     clearInterval(timer);
     isGeneratingAiReport = false;
