@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.5.2</title>
+<title>CPA 短答一問一答 v2.5.3</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -69464,8 +69464,8 @@ function closeMemoModal(){
   if(modal) modal.style.display = "none";
 }
 
-// 1問ごとのGemini質問（アプリ内直接回答）
-async function askAiQuestion(qid){
+// 1問ごとのGemini質問（特定の文言をクリップボードにコピーして通知する元の使い方）
+function askAiQuestion(qid){
   const q = QUESTIONS.find(x => x.id === qid);
   if(!q) return;
 
@@ -69481,55 +69481,15 @@ ${q.exp}
 
 ※ ポイントを整理して解説してください。`;
 
-  const apiKey = getGeminiApiKey();
-  let aiBox = document.getElementById(`aiAnswerBox_${q.id}`);
-
-  if(!apiKey){
-    openApiKeyModal(promptText);
-    return;
-  }
-
-  if(!aiBox){
-    aiBox = document.createElement("div");
-    aiBox.id = `aiAnswerBox_${q.id}`;
-    aiBox.className = "ai-answer-card";
-    const container = document.getElementById("expTextContainer");
-    if(container && container.parentNode){
-      container.parentNode.insertBefore(aiBox, container.nextSibling);
-    }
-  }
-
-  aiBox.style.display = "block";
-  aiBox.innerHTML = `
-    <div class="ai-answer-head">
-      <span class="ai-answer-badge">🤖 Gemini AIが思考中...</span>
-    </div>
-    <div style="font-size:13px;color:var(--muted);padding:8px 0;">公認会計士試験の出題意図と背景理論を分析しています...</div>
-  `;
-
-  try {
-    const aiResponse = await callGeminiApi(promptText, (notice) => {
-      const subText = aiBox.querySelector("div[style*='font-size:13px']");
-      if(subText) subText.textContent = notice;
+  // クリップボードにコピーして完了通知
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(promptText).then(() => {
+      openGeminiService(promptText);
+    }).catch(() => {
+      fallbackCopyAndOpenGemini(promptText);
     });
-    aiBox.innerHTML = `
-      <div class="ai-answer-head">
-        <span class="ai-answer-badge">🤖 Gemini AIによる制度趣旨・背景解説</span>
-      </div>
-      <div class="ai-answer-content">${escapeHtml(aiResponse)}</div>
-      <button class="btn-copy-to-memo" onclick="appendAiToMemo('${q.id}', ${JSON.stringify(aiResponse)})">
-        📋 この解説をMyメモに追加保存
-      </button>
-    `;
-  } catch(e){
-    if(e.message === "NO_API_KEY"){
-      openApiKeyModal(promptText);
-    } else {
-      aiBox.innerHTML = `
-        <div style="color:var(--red);font-size:13px;margin-bottom:6px;">⚠️ AI回答の取得に失敗しました: ${escapeHtml(e.message)}</div>
-        <button class="btn-memo-expand" onclick="fallbackCopyAndOpenGemini('${encodeURIComponent(promptText)}')">Web版Geminiで開く</button>
-      `;
-    }
+  } else {
+    fallbackCopyAndOpenGemini(promptText);
   }
 }
 
