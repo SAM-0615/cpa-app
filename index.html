@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.5.0</title>
+<title>CPA 短答一問一答 v2.5.1</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -69001,6 +69001,7 @@ let isSavedReportsOpen = false;
 
 // ユーザーが自由に選択した対象章リスト
 let weakSelectedChapters = [];
+let lastWeakPromptText = ""; // 万一のエラー時の再試行・Web版連携用
 
 // 保存済みレポート管理 (LocalStorage + Firestore自動同期)
 const LS_AI_REPORTS = "cpa_v6_saved_ai_reports";
@@ -69064,7 +69065,19 @@ function extractGeminiText(data){
 function formatAiMarkdown(text){
   if(!text) return "";
   if(text.startsWith("⚠️")){
-    return `<div style="color:var(--red);font-weight:700;line-height:1.6;padding:8px 0;">${escapeHtml(text)}</div>`;
+    return `
+      <div style="color:var(--red);font-weight:700;line-height:1.6;padding:12px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;margin-bottom:12px;font-size:13.5px;">
+        ${escapeHtml(text)}
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+        <button onclick="generateWeakAiReport()" style="background:var(--primary);color:#fff;border:none;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;">
+          <span>🔄</span> もう一度生成を試す
+        </button>
+        <button onclick="fallbackCopyAndOpenGemini(encodeURIComponent(lastWeakPromptText || ''))" style="background:#f1f5f9;color:var(--text);border:1px solid #cbd5e1;padding:9px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;">
+          <span>📋</span> プロンプトをコピーしてWeb版Geminiで見る
+        </button>
+      </div>
+    `;
   }
 
   let formatted = escapeHtml(text);
@@ -69109,88 +69122,147 @@ function formatAiMarkdown(text){
   return formatted;
 }
 
-// 共通Gemini API呼び出し（gemini-3.8-flash 深層思考・90秒高精度推論・段階的フォールバック）
-async function callGeminiApi(promptText){
+// 待機ユーティリティ
+const waitMs = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// 共通Gemini API呼び出し（高負荷・混雑・High Demand完全耐性・指数バックオフ・複数モデル自動フォールバック）
+async function callGeminiApi(promptText, onStatusUpdate){
   const apiKey = getGeminiApiKey();
   if(!apiKey){
     throw new Error("NO_API_KEY");
   }
 
-  // 最新推奨モデル gemini-3.8-flash を最優先（じっくり時間をかけてテキスト準拠の深層推論を実施）
+  // 優先順位順のモデル候補
+  // 1. gemini-3.8-flash (思考モード: 最深推論)
+  // 2. gemini-3.8-flash (通常モード: 混雑時でも思考なしなら即通る場合が多い)
+  // 3. gemini-2.5-flash (次世代高速安定版)
+  // 4. gemini-1.5-flash (長期安定版)
+  // 5. gemini-1.5-pro (高品質プロモデル)
+  // 6. gemini-2.5-pro (最新高推論モデル)
   const candidateConfigs = [
-    { model: "gemini-3.8-flash", useThinking: true },
-    { model: "gemini-3.8-flash", useThinking: false },
-    { model: "gemini-2.5-flash", useThinking: false },
-    { model: "gemini-1.5-flash", useThinking: false }
+    { model: "gemini-3.8-flash", useThinking: true, desc: "Gemini 3.8 Flash (深層思考モード)", maxRetries: 3 },
+    { model: "gemini-3.8-flash", useThinking: false, desc: "Gemini 3.8 Flash (標準モード)", maxRetries: 2 },
+    { model: "gemini-2.5-flash", useThinking: false, desc: "Gemini 2.5 Flash", maxRetries: 2 },
+    { model: "gemini-1.5-flash", useThinking: false, desc: "Gemini 1.5 Flash", maxRetries: 2 },
+    { model: "gemini-1.5-pro", useThinking: false, desc: "Gemini 1.5 Pro", maxRetries: 2 },
+    { model: "gemini-2.5-pro", useThinking: false, desc: "Gemini 2.5 Pro", maxRetries: 2 }
   ];
 
   let lastError = null;
 
-  for(let i = 0; i < candidateConfigs.length; i++){
-    const { model, useThinking } = candidateConfigs[i];
-    const controller = new AbortController();
-    const timeoutTimer = setTimeout(() => controller.abort(), 90000); // じっくり90秒まで許容
+  for(let cIdx = 0; cIdx < candidateConfigs.length; cIdx++){
+    const { model, useThinking, desc, maxRetries } = candidateConfigs[cIdx];
 
-    try {
-      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-      const requestPayload = {
-        contents: [{
-          parts: [{ text: promptText }]
-        }]
-      };
+    for(let attempt = 1; attempt <= maxRetries; attempt++){
+      const controller = new AbortController();
+      const timeoutMs = useThinking ? 90000 : 60000;
+      const timeoutTimer = setTimeout(() => controller.abort(), timeoutMs);
 
-      if(useThinking){
-        requestPayload.generationConfig = {
-          thinkingConfig: {
-            thinkingLevel: "medium" // じっくり深い思考でテキスト準拠の最高品質解説を生成
-          },
-          maxOutputTokens: 4096,
-          temperature: 0.7
+      try {
+        if(onStatusUpdate){
+          if(attempt > 1){
+            onStatusUpdate(`⚡ ${desc} が一時混雑中のため、自動再試行中... (${attempt}/${maxRetries}回目)`);
+          } else if(cIdx > 0){
+            onStatusUpdate(`🔄 代替モデル [${desc}] へ切り替えて分析中...`);
+          }
+        }
+
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const requestPayload = {
+          contents: [{
+            parts: [{ text: promptText }]
+          }]
         };
-      }
 
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestPayload),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutTimer);
+        if(useThinking){
+          requestPayload.generationConfig = {
+            thinkingConfig: {
+              thinkingLevel: "medium"
+            },
+            maxOutputTokens: 4096,
+            temperature: 0.7
+          };
+        }
 
-      if(!res.ok){
-        const errData = await res.json().catch(() => ({}));
-        const errMsg = errData.error?.message || `HTTP ${res.status}`;
-        
-        // パラメータ非対応やモデル廃止の場合は次へフォールバック
-        if(res.status === 400 || res.status === 404 || errMsg.includes("no longer available") || errMsg.includes("not found") || errMsg.includes("INVALID_ARGUMENT")){
-          console.warn(`Model ${model} (thinking=${useThinking}) error: ${errMsg}. Trying fallback...`);
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(requestPayload),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutTimer);
+
+        if(!res.ok){
+          const errData = await res.json().catch(() => ({}));
+          const errMsg = errData.error?.message || `HTTP ${res.status}`;
+          const status = res.status;
+
+          // 1. 認証エラー (即座に停止して再設定を促す)
+          if(status === 401 || status === 403 || errMsg.includes("API_KEY_INVALID") || errMsg.includes("API key not valid")){
+            throw new Error(`Gemini APIキーが無効です。右上の設定から正しいキーを再設定してください: ${errMsg}`);
+          }
+
+          // 2. 一時的な混雑・高需要・レート制限・サーバー過負荷 (指数バックオフで同一モデルを再試行)
+          const isHighDemandOrOverloaded = (
+            status === 429 || status === 503 || status === 500 || status === 502 || status === 504 ||
+            errMsg.includes("high demand") || errMsg.includes("Spikes in demand") ||
+            errMsg.includes("temporarily") || errMsg.includes("overloaded") ||
+            errMsg.includes("ResourceExhausted") || errMsg.includes("rate limit") ||
+            errMsg.includes("quota")
+          );
+
+          if(isHighDemandOrOverloaded){
+            lastError = new Error(`Gemini API混雑エラー: ${errMsg}`);
+            if(attempt < maxRetries){
+              const backoffMs = attempt * 3000; // 3秒, 6秒待機
+              if(onStatusUpdate){
+                onStatusUpdate(`⚠️ ${desc} が現在混雑しています。${backoffMs/1000}秒後に自動再試行します (${attempt}/${maxRetries}回目)...`);
+              }
+              await waitMs(backoffMs);
+              continue; // 同一モデルでリトライ
+            } else {
+              console.warn(`Model ${model} reached max retries due to high demand. Moving to fallback model.`);
+              break; // リトライ上限到達 -> 次のモデル設定へ
+            }
+          }
+
+          // 3. モデル非対応・廃止・パラメータ不正 (リトライせず即座に次のモデル候補へ)
+          console.warn(`Model ${model} (thinking=${useThinking}) returned error: ${errMsg}. Trying fallback model...`);
           lastError = new Error(`Gemini API Error: ${errMsg}`);
+          break; // 次のモデル設定へ
+        }
+
+        const data = await res.json();
+        const text = extractGeminiText(data);
+        if(text && text.length > 0){
+          return text;
+        }
+      } catch(e) {
+        clearTimeout(timeoutTimer);
+
+        // 認証エラーならそのまま外側へ投げる
+        if(e.message && (e.message.includes("Gemini APIキーが無効") || e.message.includes("NO_API_KEY"))){
+          throw e;
+        }
+
+        if(e.name === "AbortError"){
+          console.warn(`Model ${model} timed out after ${timeoutMs/1000}s. Trying next...`);
+          lastError = new Error(`AIサーバーからの応答がタイムアウトしました (${timeoutMs/1000}秒)`);
+          break; // 次のモデルへ
+        }
+
+        // ネットワーク切断・その他のエラー
+        lastError = e;
+        if(attempt < maxRetries){
+          await waitMs(2500);
           continue;
         }
-        throw new Error(`Gemini API Error: ${errMsg}`);
+        break;
       }
-
-      const data = await res.json();
-      const text = extractGeminiText(data);
-      if(text && text.length > 0){
-        return text;
-      }
-    } catch(e) {
-      clearTimeout(timeoutTimer);
-      if(e.name === "AbortError"){
-        console.warn(`Model ${model} timed out after 90s. Trying next...`);
-        lastError = new Error("AIサーバーからの応答がタイムアウトしました。");
-        continue;
-      }
-      if(e.message && (e.message.includes("no longer available") || e.message.includes("not found"))){
-        lastError = e;
-        continue;
-      }
-      throw e;
     }
   }
 
-  throw lastError || new Error("Gemini APIからの回答取得に失敗しました。");
+  throw lastError || new Error("Gemini AIサーバーが高需要または一時停止しています。少し時間をおいて再度お試しください。");
 }
 
 // レポート保存関数（自動保存 & 永続化）
@@ -69404,7 +69476,10 @@ ${q.exp}
   `;
 
   try {
-    const aiResponse = await callGeminiApi(promptText);
+    const aiResponse = await callGeminiApi(promptText, (notice) => {
+      const subText = aiBox.querySelector("div[style*='font-size:13px']");
+      if(subText) subText.textContent = notice;
+    });
     aiBox.innerHTML = `
       <div class="ai-answer-head">
         <span class="ai-answer-badge">🤖 Gemini AIによる制度趣旨・背景解説</span>
@@ -69936,6 +70011,8 @@ ${q.exp}
 ## 5. 【答練直前！即答チェックリスト 5選】（○×と即答理由）
 `;
 
+  lastWeakPromptText = promptText;
+
   const apiKey = getGeminiApiKey();
   if(!apiKey){
     openApiKeyModal(promptText);
@@ -69944,6 +70021,7 @@ ${q.exp}
 
   isGeneratingAiReport = true;
   let elapsedSec = 0;
+  let currentStatusNotice = "";
   weakAiReport = "🤖 Gemini AIが思考・深層分析中... (0秒経過)";
   render();
 
@@ -69956,19 +70034,30 @@ ${q.exp}
       if(elapsedSec >= 10 && elapsedSec < 25) phaseText = "制度趣旨・背景理論と試験委員の引っかけパターンを深層分析中...";
       else if(elapsedSec >= 25) phaseText = "噛み砕き解説・対比表・答練直前チェックリストを最終執筆中...";
 
+      const displayStatus = currentStatusNotice || phaseText;
+
       repBody.innerHTML = `
         <div style="display:flex;align-items:center;gap:10px;padding:8px 0;font-weight:700;color:var(--primary);font-size:14px;">
           <div class="sync-dot" style="width:10px;height:10px;background:var(--primary);animation:pulse 1s infinite;"></div>
           <span>🤖 Gemini AIが思考・深層分析中... (${elapsedSec}秒経過)</span>
         </div>
-        <div style="font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.5;">${phaseText}</div>
-        <div style="font-size:11.5px;color:var(--muted);margin-top:4px;">※ CPA公式テキストに完全準拠した深層レポートを生成しています。約20〜40秒お待ちください。</div>
+        <div style="font-size:13px;color:${currentStatusNotice ? 'var(--primary)' : 'var(--sub)'};margin-top:6px;line-height:1.5;font-weight:${currentStatusNotice ? '700' : '500'};">
+          ${escapeHtml(displayStatus)}
+        </div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:4px;">※ CPA公式テキストに完全準拠した深層レポートを生成しています。混雑時は自動で再試行・安定モデルへ切り替えます。</div>
       `;
     }
   }, 1000);
 
   try {
-    const report = await callGeminiApi(promptText);
+    const report = await callGeminiApi(promptText, (notice) => {
+      currentStatusNotice = notice;
+      const repBody = document.querySelector(".weak-report-body");
+      if(repBody){
+        const noticeDiv = repBody.querySelector("div[style*='font-size:13px']");
+        if(noticeDiv) noticeDiv.innerHTML = escapeHtml(notice);
+      }
+    });
     clearInterval(timer);
     weakAiReport = report;
     isGeneratingAiReport = false;
