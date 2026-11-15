@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.4.2</title>
+<title>CPA 短答一問一答 v2.4.3</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -67289,7 +67289,7 @@ function vSubjects(){
   return `
   <header class="appbar">
     <div class="appbar-in">
-      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.4.2</span></h1>
+      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.4.3</span></h1>
       <div id="syncBadgeEl" class="sync-badge">
         <span class="sync-dot"></span>読込中...
       </div>
@@ -68770,33 +68770,84 @@ function setGeminiApiKey(key){
   else localStorage.removeItem(LS_GEMINI_KEY);
 }
 
-// 共通Gemini API呼び出し
+// AIマークダウン簡易レンダラー（答練レポートを見やすく装飾）
+function formatAiMarkdown(text){
+  if(!text) return "";
+  if(text.startsWith("⚠️")){
+    return `<div style="color:var(--red);font-weight:700;line-height:1.6;padding:6px 0;">${escapeHtml(text)}</div>`;
+  }
+  let formatted = escapeHtml(text);
+  // 見出し h3, h4
+  formatted = formatted.replace(/^###\s+(.*$)/gim, '<h4 style="font-size:14.5px;font-weight:800;color:var(--text);margin:16px 0 6px;border-left:3.5px solid var(--primary);padding-left:8px;">$1</h4>');
+  formatted = formatted.replace(/^##\s+(.*$)/gim, '<h3 style="font-size:16px;font-weight:800;color:var(--text);margin:18px 0 8px;border-bottom:1.5px solid var(--line);padding-bottom:4px;">$1</h3>');
+  // 太字
+  formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b style="color:var(--text);font-weight:700;background:rgba(37,99,235,0.06);padding:0 3px;border-radius:3px;">$1</b>');
+  // 箇条書き
+  formatted = formatted.replace(/^-\s+(.*$)/gim, '<div style="margin:4px 0 4px 14px;position:relative;"><span style="color:var(--primary);margin-right:6px;">•</span>$1</div>');
+  // 番号リスト
+  formatted = formatted.replace(/^(\d+)\.\s+(.*$)/gim, '<div style="margin:6px 0;font-weight:600;"><span style="color:var(--primary);font-weight:800;margin-right:4px;">$1.</span> $2</div>');
+  // 空行と改行
+  formatted = formatted.replace(/\n\n/g, '<div style="height:10px;"></div>');
+  formatted = formatted.replace(/\n/g, '<br>');
+  return formatted;
+}
+
+// 共通Gemini API呼び出し（gemini-3.8-flash を最優先、段階的フォールバック）
 async function callGeminiApi(promptText){
   const apiKey = getGeminiApiKey();
   if(!apiKey){
     throw new Error("NO_API_KEY");
   }
 
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{
-        parts: [{ text: promptText }]
-      }]
-    })
-  });
+  // 最新推奨モデル gemini-3.8-flash を最優先
+  const candidateModels = [
+    "gemini-3.8-flash",
+    "gemini-2.5-flash",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-latest"
+  ];
 
-  if(!res.ok){
-    const errData = await res.json().catch(() => ({}));
-    const errMsg = errData.error?.message || `HTTP ${res.status}`;
-    throw new Error(`Gemini API Error: ${errMsg}`);
+  let lastError = null;
+
+  for(const model of candidateModels){
+    try {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{ text: promptText }]
+          }]
+        })
+      });
+
+      if(!res.ok){
+        const errData = await res.json().catch(() => ({}));
+        const errMsg = errData.error?.message || `HTTP ${res.status}`;
+        
+        // モデル非対応/廃止の場合は次の候補モデルを試行
+        if(res.status === 404 || errMsg.includes("no longer available") || errMsg.includes("not found")){
+          console.warn(`Model ${model} unavailable (${errMsg}), trying next candidate...`);
+          lastError = new Error(`Gemini API Error: ${errMsg}`);
+          continue;
+        }
+        throw new Error(`Gemini API Error: ${errMsg}`);
+      }
+
+      const data = await res.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if(text) return text;
+    } catch(e) {
+      if(e.message && (e.message.includes("no longer available") || e.message.includes("not found"))){
+        lastError = e;
+        continue;
+      }
+      throw e;
+    }
   }
 
-  const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "回答を取得できませんでした。";
-  return text;
+  throw lastError || new Error("Gemini APIからの回答取得に失敗しました。");
 }
 
 // Myメモ拡大モーダル
@@ -69139,7 +69190,7 @@ function vWeakness(){
           <span>🤖 Gemini AI 答練対策レポート</span>
           <button class="btn-memo-expand" onclick="copyWeakReport()">📋 レポートをコピー</button>
         </div>
-        <div class="weak-report-body">${weakAiReport}</div>
+        <div class="weak-report-body">${formatAiMarkdown(weakAiReport)}</div>
       </div>
     ` : ''}
 
