@@ -130,7 +130,11 @@ svg{display:block}
 
 /* Bottom Tabbar (3タブ) */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:var(--safe-b)}
-.tabbar-in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;height:56px}
+.tabbar-in{max-width:680px;margin:0 auto;display:grid;grid-template-columns:repeat(4, 1fr);height:56px;align-items:center}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;padding:4px 0;transition:color 0.15s ease}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--primary)}
+.tab.active svg{transform:scale(1.08)}
 .tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:700;color:var(--muted)}
 .tab svg{width:22px;height:22px;fill:currentColor}
 .tab.active{color:var(--primary)}
@@ -156,7 +160,8 @@ svg{display:block}
 .seg button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,0.06)}
 
 /* Quiz Mode */
-#overlay{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none;-webkit-overflow-scrolling:touch}
+#overlay{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;display:none;pointer-events:none;-webkit-overflow-scrolling:touch}
+#overlay.show{display:block;pointer-events:auto;}
 #overlay.show{display:block}
 .qz-bar{position:sticky;top:0;background:var(--surface);z-index:5;padding-top:var(--safe-t);border-bottom:1px solid var(--line)}
 .qz-bar-in{max-width:800px;margin:0 auto;height:52px;display:flex;align-items:center;padding:0 8px}
