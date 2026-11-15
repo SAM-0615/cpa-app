@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.4.3</title>
+<title>CPA 短答一問一答 v2.4.4</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -67289,7 +67289,7 @@ function vSubjects(){
   return `
   <header class="appbar">
     <div class="appbar-in">
-      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.4.3</span></h1>
+      <h1>短答一問一答 <span style="font-size:11px;color:var(--muted);font-weight:600;margin-left:4px;">v2.4.4</span></h1>
       <div id="syncBadgeEl" class="sync-badge">
         <span class="sync-dot"></span>読込中...
       </div>
@@ -68770,65 +68770,102 @@ function setGeminiApiKey(key){
   else localStorage.removeItem(LS_GEMINI_KEY);
 }
 
+// Geminiレスポンスから思考ブロック（thought）を除去し、回答テキストを安全抽出
+function extractGeminiText(data){
+  if(!data) return "";
+  const candidate = data.candidates?.[0];
+  if(!candidate) return "";
+  
+  const parts = candidate.content?.parts;
+  if(!Array.isArray(parts) || parts.length === 0){
+    return candidate.content?.text || "";
+  }
+  
+  // 1. Gemini 3 の思考ブロック(thought: true)を除外し、純粋な回答部分を抽出
+  const nonThoughtParts = parts.filter(p => !p.thought && typeof p.text === "string" && p.text.trim().length > 0);
+  if(nonThoughtParts.length > 0){
+    return nonThoughtParts.map(p => p.text).join("\n").trim();
+  }
+  
+  // 2. フォールバック
+  const anyTextParts = parts.filter(p => typeof p.text === "string" && p.text.trim().length > 0);
+  if(anyTextParts.length > 0){
+    return anyTextParts.map(p => p.text).join("\n").trim();
+  }
+  
+  return "";
+}
+
 // AIマークダウン簡易レンダラー（答練レポートを見やすく装飾）
 function formatAiMarkdown(text){
   if(!text) return "";
   if(text.startsWith("⚠️")){
-    return `<div style="color:var(--red);font-weight:700;line-height:1.6;padding:6px 0;">${escapeHtml(text)}</div>`;
+    return `<div style="color:var(--red);font-weight:700;line-height:1.6;padding:8px 0;">${escapeHtml(text)}</div>`;
   }
   let formatted = escapeHtml(text);
-  // 見出し h3, h4
   formatted = formatted.replace(/^###\s+(.*$)/gim, '<h4 style="font-size:14.5px;font-weight:800;color:var(--text);margin:16px 0 6px;border-left:3.5px solid var(--primary);padding-left:8px;">$1</h4>');
   formatted = formatted.replace(/^##\s+(.*$)/gim, '<h3 style="font-size:16px;font-weight:800;color:var(--text);margin:18px 0 8px;border-bottom:1.5px solid var(--line);padding-bottom:4px;">$1</h3>');
-  // 太字
   formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b style="color:var(--text);font-weight:700;background:rgba(37,99,235,0.06);padding:0 3px;border-radius:3px;">$1</b>');
-  // 箇条書き
   formatted = formatted.replace(/^-\s+(.*$)/gim, '<div style="margin:4px 0 4px 14px;position:relative;"><span style="color:var(--primary);margin-right:6px;">•</span>$1</div>');
-  // 番号リスト
   formatted = formatted.replace(/^(\d+)\.\s+(.*$)/gim, '<div style="margin:6px 0;font-weight:600;"><span style="color:var(--primary);font-weight:800;margin-right:4px;">$1.</span> $2</div>');
-  // 空行と改行
   formatted = formatted.replace(/\n\n/g, '<div style="height:10px;"></div>');
   formatted = formatted.replace(/\n/g, '<br>');
   return formatted;
 }
 
-// 共通Gemini API呼び出し（gemini-3.8-flash を最優先、段階的フォールバック）
+// 共通Gemini API呼び出し（gemini-3.8-flash 高速化・タイムアウト20秒制御・段階的フォールバック）
 async function callGeminiApi(promptText){
   const apiKey = getGeminiApiKey();
   if(!apiKey){
     throw new Error("NO_API_KEY");
   }
 
-  // 最新推奨モデル gemini-3.8-flash を最優先
-  const candidateModels = [
-    "gemini-3.8-flash",
-    "gemini-2.5-flash",
-    "gemini-1.5-flash",
-    "gemini-1.5-flash-latest"
+  // 最新推奨モデル gemini-3.8-flash を最優先（thinkingLevel: "low" で2〜4秒即答）
+  const candidateConfigs = [
+    { model: "gemini-3.8-flash", useThinkingLow: true },
+    { model: "gemini-3.8-flash", useThinkingLow: false },
+    { model: "gemini-2.5-flash", useThinkingLow: false },
+    { model: "gemini-1.5-flash", useThinkingLow: false }
   ];
 
   let lastError = null;
 
-  for(const model of candidateModels){
+  for(let i = 0; i < candidateConfigs.length; i++){
+    const { model, useThinkingLow } = candidateConfigs[i];
+    const controller = new AbortController();
+    const timeoutTimer = setTimeout(() => controller.abort(), 20000); // 20秒で安全タイムアウト
+
     try {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const requestPayload = {
+        contents: [{
+          parts: [{ text: promptText }]
+        }]
+      };
+
+      if(useThinkingLow){
+        requestPayload.generationConfig = {
+          thinkingConfig: {
+            thinkingLevel: "low"
+          }
+        };
+      }
+
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{ text: promptText }]
-          }]
-        })
+        body: JSON.stringify(requestPayload),
+        signal: controller.signal
       });
+      clearTimeout(timeoutTimer);
 
       if(!res.ok){
         const errData = await res.json().catch(() => ({}));
         const errMsg = errData.error?.message || `HTTP ${res.status}`;
         
-        // モデル非対応/廃止の場合は次の候補モデルを試行
-        if(res.status === 404 || errMsg.includes("no longer available") || errMsg.includes("not found")){
-          console.warn(`Model ${model} unavailable (${errMsg}), trying next candidate...`);
+        // パラメータ非対応やモデル廃止の場合は次へフォールバック
+        if(res.status === 400 || res.status === 404 || errMsg.includes("no longer available") || errMsg.includes("not found") || errMsg.includes("INVALID_ARGUMENT")){
+          console.warn(`Model ${model} (thinkingLow=${useThinkingLow}) error: ${errMsg}. Trying fallback...`);
           lastError = new Error(`Gemini API Error: ${errMsg}`);
           continue;
         }
@@ -68836,9 +68873,17 @@ async function callGeminiApi(promptText){
       }
 
       const data = await res.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if(text) return text;
+      const text = extractGeminiText(data);
+      if(text && text.length > 0){
+        return text;
+      }
     } catch(e) {
+      clearTimeout(timeoutTimer);
+      if(e.name === "AbortError"){
+        console.warn(`Model ${model} timed out after 20s. Trying next...`);
+        lastError = new Error("AIサーバーからの応答がタイムアウトしました。通信環境をご確認ください。");
+        continue;
+      }
       if(e.message && (e.message.includes("no longer available") || e.message.includes("not found"))){
         lastError = e;
         continue;
@@ -69317,14 +69362,18 @@ async function generateWeakAiReport(){
   else if(weakFilterRange === "21-30") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 21 && getChNum(q.chapter) <= 30);
   else if(weakFilterRange === "31-40") subQuestions = subQuestions.filter(q => getChNum(q.chapter) >= 31 && getChNum(q.chapter) <= 40);
 
-  // 弱点問題（複数回ミス・間違い・曖昧・メモ）を最大15問抽出
+  // 弱点問題（複数回ミス・間違い・曖昧・メモ）から最重要の8問を抽出（高速＆高密度）
   const weakItems = subQuestions.filter(q => {
     const qid = q.id;
     const curStatus = statusMap[qid];
     const mis = mistakeCountMap[qid] || 0;
     const stObj = statsMap[qid] || { wrong: 0 };
     return (curStatus === "間違えた" || curStatus === "曖昧" || mis >= 1 || stObj.wrong >= 1 || memoMap[qid]);
-  }).slice(0, 15);
+  }).sort((a,b) => {
+    const misA = Math.max(statsMap[a.id]?.wrong || 0, mistakeCountMap[a.id] || 0);
+    const misB = Math.max(statsMap[b.id]?.wrong || 0, mistakeCountMap[b.id] || 0);
+    return misB - misA;
+  }).slice(0, 8);
 
   if(weakItems.length === 0){
     showToast("この範囲に間違えた問題や曖昧な問題はありません！");
@@ -69350,28 +69399,36 @@ ${weakItems.map(q => {
 
   const apiKey = getGeminiApiKey();
   if(!apiKey){
-    // APIキーがない場合はプロンプトをコピーしてWeb版Geminiへ一発案内
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(promptText).then(() => {
-        openApiKeyModal(promptText);
-      });
-    } else {
-      openApiKeyModal(promptText);
-    }
+    openApiKeyModal(promptText);
     return;
   }
 
   isGeneratingAiReport = true;
-  weakAiReport = "🤖 Gemini AIが思考中... あなたの弱点データを分析しています（約5〜10秒）...";
+  let elapsedSec = 0;
+  weakAiReport = "🤖 Gemini AIが思考・分析中... (0秒経過)";
   render();
+
+  // リアルタイム秒数カウンター（固まっていないことを明示）
+  const timer = setInterval(() => {
+    elapsedSec++;
+    const repBody = document.querySelector(".weak-report-body");
+    if(repBody && isGeneratingAiReport){
+      repBody.innerHTML = `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;font-weight:700;color:var(--primary);">
+        <span>🤖 Gemini AIが思考・分析中... (${elapsedSec}秒経過)</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px;">弱点傾向・頻出トラップ・答練対策チェックリストを生成しています...</div>`;
+    }
+  }, 1000);
 
   try {
     const report = await callGeminiApi(promptText);
+    clearInterval(timer);
     weakAiReport = report;
     isGeneratingAiReport = false;
     render();
     showToast("答練対策レポートを生成しました！");
   } catch(e){
+    clearInterval(timer);
     isGeneratingAiReport = false;
     weakAiReport = `⚠️ レポート生成に失敗しました: ${e.message}`;
     render();
