@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="CPA一問一答">
 <meta name="theme-color" content="#ffffff">
-<title>CPA 短答一問一答 v2.5.1</title>
+<title>CPA 短答一問一答 v2.5.2</title>
 <style>
 :root{
   --bg:#f8f9fa; --surface:#ffffff; --line:#e5e7eb; --line-dark:#d1d5db;
@@ -69109,12 +69109,17 @@ function formatAiMarkdown(text){
   formatted = formatted.replace(/^###\s+(.*$)/gim, '<h4 style="font-size:14.5px;font-weight:800;color:var(--text);margin:16px 0 6px;border-left:3.5px solid var(--primary);padding-left:8px;">$1</h4>');
   formatted = formatted.replace(/^##\s+(.*$)/gim, '<h3 style="font-size:16px;font-weight:800;color:var(--text);margin:20px 0 8px;border-bottom:1.5px solid var(--line);padding-bottom:5px;">$1</h3>');
 
-  // 太字
+  // 太字 **text**
   formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b style="color:var(--text);font-weight:700;background:rgba(37,99,235,0.06);padding:0 3px;border-radius:3px;">$1</b>');
 
-  // 箇条書き・リスト
-  formatted = formatted.replace(/^-\s+(.*$)/gim, '<div style="margin:4px 0 4px 14px;position:relative;"><span style="color:var(--primary);margin-right:6px;">•</span>$1</div>');
-  formatted = formatted.replace(/^(\d+)\.\s+(.*$)/gim, '<div style="margin:6px 0;font-weight:600;"><span style="color:var(--primary);font-weight:800;margin-right:4px;">$1.</span> $2</div>');
+  // ネストされた箇条書き（インデント2スペース以上の * または -）
+  formatted = formatted.replace(/^[ \t]{2,}[*-]+\s+(.*$)/gim, '<div style="margin:3px 0 3px 26px;position:relative;font-size:13px;line-height:1.6;color:var(--text);"><span style="color:var(--primary);margin-right:6px;font-weight:700;">◦</span>$1</div>');
+
+  // トップレベル箇条書き（行頭の * または -）
+  formatted = formatted.replace(/^[*-]+\s+(.*$)/gim, '<div style="margin:5px 0 5px 14px;position:relative;line-height:1.6;"><span style="color:var(--primary);margin-right:6px;font-weight:800;">•</span>$1</div>');
+
+  // 番号付きリスト (1. 2. など)
+  formatted = formatted.replace(/^(\d+)\.\s+(.*$)/gim, '<div style="margin:6px 0;font-weight:600;line-height:1.6;"><span style="color:var(--primary);font-weight:800;margin-right:4px;">$1.</span> $2</div>');
 
   // 段落間空行
   formatted = formatted.replace(/\n\n/g, '<div style="height:10px;"></div>');
@@ -69125,7 +69130,7 @@ function formatAiMarkdown(text){
 // 待機ユーティリティ
 const waitMs = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// 共通Gemini API呼び出し（高負荷・混雑・High Demand完全耐性・指数バックオフ・複数モデル自動フォールバック）
+// 共通Gemini API呼び出し（高負荷耐性・8192トークン・MAX_TOKENS自動継続取得・複数モデル自動フォールバック）
 async function callGeminiApi(promptText, onStatusUpdate){
   const apiKey = getGeminiApiKey();
   if(!apiKey){
@@ -69133,12 +69138,6 @@ async function callGeminiApi(promptText, onStatusUpdate){
   }
 
   // 優先順位順のモデル候補
-  // 1. gemini-3.8-flash (思考モード: 最深推論)
-  // 2. gemini-3.8-flash (通常モード: 混雑時でも思考なしなら即通る場合が多い)
-  // 3. gemini-2.5-flash (次世代高速安定版)
-  // 4. gemini-1.5-flash (長期安定版)
-  // 5. gemini-1.5-pro (高品質プロモデル)
-  // 6. gemini-2.5-pro (最新高推論モデル)
   const candidateConfigs = [
     { model: "gemini-3.8-flash", useThinking: true, desc: "Gemini 3.8 Flash (深層思考モード)", maxRetries: 3 },
     { model: "gemini-3.8-flash", useThinking: false, desc: "Gemini 3.8 Flash (標準モード)", maxRetries: 2 },
@@ -69154,10 +69153,6 @@ async function callGeminiApi(promptText, onStatusUpdate){
     const { model, useThinking, desc, maxRetries } = candidateConfigs[cIdx];
 
     for(let attempt = 1; attempt <= maxRetries; attempt++){
-      const controller = new AbortController();
-      const timeoutMs = useThinking ? 90000 : 60000;
-      const timeoutTimer = setTimeout(() => controller.abort(), timeoutMs);
-
       try {
         if(onStatusUpdate){
           if(attempt > 1){
@@ -69167,91 +69162,128 @@ async function callGeminiApi(promptText, onStatusUpdate){
           }
         }
 
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-        const requestPayload = {
-          contents: [{
-            parts: [{ text: promptText }]
-          }]
-        };
+        // 会話履歴配列（MAX_TOKENS自動継続用）
+        let conversationContents = [
+          { role: "user", parts: [{ text: promptText }] }
+        ];
+        let fullGeneratedText = "";
+        let autoContinueCount = 0;
+        const maxAutoContinues = 3; // 最大3回まで続きを自動取得して完全結合
 
-        if(useThinking){
-          requestPayload.generationConfig = {
-            thinkingConfig: {
-              thinkingLevel: "medium"
-            },
-            maxOutputTokens: 4096,
-            temperature: 0.7
-          };
-        }
+        let keepContinuing = true;
+        while(keepContinuing && autoContinueCount <= maxAutoContinues){
+          const controller = new AbortController();
+          const timeoutMs = useThinking ? 90000 : 60000;
+          const timeoutTimer = setTimeout(() => controller.abort(), timeoutMs);
 
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(requestPayload),
-          signal: controller.signal
-        });
-        clearTimeout(timeoutTimer);
-
-        if(!res.ok){
-          const errData = await res.json().catch(() => ({}));
-          const errMsg = errData.error?.message || `HTTP ${res.status}`;
-          const status = res.status;
-
-          // 1. 認証エラー (即座に停止して再設定を促す)
-          if(status === 401 || status === 403 || errMsg.includes("API_KEY_INVALID") || errMsg.includes("API key not valid")){
-            throw new Error(`Gemini APIキーが無効です。右上の設定から正しいキーを再設定してください: ${errMsg}`);
-          }
-
-          // 2. 一時的な混雑・高需要・レート制限・サーバー過負荷 (指数バックオフで同一モデルを再試行)
-          const isHighDemandOrOverloaded = (
-            status === 429 || status === 503 || status === 500 || status === 502 || status === 504 ||
-            errMsg.includes("high demand") || errMsg.includes("Spikes in demand") ||
-            errMsg.includes("temporarily") || errMsg.includes("overloaded") ||
-            errMsg.includes("ResourceExhausted") || errMsg.includes("rate limit") ||
-            errMsg.includes("quota")
-          );
-
-          if(isHighDemandOrOverloaded){
-            lastError = new Error(`Gemini API混雑エラー: ${errMsg}`);
-            if(attempt < maxRetries){
-              const backoffMs = attempt * 3000; // 3秒, 6秒待機
-              if(onStatusUpdate){
-                onStatusUpdate(`⚠️ ${desc} が現在混雑しています。${backoffMs/1000}秒後に自動再試行します (${attempt}/${maxRetries}回目)...`);
-              }
-              await waitMs(backoffMs);
-              continue; // 同一モデルでリトライ
-            } else {
-              console.warn(`Model ${model} reached max retries due to high demand. Moving to fallback model.`);
-              break; // リトライ上限到達 -> 次のモデル設定へ
+          const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+          const requestPayload = {
+            contents: conversationContents,
+            generationConfig: {
+              maxOutputTokens: 8192, // 最大8192トークンまで拡張（途切れ防止）
+              temperature: 0.7
             }
+          };
+
+          if(useThinking){
+            requestPayload.generationConfig.thinkingConfig = {
+              thinkingLevel: "medium"
+            };
           }
 
-          // 3. モデル非対応・廃止・パラメータ不正 (リトライせず即座に次のモデル候補へ)
-          console.warn(`Model ${model} (thinking=${useThinking}) returned error: ${errMsg}. Trying fallback model...`);
-          lastError = new Error(`Gemini API Error: ${errMsg}`);
-          break; // 次のモデル設定へ
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestPayload),
+            signal: controller.signal
+          });
+          clearTimeout(timeoutTimer);
+
+          if(!res.ok){
+            const errData = await res.json().catch(() => ({}));
+            const errMsg = errData.error?.message || `HTTP ${res.status}`;
+            const status = res.status;
+
+            // 1. 認証エラー (即座に停止して再設定を促す)
+            if(status === 401 || status === 403 || errMsg.includes("API_KEY_INVALID") || errMsg.includes("API key not valid")){
+              throw new Error(`Gemini APIキーが無効です。右上の設定から正しいキーを再設定してください: ${errMsg}`);
+            }
+
+            // 2. 一時的な混雑・高需要・レート制限・サーバー過負荷
+            const isHighDemandOrOverloaded = (
+              status === 429 || status === 503 || status === 500 || status === 502 || status === 504 ||
+              errMsg.includes("high demand") || errMsg.includes("Spikes in demand") ||
+              errMsg.includes("temporarily") || errMsg.includes("overloaded") ||
+              errMsg.includes("ResourceExhausted") || errMsg.includes("rate limit") ||
+              errMsg.includes("quota")
+            );
+
+            if(isHighDemandOrOverloaded){
+              lastError = new Error(`Gemini API混雑エラー: ${errMsg}`);
+              if(attempt < maxRetries){
+                const backoffMs = attempt * 3000;
+                if(onStatusUpdate){
+                  onStatusUpdate(`⚠️ ${desc} が現在混雑しています。${backoffMs/1000}秒後に自動再試行します (${attempt}/${maxRetries}回目)...`);
+                }
+                await waitMs(backoffMs);
+                keepContinuing = false;
+                break; // 同一モデルでリトライ
+              } else {
+                console.warn(`Model ${model} reached max retries due to high demand. Moving to fallback model.`);
+                keepContinuing = false;
+                break; // 次のモデルへ
+              }
+            }
+
+            // 3. モデル非対応・廃止・パラメータ不正
+            console.warn(`Model ${model} (thinking=${useThinking}) returned error: ${errMsg}. Trying fallback model...`);
+            lastError = new Error(`Gemini API Error: ${errMsg}`);
+            keepContinuing = false;
+            break; // 次のモデルへ
+          }
+
+          const data = await res.json();
+          const candidate = data.candidates?.[0];
+          const textChunk = extractGeminiText(data);
+
+          if(textChunk && textChunk.length > 0){
+            fullGeneratedText += (fullGeneratedText ? "\n" : "") + textChunk;
+          }
+
+          // もし MAX_TOKENS による強制打ち切りの場合、続きを自動要求してシームレスに結合
+          if(candidate && candidate.finishReason === "MAX_TOKENS" && autoContinueCount < maxAutoContinues){
+            autoContinueCount++;
+            if(onStatusUpdate){
+              onStatusUpdate(`📝 レポートが長文のため、続きを自動取得して連結中 (${autoContinueCount}/${maxAutoContinues})...`);
+            }
+            conversationContents.push({ role: "model", parts: [{ text: textChunk }] });
+            conversationContents.push({ role: "user", parts: [{ text: "直前の続きから、途切れた文をそのまま続けて最後まで出力してください。最初からのやり直しや前置きは不要です。" }] });
+            continue;
+          }
+
+          // 正常終了 (STOP など)
+          keepContinuing = false;
+          if(fullGeneratedText && fullGeneratedText.trim().length > 0){
+            return fullGeneratedText.trim();
+          }
         }
 
-        const data = await res.json();
-        const text = extractGeminiText(data);
-        if(text && text.length > 0){
-          return text;
+        if(fullGeneratedText && fullGeneratedText.trim().length > 0){
+          return fullGeneratedText.trim();
         }
+
       } catch(e) {
-        clearTimeout(timeoutTimer);
-
-        // 認証エラーならそのまま外側へ投げる
+        // 認証エラーならそのまま外側へ
         if(e.message && (e.message.includes("Gemini APIキーが無効") || e.message.includes("NO_API_KEY"))){
           throw e;
         }
 
         if(e.name === "AbortError"){
-          console.warn(`Model ${model} timed out after ${timeoutMs/1000}s. Trying next...`);
-          lastError = new Error(`AIサーバーからの応答がタイムアウトしました (${timeoutMs/1000}秒)`);
-          break; // 次のモデルへ
+          console.warn(`Model ${model} timed out. Trying next...`);
+          lastError = new Error("AIサーバーからの応答がタイムアウトしました。");
+          break;
         }
 
-        // ネットワーク切断・その他のエラー
         lastError = e;
         if(attempt < maxRetries){
           await waitMs(2500);
